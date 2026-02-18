@@ -9,6 +9,15 @@
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:sgairquality.xcodeproj",
+          "identifier" : "17FCDEF02F4555F200578A82",
+          "name" : "sgairquality"
+        }
+      ]
+    },
     "performanceAntipatternCheckerEnabled" : true,
     "targetForVariableExpansion" : {
       "containerPath" : "container:sgairquality.xcodeproj",
