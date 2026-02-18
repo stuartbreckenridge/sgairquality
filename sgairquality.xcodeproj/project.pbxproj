@@ -29,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17F3B0F12F45A741008F8AA3 /* sgairquality.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = sgairquality.xctestplan; sourceTree = "<group>"; };
 		17FCDEF12F4555F200578A82 /* sgairquality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sgairquality.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17FCDEFE2F4555F300578A82 /* sgairqualityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17FCDF082F4555F300578A82 /* sgairqualityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +101,7 @@
 		17FCDEE82F4555F200578A82 = {
 			isa = PBXGroup;
 			children = (
+				17F3B0F12F45A741008F8AA3 /* sgairquality.xctestplan */,
 				17FCDF292F456E8C00578A82 /* Air Quality Information.md */,
 				17FCDF272F4564C000578A82 /* README.md */,
 				17FCDEF32F4555F200578A82 /* sgairquality */,
