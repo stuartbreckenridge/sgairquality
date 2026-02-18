@@ -38,10 +38,17 @@ jobs:
             -resultBundlePath "${GITHUB_WORKSPACE}/build/test_results.xcresult"
           ls -la "${GITHUB_WORKSPACE}/build"
 
-      - name: Install xcresultparser
+      - name: Disable git credential helpers (CI)
+        run: |
+          git config --global --unset-all credential.helper || true
+          git config --global credential.helper ""
+
+      
+      - name: Install xcresultparser (no tap)
         run: |
           set -euo pipefail
-          brew install a7ex/tap/xcresultparser
+          brew install --formula https://raw.githubusercontent.com/a7ex/homebrew-tap/master/Formula/xcresultparser.rb
+          xcresultparser --version
 
       - name: Convert xcresult -> Cobertura
         run: |
