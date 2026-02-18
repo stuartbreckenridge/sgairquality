@@ -42,9 +42,8 @@ jobs:
           # Required for private repositories or if Codecov requires a token for public repos not on supported CI platforms
           # Store your token as a repository secret named CODECOV_TOKEN
           token: ${{ secrets.CODECOV_TOKEN }}
-          # The Codecov action automatically detects the .xcresult bundle and processes it
-          files: build/test_results.xcresult
           # Optional: Add a flag to distinguish coverage reports (e.g., 'ios-tests')
           flags: ios-tests
           verbose: true # Optional: enable verbose output for debugging
+          plugins: xcode
 
