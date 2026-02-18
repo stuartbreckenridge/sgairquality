@@ -36,6 +36,8 @@ jobs:
             -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=26.2' \
             -enableCodeCoverage YES \
             -resultBundlePath TestResults.xcresult \
+            -CLANG_ENABLE_CODE_COVERAGE=YES \
+            -SWIFT_OPTIMIZATION_LEVEL=-Onone \
             | xcpretty
 
       - name: Upload coverage to Codecov
