@@ -28,7 +28,7 @@ jobs:
             -project sgairquality.xcodeproj \
             -scheme sgairquality \
             -testPlan sgairquality \
-            -destination 'platform=iOS Simulator,name=Any iOS Simulator Device' \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=26.2' \
             -enableCodeCoverage YES \
             -resultBundlePath build/test_results.xcresult
 
