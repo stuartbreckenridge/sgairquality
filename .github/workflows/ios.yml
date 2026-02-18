@@ -120,3 +120,4 @@ jobs:
           files: coverage.lcov
           flags: unittests
           fail_ci_if_error: false
+          disable_search: true
