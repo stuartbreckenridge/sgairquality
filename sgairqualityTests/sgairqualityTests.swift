@@ -6,11 +6,13 @@
 //
 
 import Testing
+@testable import sgairquality
 
 struct sgairqualityTests {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    @Test func apiKeyExists() async throws {
+        let key = await Configuration.apiKey
+        #expect(key != nil)
     }
 
 }
