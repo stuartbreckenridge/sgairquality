@@ -42,5 +42,5 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          xcode: true
-          xcode_archive_path: TestResults.xcresult
+          swift_project: sgairquality
+          files: TestResults.xcresult
