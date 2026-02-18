@@ -1,0 +1,25 @@
+language: "en-GB"
+early_access: false
+reviews:
+  profile: "chill"
+  request_changes_workflow: false
+  high_level_summary: true
+  high_level_summary_in_walkthrough: true
+  poem: false
+  review_status: true
+  review_details: false
+  auto_review:
+    enabled: true
+    drafts: false
+  finishing_touches:
+    docstrings:
+      enabled: false
+    unit_ tests:
+      enabled: false
+  pre_merge_checks:
+    docstrings:
+      mode: "off"
+      threshold: 0
+    title:
+      mode: "warning"
+      requirements: "Title should be concise and reflect the changes made, ideally under 50 characters." 
