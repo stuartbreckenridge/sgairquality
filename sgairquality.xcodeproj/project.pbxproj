@@ -36,9 +36,22 @@
 		17FCDF292F456E8C00578A82 /* Air Quality Information.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Air Quality Information.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		17FCE3192F457A2600578A82 /* Exceptions for "sgairquality" folder in "sgairquality" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 17FCDEF02F4555F200578A82 /* sgairquality */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		17FCDEF32F4555F200578A82 /* sgairquality */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				17FCE3192F457A2600578A82 /* Exceptions for "sgairquality" folder in "sgairquality" target */,
+			);
 			path = sgairquality;
 			sourceTree = "<group>";
 		};
@@ -50,6 +63,11 @@
 		17FCDF0B2F4555F300578A82 /* sgairqualityUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = sgairqualityUITests;
+			sourceTree = "<group>";
+		};
+		17FCE30F2F45759300578A82 /* configuration */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -87,6 +105,7 @@
 				17FCDEF32F4555F200578A82 /* sgairquality */,
 				17FCDF012F4555F300578A82 /* sgairqualityTests */,
 				17FCDF0B2F4555F300578A82 /* sgairqualityUITests */,
+				17FCE30F2F45759300578A82 /* configuration */,
 				17FCDEF22F4555F200578A82 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,6 +137,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				17FCDEF32F4555F200578A82 /* sgairquality */,
+				17FCE30F2F45759300578A82 /* configuration */,
 			);
 			name = sgairquality;
 			packageProductDependencies = (
@@ -338,6 +358,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -393,11 +414,14 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
 		17FCDF132F4555F300578A82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 17FCE30F2F45759300578A82 /* configuration */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -409,6 +433,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = sgairquality/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -442,6 +467,8 @@
 		};
 		17FCDF142F4555F300578A82 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 17FCE30F2F45759300578A82 /* configuration */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -453,6 +480,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = sgairquality/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -486,6 +514,8 @@
 		};
 		17FCDF162F4555F300578A82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 17FCE30F2F45759300578A82 /* configuration */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -512,6 +542,8 @@
 		};
 		17FCDF172F4555F300578A82 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 17FCE30F2F45759300578A82 /* configuration */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -538,6 +570,8 @@
 		};
 		17FCDF192F4555F300578A82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 17FCE30F2F45759300578A82 /* configuration */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -563,6 +597,8 @@
 		};
 		17FCDF1A2F4555F300578A82 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 17FCE30F2F45759300578A82 /* configuration */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

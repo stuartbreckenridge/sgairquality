@@ -1,0 +1,17 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "error.apiKeyNotConfigured" : {
+      "comment" : "Error shown when the API key has not been configured.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The API has not been configured."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}
