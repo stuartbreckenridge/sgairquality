@@ -35,32 +35,12 @@ jobs:
             -testPlan sgairquality \
             -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=26.2' \
             -enableCodeCoverage YES \
-            -resultBundlePath "${GITHUB_WORKSPACE}/build/test_results.xcresult"
-          ls -la "${GITHUB_WORKSPACE}/build"
-
-      - name: Disable git credential helpers (CI)
-        run: |
-          git config --global --unset-all credential.helper || true
-          git config --global credential.helper ""
-
-      
-      - name: Install xcresultparser (no tap)
-        run: |
-          set -euo pipefail
-          brew install --formula https://raw.githubusercontent.com/a7ex/homebrew-tap/master/Formula/xcresultparser.rb
-          xcresultparser --version
-
-      - name: Convert xcresult -> Cobertura
-        run: |
-          set -euo pipefail
-          xcresultparser -o cobertura "${GITHUB_WORKSPACE}/build/test_results.xcresult" > cobertura.xml
-          ls -la cobertura.xml
+            -resultBundlePath TestResults.xcresult \
+            | xcpretty
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: cobertura.xml
-          flags: ios-tests
-          verbose: true
-          disable_search: true
+          xcode: true
+          xcode_archive_path: TestResults.xcresult
