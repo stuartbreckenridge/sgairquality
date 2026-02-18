@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		17FCDF282F4564C000578A82 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 17FCDF272F4564C000578A82 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		17FCDEFF2F4555F300578A82 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		17FCDEF12F4555F200578A82 /* sgairquality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sgairquality.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17FCDEFE2F4555F300578A82 /* sgairqualityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17FCDF082F4555F300578A82 /* sgairqualityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		17FCDF272F4564C000578A82 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		17FCDEE82F4555F200578A82 = {
 			isa = PBXGroup;
 			children = (
+				17FCDF272F4564C000578A82 /* README.md */,
 				17FCDEF32F4555F200578A82 /* sgairquality */,
 				17FCDF012F4555F300578A82 /* sgairqualityTests */,
 				17FCDF0B2F4555F300578A82 /* sgairqualityUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17FCDF282F4564C000578A82 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
