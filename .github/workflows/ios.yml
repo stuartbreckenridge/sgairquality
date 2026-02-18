@@ -83,7 +83,7 @@ jobs:
             -project "$XCODEPROJ" \
             -scheme "$SCHEME" \
             -destination "platform=iOS Simulator,name=$DEVICE" \
-            -resultBundlePath TestResults.xcresult
+            -resultBundlePath BuildResults.xcresult
 
       - name: Test (no build)
         shell: bash
