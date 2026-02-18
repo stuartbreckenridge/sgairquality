@@ -4,17 +4,17 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: macos-latest # macOS runner is required for building/testing Xcode projects
+    runs-on: macos-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Select Xcode version (Optional, specify if needed)
+      - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 'latest-stable' # Replace with your desired Xcode version
-      
+          xcode-version: 'latest-stable'
+
       - name: Write Secrets xcconfig
         shell: bash
         run: |
@@ -22,12 +22,14 @@ jobs:
           mkdir -p configuration
           echo "API_KEY = ${{ secrets.API_KEY }}" > configuration/Secrets.xcconfig
 
+      # Keep this workaround
       - name: List available simulators (workaround)
         run: xcrun simctl list devices
-      
+
       - name: Clean and Test Xcode project with coverage
         run: |
-          xcodebuild clean build test \
+          set -euo pipefail
+          xcodebuild clean test \
             -project sgairquality.xcodeproj \
             -scheme sgairquality \
             -testPlan sgairquality \
@@ -36,14 +38,22 @@ jobs:
             -resultBundlePath "${GITHUB_WORKSPACE}/build/test_results.xcresult"
           ls -la "${GITHUB_WORKSPACE}/build"
 
+      - name: Install xcresultparser
+        run: |
+          set -euo pipefail
+          brew install a7ex/tap/xcresultparser
+
+      - name: Convert xcresult -> Cobertura
+        run: |
+          set -euo pipefail
+          xcresultparser -o cobertura "${GITHUB_WORKSPACE}/build/test_results.xcresult" > cobertura.xml
+          ls -la cobertura.xml
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
-          # Required for private repositories or if Codecov requires a token for public repos not on supported CI platforms
-          # Store your token as a repository secret named CODECOV_TOKEN
           token: ${{ secrets.CODECOV_TOKEN }}
-          # Optional: Add a flag to distinguish coverage reports (e.g., 'ios-tests')
+          files: cobertura.xml
           flags: ios-tests
-          verbose: true # Optional: enable verbose output for debugging
-          plugins: xcode
-
+          verbose: true
+          disable_search: true
