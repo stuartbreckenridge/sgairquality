@@ -33,7 +33,8 @@ jobs:
             -testPlan sgairquality \
             -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=26.2' \
             -enableCodeCoverage YES \
-            -resultBundlePath build/test_results.xcresult
+            -resultBundlePath "${GITHUB_WORKSPACE}/build/test_results.xcresult"
+          ls -la "${GITHUB_WORKSPACE}/build"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
