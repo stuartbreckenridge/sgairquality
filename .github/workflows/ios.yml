@@ -47,10 +47,13 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
           xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" -testPlan sgairquality -enableCodeCoverage YES
+      - name: Find xcresult bundle
+        run: |
+          xcresult=$(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" -maxdepth 6 | head -1)
+          echo "XCRESULT_PATH=$xcresult" >> $GITHUB_ENV
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          xcode: true
-          xcode_archive_path: |
-            $(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" -maxdepth 6 | head -1)
+          swift_project: sgairquality
+          files: ${{ env.XCRESULT_PATH }}
