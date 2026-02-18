@@ -8,10 +8,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: [actions/checkout](https://github.com)@v4
+        uses: actions/checkout@v4
 
       - name: Select Xcode version (Optional, specify if needed)
-        uses: [maxim-lobanov/setup-xcode](https://github.com/marketplace/actions/xcode-select-version)@v1
+        uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: 'latest-stable' # Replace with your desired Xcode version
       
@@ -33,7 +33,7 @@ jobs:
             -resultBundlePath build/test_results.xcresult
 
       - name: Upload coverage to Codecov
-        uses: [codecov/codecov-action](https://github.com/codecov/codecov-action)@v5
+        uses: codecov/codecov-action@v5
         with:
           # Required for private repositories or if Codecov requires a token for public repos not on supported CI platforms
           # Store your token as a repository secret named CODECOV_TOKEN
