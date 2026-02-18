@@ -20,7 +20,7 @@ The app will:
 
 ## Setup
 
-Access to [data.gov.sg](https://data.gov.sg) APIs requires an API key. You can get one from [here](https://data.gov.sg/signin). Once you have your API key update the `api-key` in `configuration/Secrets.xcconfig.example` and then remove the `.example` from the file name. `Secrets.xcconfig` is ignored in `.gitignore` so will not be committed to GitHub. 
+Access to [data.gov.sg](https://data.gov.sg) APIs requires an API key. You can get one from the [data.gov.sg sign-in page](https://data.gov.sg/signin). Once you have your API key, update `API_KEY` in `configuration/Secrets.xcconfig.example` and then remove the `.example` suffix from the file name. `Secrets.xcconfig` is ignored in `.gitignore` so will not be committed to GitHub.
 
 
 ## Branch Workflow Configuration

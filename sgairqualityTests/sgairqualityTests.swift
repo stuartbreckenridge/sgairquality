@@ -8,8 +8,8 @@
 import Testing
 @testable import sgairquality
 
-/// Tests for the sgairquality app, covering API key configuration and live data API responses.
-struct sgairqualityTests {
+/// Tests for the SgAirQuality app, covering API key configuration and live data API responses.
+struct SgAirQualityTests {
 
     /// Verifies that an API key has been configured in the app's secrets.
     @Test func apiKeyExists() async throws {
