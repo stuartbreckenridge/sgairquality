@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17FCDF282F4564C000578A82 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 17FCDF272F4564C000578A82 /* README.md */; };
+		17FCDF2A2F456E8C00578A82 /* Air Quality Information.md in Resources */ = {isa = PBXBuildFile; fileRef = 17FCDF292F456E8C00578A82 /* Air Quality Information.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,7 @@
 		17FCDEFE2F4555F300578A82 /* sgairqualityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17FCDF082F4555F300578A82 /* sgairqualityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17FCDF272F4564C000578A82 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		17FCDF292F456E8C00578A82 /* Air Quality Information.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Air Quality Information.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -80,6 +82,7 @@
 		17FCDEE82F4555F200578A82 = {
 			isa = PBXGroup;
 			children = (
+				17FCDF292F456E8C00578A82 /* Air Quality Information.md */,
 				17FCDF272F4564C000578A82 /* README.md */,
 				17FCDEF32F4555F200578A82 /* sgairquality */,
 				17FCDF012F4555F300578A82 /* sgairqualityTests */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17FCDF282F4564C000578A82 /* README.md in Resources */,
+				17FCDF2A2F456E8C00578A82 /* Air Quality Information.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
