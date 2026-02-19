@@ -50,8 +50,15 @@ struct SingaporeMapView: View {
                     if let latestDownloadTime = dataModel.latestDownloadTime {
                         Text("label.text.last-refresh-\(latestDownloadTime.formatted())", comment: "Last Refresh: <date>")
                             .fixedSize()
+                            .onTapGesture {
+                                mapModel.showLatestDataView.toggle()
+                            }
                     }
                 }
+            }
+            .sheet(isPresented: $mapModel.showLatestDataView) {
+                LatestDataView()
+                    .environment(dataModel)
             }
         }
     }
