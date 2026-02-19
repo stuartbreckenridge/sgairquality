@@ -43,12 +43,14 @@ struct SingaporeMapView: View {
                     } label: {
                         Image(systemName: "arrow.clockwise")
                     }
+                    .accessibilityIdentifier("map.refresh.button")
                 }
 
                 ToolbarItem(placement: .bottomBar) {
                     if let latestDownloadTime = dataModel.latestDownloadTime {
                         Text("label.text.last-refresh-\(latestDownloadTime.formatted())", comment: "Last Refresh: <date>")
                             .fixedSize()
+                            .accessibilityIdentifier("map.lastRefresh.label")
                             .onTapGesture {
                                 mapModel.showLatestDataView.toggle()
                             }
