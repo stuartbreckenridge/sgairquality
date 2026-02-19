@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension JSONDecoder {
     /// A pre-configured `JSONDecoder` for decoding air quality API responses.
     ///

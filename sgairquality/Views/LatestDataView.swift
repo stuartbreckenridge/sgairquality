@@ -8,23 +8,22 @@
 import SwiftUI
 
 struct LatestDataView: View {
-    
+
     // MARK: Environment
     @Environment(DataDownloaderModel.self) var dataModel
-    
+
     // MARK: App Storage
-    
+
     // MARK: State Objects
-    
+
     // MARK: State
-    
+
     // MARK: Bindings
-    
+
     // MARK: Constants
-    
+
     // MARK: Variables
 
-    
     var body: some View {
         NavigationStack {
             List {
@@ -40,7 +39,7 @@ struct LatestDataView: View {
                     } footer: {
                         Text("label.text.psi-explainer", comment: "Pollutant Standards Index composed of PM10, PM2.5, O3, CO, NO2, and SO2. Use the 24-hour PSI rating for next day activities.")
                     }
-                    
+
                     Section {
                         RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.west ?? 0)
                         RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.east ?? 0)
@@ -52,7 +51,7 @@ struct LatestDataView: View {
                     } footer: {
                         Text("label.text.pm25-explainer", comment: "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller.")
                     }
-                    
+
                     Section {
                         RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.west ?? 0)
                         RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.east ?? 0)
@@ -64,7 +63,7 @@ struct LatestDataView: View {
                     } footer: {
                         Text("label.text.pm10-explainer", comment: "Inhalable particulate matter that is generally 10 micrometers and smaller.")
                     }
-                    
+
                     Section {
                         RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.o3EightHourMax.west ?? 0)
                         RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.o3EightHourMax.east ?? 0)
@@ -76,7 +75,7 @@ struct LatestDataView: View {
                     } footer: {
                         Text("label.text.o3-explainer", comment: "Ozone levels measured as an 8-hour maximum.")
                     }
-                    
+
                     Section {
                         RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.coEightHourMax.west ?? 0)
                         RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.coEightHourMax.east ?? 0)
@@ -88,7 +87,7 @@ struct LatestDataView: View {
                     } footer: {
                         Text("label.text.co-explainer", comment: "Carbon monoxide levels measured as an 8-hour maximum.")
                     }
-                    
+
                     Section {
                         RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.so2TwentyFourHourly.west ?? 0)
                         RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.so2TwentyFourHourly.east ?? 0)
@@ -100,7 +99,7 @@ struct LatestDataView: View {
                     } footer: {
                         Text("label.text.so2-explainer", comment: "Sulfur dioxide levels measured over 24 hours.")
                     }
-                    
+
                     Section {
                         RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.no2OneHourMax.west ?? 0)
                         RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.no2OneHourMax.east ?? 0)
@@ -126,7 +125,7 @@ struct LatestDataView: View {
 private struct RegionalDataRow: View {
     let title: LocalizedStringResource
     let value: Int
-    
+
     var body: some View {
         HStack {
             Text(title)
@@ -139,4 +138,5 @@ private struct RegionalDataRow: View {
 
 #Preview {
     LatestDataView()
+        .environment(DataDownloaderModel())
 }

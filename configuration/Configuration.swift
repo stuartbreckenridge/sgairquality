@@ -14,6 +14,6 @@ enum Configuration {
         }
         return value
     }
-    
+
     static var apiKey: String? { value(for: "API_KEY") }
 }

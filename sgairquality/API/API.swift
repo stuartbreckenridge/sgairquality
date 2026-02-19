@@ -10,7 +10,7 @@ import Foundation
 enum APIError: LocalizedError {
     case apiKeyNotConfigured
     case apiError(String)
-    
+
     var errorDescription: String? {
         switch self {
         case .apiKeyNotConfigured:
@@ -26,11 +26,11 @@ enum APIError: LocalizedError {
 /// Use ``shared`` to access the client, then call ``latestPM25Readings()`` or ``latestPSIReadings()``
 /// to retrieve the most recent readings. Requests are authenticated using the API key from `Configuration`.
 final class DataAPI {
-    
+
     enum Endpoint {
         case pm25
         case psi
-        
+
         var url: URL {
             switch self {
             case .pm25:
@@ -40,19 +40,19 @@ final class DataAPI {
             }
         }
     }
-    
+
     static let shared = DataAPI()
-    
+
     private init() {}
-    
+
     func latestPM25Readings() async throws -> AirQualityResponse<PM25Readings> {
         try await fetch(endpoint: .pm25)
     }
-    
+
     func latestPSIReadings() async throws -> AirQualityResponse<PSIReadings> {
         try await fetch(endpoint: .psi)
     }
-    
+
     private func fetch<T: Decodable>(endpoint: Endpoint) async throws -> AirQualityResponse<T> {
         guard let apiKey = Configuration.apiKey else { throw APIError.apiKeyNotConfigured }
         var request = URLRequest(url: endpoint.url)
@@ -65,5 +65,5 @@ final class DataAPI {
         }
         return try JSONDecoder.airQualityDecoder.decode(AirQualityResponse<T>.self, from: data)
     }
-    
+
 }

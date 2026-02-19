@@ -16,7 +16,7 @@ struct SgAirQualityTests {
         let key = await Configuration.apiKey
         #expect(key != nil)
     }
-    
+
     /// Fetches the latest PM2.5 readings and verifies a successful response with non-negative values for all regions.
     @Test func getPM25Readings() async throws {
         let response = try await DataAPI.shared.latestPM25Readings()
@@ -29,7 +29,7 @@ struct SgAirQualityTests {
         #expect(readings.pm25OneHourly.south >= 0)
         #expect(readings.pm25OneHourly.north >= 0)
     }
-    
+
     /// Fetches the latest PSI readings and verifies a successful response with non-negative values for all regions.
     @Test func getPSIReadings() async throws {
         let response = try await DataAPI.shared.latestPSIReadings()

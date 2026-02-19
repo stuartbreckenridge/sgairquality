@@ -11,9 +11,9 @@ import MapKit
 
 @Observable
 class SingaporeMapViewModel {
-    
+
     var mapCameraPosition: MapCameraPosition = MapCameraPosition.region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 1.3521, longitude: 103.8198), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)))
-    
+
     var showLatestDataView: Bool = false
-    
+
 }
