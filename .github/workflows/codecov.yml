@@ -32,12 +32,21 @@ jobs:
           xcodebuild clean test \
             -project sgairquality.xcodeproj \
             -scheme sgairquality \
+            -testPlan sgairquality \
             -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=26.2' \
             -enableCodeCoverage YES \
-            -resultBundlePath TestResults.xcresult \
+            -resultBundlePath artifacts/TestResults.xcresult \
             | xcpretty
+            
+      - name: Convert xcresult
+        run: |
+          xcresultparser \
+            -output-format cobertura \
+            "artifacts/TestResults.xcresult" > "artifacts/TestResults.xml"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          swift_project: sgairquality
+          files: "artifacts/TestResults.xml"
