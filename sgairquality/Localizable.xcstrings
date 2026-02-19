@@ -113,7 +113,7 @@
       }
     },
     "label.text.pm25-explainer" : {
-      "comment" : "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller. ",
+      "comment" : "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
