@@ -44,7 +44,7 @@ jobs:
       - name: Convert xcresult
         run: |
           xcresultparser \
-            -output-format cobertura \
+            --output-format cobertura \
             "artifacts/TestResults.xcresult" > "artifacts/TestResults.xml"
 
       - name: Upload coverage to Codecov
