@@ -1,4 +1,4 @@
-name: Test and Upload Coverage to Codecov
+name: Tests
 
 on: [push, pull_request]
 
