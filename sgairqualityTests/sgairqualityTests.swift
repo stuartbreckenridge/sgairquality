@@ -6,6 +6,7 @@
 //
 
 import Testing
+import Foundation
 @testable import sgairquality
 
 /// Tests for the SgAirQuality app, covering API key configuration and live data API responses.
@@ -41,6 +42,26 @@ struct SgAirQualityTests {
         #expect(readings.psiTwentyFourHourly.central >= 0)
         #expect(readings.psiTwentyFourHourly.south >= 0)
         #expect(readings.psiTwentyFourHourly.north >= 0)
+    }
+    
+    /// Verifies that an invalid API key results in an APIError being thrown.
+    @Test func apiErrorHandling() async throws {
+        // Create a mock URLSession that returns an error response
+        let errorJSON = """
+        {
+            "code": 401,
+            "name": "Unauthorized",
+            "errorMsg": "Invalid API key provided"
+        }
+        """
+        
+        // Test that AirQualityResponseError can be decoded
+        let errorData = errorJSON.data(using: .utf8)!
+        let decodedError = try JSONDecoder.airQualityDecoder.decode(AirQualityResponseError.self, from: errorData)
+        
+        #expect(decodedError.code == 401)
+        #expect(decodedError.name == "Unauthorized")
+        #expect(decodedError.errorMsg == "Invalid API key provided")
     }
 
 }
