@@ -46,6 +46,17 @@
                ReferencedContainer = "container:sgairquality.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "17D01A272F4757DC003F116C"
+               BuildableName = "sgairqualityUITests.xctest"
+               BlueprintName = "sgairqualityUITests"
+               ReferencedContainer = "container:sgairquality.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -33,6 +33,13 @@
         "identifier" : "17FCDEFD2F4555F300578A82",
         "name" : "sgairqualityTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:sgairquality.xcodeproj",
+        "identifier" : "17D01A272F4757DC003F116C",
+        "name" : "sgairqualityUITests"
+      }
     }
   ],
   "version" : 1
