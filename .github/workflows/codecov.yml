@@ -21,6 +21,9 @@ jobs:
           set -euo pipefail
           mkdir -p configuration
           echo "API_KEY = ${{ secrets.API_KEY }}" > configuration/Secrets.xcconfig
+          
+      - name: Install dependencies with Homebrew
+        run: brew install xcresultparser
 
       # Keep this workaround
       - name: List available simulators (workaround)
