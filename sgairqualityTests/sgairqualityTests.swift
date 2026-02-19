@@ -55,7 +55,6 @@ struct SgAirQualityTests {
         }
         """
         
-        // Test that AirQualityResponseError can be decoded
         let errorData = errorJSON.data(using: .utf8)!
         let decodedError = try JSONDecoder.airQualityDecoder.decode(AirQualityResponseError.self, from: errorData)
         
