@@ -53,7 +53,6 @@ nonisolated struct RegionalReadings: Codable, Sendable {
     let north: Int
 }
 
-
 // MARK: - PSI Readings
 
 /// Full set of PSI sub-index and pollutant readings across all regions.
