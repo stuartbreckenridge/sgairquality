@@ -48,6 +48,6 @@ final class sgairqualityUITests: XCTestCase {
         refreshLabel.tap()
         XCTAssertTrue(app.navigationBars["Latest Readings"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["PSI - 24 Hour"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["PM2.5 - 24 Hour"].exists)
+        XCTAssertTrue(app.staticTexts["PM2.5 - 24 Hour"].waitForExistence(timeout: 5))
     }
 }
