@@ -4,7 +4,7 @@
 
 This app uses data from [data.gov.sg](https://data.gov.sg) to display the current air quality across Singapore. 
 
-More than that, it is designed to integrate AI agents into as many parts of the developer workflow as possible. For example, Claude Agent is used in Xcode and CodeRabbit is used for Pull Request summaries. As the app progresses through development, I'll document where agents are being used.
+More than that, it is designed to integrate AI agents into as many parts of the developer workflow as possible. For example, Claude Agent is used in Xcode and CodeRabbit is used for Pull Request summaries. As the app progresses through development, I'll document where agents are being used in [Agents.md](Agents.md)
 
 ## Functionality
 
