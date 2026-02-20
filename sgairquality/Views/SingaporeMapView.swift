@@ -74,6 +74,7 @@ struct SingaporeMapView: View {
                     }
                 }
             }
+            .mapStyle(.standard(emphasis: .muted))
             .task {
                 try? await dataModel.downloadLatestData()
             }
@@ -90,13 +91,19 @@ struct SingaporeMapView: View {
                 }
 
                 ToolbarItem(placement: .bottomBar) {
-                    if let latestDownloadTime = dataModel.latestDownloadTime {
-                        Text("label.text.last-refresh-\(latestDownloadTime.formatted())", comment: "Last Refresh: <date>")
-                            .fixedSize()
-                            .accessibilityIdentifier("map.lastRefresh.label")
-                            .onTapGesture {
-                                mapModel.showLatestDataView.toggle()
+                    if let _ = dataModel.psiData {
+                        Button {
+                            mapModel.showLatestDataView.toggle()
+                        } label: {
+                            VStack {
+                                Text("label.text.latest-readings", comment: "Latest Readings")
+                                    .font(.headline)
+                                Text("label.text.tap-to-view", comment: "Tap to View")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
                             }
+                        }
+                        .accessibilityIdentifier("map.lastRefresh.label")
                     }
                 }
             }

@@ -49,17 +49,6 @@
         }
       }
     },
-    "label.text.last-refresh-%@" : {
-      "comment" : "Last Refresh: <date>",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Last Refresh: %@"
-          }
-        }
-      }
-    },
     "label.text.latest-readings" : {
       "comment" : "Latest Readings",
       "localizations" : {
@@ -155,6 +144,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "South"
+          }
+        }
+      }
+    },
+    "label.text.tap-to-view" : {
+      "comment" : "Tap to View",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to View"
           }
         }
       }

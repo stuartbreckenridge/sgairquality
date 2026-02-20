@@ -29,8 +29,8 @@ final class sgairqualityUITests: XCTestCase {
 
     @MainActor
     func testCanPresentLatestReadingsWhenDataLoads() throws {
-        let refreshLabel = app.staticTexts["map.lastRefresh.label"]
-        guard refreshLabel.waitForExistence(timeout: 12) else {
+        let refreshButton = app.buttons["map.lastRefresh.label"]
+        guard refreshButton.waitForExistence(timeout: 12) else {
             throw XCTSkip("Skipping: latest data did not load (API key/network may be unavailable in this environment).")
         }
 
@@ -45,7 +45,7 @@ final class sgairqualityUITests: XCTestCase {
         XCTAssertTrue(westAnnotation.exists)
         XCTAssertTrue(centralAnnotation.exists)
 
-        refreshLabel.tap()
+        refreshButton.tap()
         XCTAssertTrue(app.navigationBars["Latest Readings"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["PSI - 24 Hour"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["PM2.5 - 24 Hour"].waitForExistence(timeout: 5))
