@@ -29,23 +29,37 @@ struct LatestDataView: View {
             List {
                 if let psiData = dataModel.psiData {
                     Section {
-                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.psiTwentyFourHourly.west ?? 0)
-                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.psiTwentyFourHourly.east ?? 0)
-                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.psiTwentyFourHourly.central ?? 0)
-                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.psiTwentyFourHourly.south ?? 0)
-                        RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.psiTwentyFourHourly.north ?? 0)
+                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.psiTwentyFourHourly.west ?? 0, dataType: .psi)
+                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.psiTwentyFourHourly.east ?? 0, dataType: .psi)
+                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.psiTwentyFourHourly.central ?? 0, dataType: .psi)
+                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.psiTwentyFourHourly.south ?? 0, dataType: .psi)
+                        RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.psiTwentyFourHourly.north ?? 0, dataType: .psi)
                     } header: {
                         Text(verbatim: "PSI - 24 Hour")
                     } footer: {
                         Text("label.text.psi-explainer", comment: "Pollutant Standards Index composed of PM10, PM2.5, O3, CO, NO2, and SO2. Use the 24-hour PSI rating for next day activities.")
                     }
+                    
+                    if let pm25Data = dataModel.pm25Data {
+                        Section {
+                            RegionalDataRow(title: "label.text.west", value: pm25Data.data.items.first?.readings.pm25OneHourly.west ?? 0, dataType: .pm25)
+                            RegionalDataRow(title: "label.text.east", value: pm25Data.data.items.first?.readings.pm25OneHourly.east ?? 0, dataType: .pm25)
+                            RegionalDataRow(title: "label.text.central", value: pm25Data.data.items.first?.readings.pm25OneHourly.central ?? 0, dataType: .pm25)
+                            RegionalDataRow(title: "label.text.south", value: pm25Data.data.items.first?.readings.pm25OneHourly.south ?? 0, dataType: .pm25)
+                            RegionalDataRow(title: "label.text.north", value: pm25Data.data.items.first?.readings.pm25OneHourly.north ?? 0, dataType: .pm25)
+                        } header: {
+                            Text(verbatim: "PM2.5 - 1 Hour")
+                        } footer: {
+                            Text("label.text.pm251hour-explainer", comment: "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller. Use the 1-hour PM2.5 rating for immediate activities.")
+                        }
+                    }
 
                     Section {
-                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.west ?? 0)
-                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.east ?? 0)
-                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.central ?? 0)
-                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.south ?? 0)
-                        RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.north ?? 0)
+                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.west ?? 0, dataType: .pm25)
+                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.east ?? 0, dataType: .pm25)
+                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.central ?? 0, dataType: .pm25)
+                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.south ?? 0, dataType: .pm25)
+                        RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.north ?? 0, dataType: .pm25)
                     } header: {
                         Text(verbatim: "PM2.5 - 24 Hour")
                     } footer: {
@@ -121,20 +135,7 @@ struct LatestDataView: View {
     }
 }
 
-/// Helper view to display a regional data row with a title and value
-private struct RegionalDataRow: View {
-    let title: LocalizedStringResource
-    let value: Int
 
-    var body: some View {
-        HStack {
-            Text(title)
-            Spacer()
-            Text("\(value)")
-                .foregroundStyle(.secondary)
-        }
-    }
-}
 
 #Preview {
     LatestDataView()

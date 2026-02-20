@@ -115,6 +115,17 @@
         }
       }
     },
+    "label.text.pm251hour-explainer" : {
+      "comment" : "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller. Use the 1-hour PM2.5 rating for immediate activities.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller. Use the 1-hour PM2.5 rating for immediate activities."
+          }
+        }
+      }
+    },
     "label.text.psi-explainer" : {
       "comment" : "Pollutant Standards Index composed of PM10, PM2.5, O3, CO, NO2, and SO2. Use the 24-hour PSI rating for next day activities.",
       "localizations" : {
