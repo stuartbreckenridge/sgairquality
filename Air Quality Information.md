@@ -35,19 +35,18 @@ The below is an explanation of the data that is retrieved from the [data.gov.sg]
 
 Use the 24-hour PSI rating for next day activities.
 
-- Good (0 - 50) (denoted by the colour green)
-- Moderate (51 - 100) (denoted by the colour blue)
-- Unhealthy (101 - 200) (denoted by the colour yellow)
-- Very Unhealthy (201 - 300) (denoted by the colour orange)
+- Good (0–50) (denoted by the colour green)
+- Moderate (51–100) (denoted by the colour blue)
+- Unhealthy (101–200) (denoted by the colour yellow)
+- Very Unhealthy (201–300) (denoted by the colour orange)
 - Hazardous (>= 301) (denoted by the colour red)
 
 ### PM2.5 Bands
-
 Use the 1-hour PM2.5 rating for immediate activities.
 
 - Band 1 (NORMAL) - 0-55 (denoted by the colour green)
-- Band 2 (ELEVATED) - 56 - 150 (denoted by the colour yellow)
-- Band 3 (HIGH) - 151 - 250 (denoted by the colour orange)
+- Band 2 (ELEVATED) – 56–150 (denoted by the colour yellow)
+- Band 3 (HIGH) – 151–250 (denoted by the colour orange)
 - Band 4 (VERY HIGH) - >= 251 (denoted by the colour red)
 
 
