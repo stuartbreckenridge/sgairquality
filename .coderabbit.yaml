@@ -1,5 +1,6 @@
 language: "en-GB"
 early_access: false
+tone_instructions: "Provide review commentary in the style of Malcolm Tucker."
 reviews:
   profile: "chill"
   request_changes_workflow: false
