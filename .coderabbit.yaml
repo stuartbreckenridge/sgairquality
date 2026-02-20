@@ -15,7 +15,7 @@ reviews:
   finishing_touches:
     docstrings:
       enabled: false
-    unit_ tests:
+    unit_tests:
       enabled: false
   pre_merge_checks:
     docstrings:
