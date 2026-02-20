@@ -17,6 +17,7 @@
       }
     },
     "label.text.central" : {
+      "comment" : "Central",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -38,6 +39,7 @@
       }
     },
     "label.text.east" : {
+      "comment" : "East",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -81,6 +83,7 @@
       }
     },
     "label.text.north" : {
+      "comment" : "North",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -146,6 +149,7 @@
       }
     },
     "label.text.south" : {
+      "comment" : "South",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -156,6 +160,7 @@
       }
     },
     "label.text.west" : {
+      "comment" : "West",
       "localizations" : {
         "en" : {
           "stringUnit" : {

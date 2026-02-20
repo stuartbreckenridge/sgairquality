@@ -34,9 +34,20 @@ final class sgairqualityUITests: XCTestCase {
             throw XCTSkip("Skipping: latest data did not load (API key/network may be unavailable in this environment).")
         }
 
+        let northAnnotation = app.staticTexts["annotation.north"]
+        let eastAnnotation = app.staticTexts["annotation.east"]
+        let southAnnotation = app.staticTexts["annotation.south"]
+        let westAnnotation = app.staticTexts["annotation.west"]
+        let centralAnnotation = app.staticTexts["annotation.central"]
+        XCTAssertTrue(northAnnotation.exists)
+        XCTAssertTrue(eastAnnotation.exists)
+        XCTAssertTrue(southAnnotation.exists)
+        XCTAssertTrue(westAnnotation.exists)
+        XCTAssertTrue(centralAnnotation.exists)
+
         refreshLabel.tap()
         XCTAssertTrue(app.navigationBars["Latest Readings"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["PSI - 24 Hour"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["PM2.5 - 24 Hour"].exists)
+        XCTAssertTrue(app.staticTexts["PM2.5 - 24 Hour"].waitForExistence(timeout: 5))
     }
 }
