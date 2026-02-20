@@ -7,7 +7,7 @@
     - The data models for API responses and the generic error model
     - The initial UI tests
     - Code commentary
-    - It pulled data out of [Air Quality Information](Air Quality Information.md) to apply to LatestDataView section footers
+    - It pulled data out of Air Quality Information to apply to LatestDataView section footers
 
 
 
