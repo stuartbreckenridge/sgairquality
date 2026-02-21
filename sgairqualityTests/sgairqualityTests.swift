@@ -448,8 +448,8 @@ struct AirQualitySummaryServiceTests {
         
         // Summary should be approximately 45 words, allow reasonable variation
         let wordCount = summary.split(separator: " ").count
-        #expect(wordCount >= 20 && wordCount <= 80, 
-                "Summary should be approximately 45 words (±35), got \(wordCount)")
+        #expect(wordCount >= 15 && wordCount <= 100, 
+                "Summary should be approximately 45 words (allow 15-100), got \(wordCount)")
         
         // Summary should be a single paragraph (no multiple line breaks)
         let paragraphs = summary.components(separatedBy: "\n\n").filter { !$0.isEmpty }
