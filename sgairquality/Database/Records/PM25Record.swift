@@ -9,9 +9,9 @@ import Foundation
 import GRDB
 
 struct PM25Record: Codable, Identifiable, FetchableRecord, PersistableRecord {
-    
+
     static let databaseTableName: String = "pm25_readings"
-    
+
     var id: Int?
     var timestamp: Date
     var updated_timestamp: Date
@@ -21,7 +21,7 @@ struct PM25Record: Codable, Identifiable, FetchableRecord, PersistableRecord {
     var central: Int
     var south: Int
     var north: Int
-    
+
     enum Columns {
         static let id = Column(CodingKeys.id)
         static let timestamp = Column(CodingKeys.timestamp)

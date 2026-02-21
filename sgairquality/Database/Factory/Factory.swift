@@ -8,7 +8,6 @@
 import Foundation
 import GRDB
 
-
 enum DatabaseFactory {
     static func makePool(at path: String) throws -> DatabasePool {
         var config = GRDB.Configuration()
@@ -21,9 +20,7 @@ enum DatabaseFactory {
             try db.execute(sql: "PRAGMA journal_mode=WAL")
             try db.execute(sql: "PRAGMA synchronous=NORMAL")
         }
-        
+
         return pool
     }
 }
-
-
