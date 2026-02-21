@@ -196,9 +196,9 @@ class DataDownloaderModel {
             - "Elevated" PM2.5 = Reduce strenuous activity, vulnerable persons avoid strenuous activity
             - "Unhealthy" PSI = Reduce prolonged/strenuous exertion, vulnerable persons minimise outdoor activity
 
-            STRICT INSTRUCTION: Your summary must match the ACTUAL CLASSIFICATIONS listed above. Do NOT say a region is "Elevated" if it shows "Normal". Do NOT recommend advisories if ALL bands are Normal/Good/Moderate.
-
-            Write a single paragraph describing the air quality situation and recommendations. Do not refer to recommendations as restrictions.
+            STRICT INSTRUCTION: Your summary must match the ACTUAL CLASSIFICATIONS listed above. Do NOT say a region is "Elevated" if it shows "Normal". Do NOT recommend advisories if ALL bands are Normal/Good/Moderate. Do NOT refer to advisories as restrictions. Do NOT use the word restrictions.
+            
+            Write a single paragraph describing the air quality situation and recommendations.
             """
     }
 
