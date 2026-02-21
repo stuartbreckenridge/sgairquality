@@ -12,13 +12,13 @@ struct RegionalDataRow: View {
     let title: LocalizedStringResource
     let value: Int
     var dataType: DataType = .other
-    
+
     enum DataType {
         case psi
         case pm25
         case other
     }
-    
+
     /// Returns the color indicator for PSI values based on categorization
     private var psiColor: Color {
         switch value {
@@ -34,7 +34,7 @@ struct RegionalDataRow: View {
             return .red
         }
     }
-    
+
     /// Returns the color indicator for PM2.5 values based on categorization
     private var pm25Color: Color {
         switch value {
@@ -48,7 +48,7 @@ struct RegionalDataRow: View {
             return .red
         }
     }
-    
+
     /// Returns the appropriate color based on data type
     private var indicatorColor: Color? {
         switch dataType {

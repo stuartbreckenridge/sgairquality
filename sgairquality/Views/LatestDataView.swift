@@ -39,7 +39,7 @@ struct LatestDataView: View {
                     } footer: {
                         Text("label.text.psi-explainer", comment: "Pollutant Standards Index composed of PM10, PM2.5, O3, CO, NO2, and SO2. Use the 24-hour PSI rating for next day activities.")
                     }
-                    
+
                     if let pm25Data = dataModel.pm25Data {
                         Section {
                             RegionalDataRow(title: "label.text.west", value: pm25Data.data.items.first?.readings.pm25OneHourly.west ?? 0, dataType: .pm25)
@@ -134,8 +134,6 @@ struct LatestDataView: View {
         }
     }
 }
-
-
 
 #Preview {
     LatestDataView()
