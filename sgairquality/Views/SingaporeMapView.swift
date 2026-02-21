@@ -9,29 +9,29 @@ import SwiftUI
 import MapKit
 
 struct SingaporeMapView: View {
-
+    
     // MARK: Environment
-
+    
     // MARK: App Storage
-
+    
     // MARK: State Objects
-
+    
     // MARK: State
     @State private var mapModel = SingaporeMapViewModel()
     @State private var dataModel = DataDownloaderModel()
-
+    
     // MARK: Bindings
-
+    
     // MARK: Constants
-
+    
     // MARK: Variables
-
+    
     var body: some View {
         NavigationStack {
             Map(position: $mapModel.mapCameraPosition) {
                 if let pm25Readings = dataModel.pm25Data?.data.items.first?.readings.pm25OneHourly,
                    let psiReadings = dataModel.psiData?.data.items.first?.readings.psiTwentyFourHourly {
-
+                    
                     // West
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.35735, longitude: 103.7)) {
                         ReadingsAnnotationView(pm25: pm25Readings.west, psi: psiReadings.west)
@@ -39,7 +39,7 @@ struct SingaporeMapView: View {
                     } label: {
                         Text("label.text.west", comment: "West")
                     }
-
+                    
                     // East
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.35735, longitude: 103.94)) {
                         ReadingsAnnotationView(pm25: pm25Readings.east, psi: psiReadings.east)
@@ -47,7 +47,7 @@ struct SingaporeMapView: View {
                     } label: {
                         Text("label.text.east", comment: "East")
                     }
-
+                    
                     // North
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.41803, longitude: 103.82)) {
                         ReadingsAnnotationView(pm25: pm25Readings.north, psi: psiReadings.north)
@@ -55,16 +55,16 @@ struct SingaporeMapView: View {
                     } label: {
                         Text("label.text.north", comment: "North")
                     }
-
+                    
                     // South
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.29587, longitude: 103.82)) {
                         ReadingsAnnotationView(pm25: pm25Readings.south, psi: psiReadings.south)
                             .accessibilityIdentifier("annotation.south")
-
+                        
                     } label: {
                         Text("label.text.south", comment: "South")
                     }
-
+                    
                     // Central
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.35735, longitude: 103.82)) {
                         ReadingsAnnotationView(pm25: pm25Readings.central, psi: psiReadings.central)
@@ -79,6 +79,7 @@ struct SingaporeMapView: View {
                 try? await dataModel.downloadLatestData()
             }
             .toolbar {
+#if os(iOS)
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         Task {
@@ -89,7 +90,7 @@ struct SingaporeMapView: View {
                     }
                     .accessibilityIdentifier("map.refresh.button")
                 }
-
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         mapModel.showLatestDataView.toggle()
@@ -99,10 +100,35 @@ struct SingaporeMapView: View {
                     .disabled(dataModel.psiData == nil)
                     .accessibilityIdentifier("map.lastRefresh.label")
                 }
+#else
+                ToolbarItem(placement: .navigation) {
+                    Button {
+                        Task {
+                            try? await dataModel.downloadLatestData()
+                        }
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                    .accessibilityIdentifier("map.refresh.button")
+                }
+                
+                ToolbarItem(placement: .automatic) {
+                    Button {
+                        mapModel.showLatestDataView.toggle()
+                    } label: {
+                        Image(systemName: "chart.bar.horizontal.page")
+                    }
+                    .disabled(dataModel.psiData == nil)
+                    .accessibilityIdentifier("map.lastRefresh.label")
+                }
+#endif
             }
             .sheet(isPresented: $mapModel.showLatestDataView) {
                 LatestDataView()
                     .environment(dataModel)
+                #if os(macOS)
+                    .frame(width: 400, height: 600)
+                #endif
             }
         }
         .overlay(alignment: .bottom) {
@@ -120,12 +146,18 @@ struct SingaporeMapView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 } icon: {
                     Image(systemName: "apple.intelligence")
+                        .frame(alignment: .top)
                 }
                 .accessibilityIdentifier("overlay.airquality.summary")
                 .padding(8)
                 .frame(maxWidth: .infinity)
+                #if !os(visionOS)
                 .glassEffect(in: ConcentricRectangle(topLeadingCorner: .fixed(8), topTrailingCorner: .fixed(8)))
                 .padding(4)
+                #else
+                .glassBackgroundEffect()
+                #endif
+                
             }
         }
         .ignoresSafeArea(edges: .bottom)

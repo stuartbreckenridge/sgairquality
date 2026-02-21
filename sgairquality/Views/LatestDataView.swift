@@ -11,6 +11,7 @@ struct LatestDataView: View {
 
     // MARK: Environment
     @Environment(DataDownloaderModel.self) var dataModel
+    @Environment(\.dismiss) private var dismiss
 
     // MARK: App Storage
 
@@ -38,6 +39,11 @@ struct LatestDataView: View {
                         Text(verbatim: "PSI - 24 Hour")
                     } footer: {
                         Text("label.text.psi-explainer", comment: "Pollutant Standards Index composed of PM10, PM2.5, O3, CO, NO2, and SO2. Use the 24-hour PSI rating for next day activities.")
+                        #if os(macOS)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                        #endif
                     }
 
                     if let pm25Data = dataModel.pm25Data {
@@ -51,6 +57,11 @@ struct LatestDataView: View {
                             Text(verbatim: "PM2.5 - 1 Hour")
                         } footer: {
                             Text("label.text.pm251hour-explainer", comment: "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller. Use the 1-hour PM2.5 rating for immediate activities.")
+#if os(macOS)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+#endif
                         }
                     }
 
@@ -64,6 +75,11 @@ struct LatestDataView: View {
                         Text(verbatim: "PM2.5 - 24 Hour")
                     } footer: {
                         Text("label.text.pm25-explainer", comment: "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller.")
+#if os(macOS)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+#endif
                     }
 
                     Section {
@@ -76,6 +92,11 @@ struct LatestDataView: View {
                         Text(verbatim: "PM10 - 24 Hour")
                     } footer: {
                         Text("label.text.pm10-explainer", comment: "Inhalable particulate matter that is generally 10 micrometers and smaller.")
+#if os(macOS)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+#endif
                     }
 
                     Section {
@@ -88,6 +109,11 @@ struct LatestDataView: View {
                         Text(verbatim: "Ozone (O3) - 8 Hour Max")
                     } footer: {
                         Text("label.text.o3-explainer", comment: "Ozone levels measured as an 8-hour maximum.")
+#if os(macOS)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+#endif
                     }
 
                     Section {
@@ -100,6 +126,11 @@ struct LatestDataView: View {
                         Text(verbatim: "Carbon Monoxide (CO) - 8 Hour Max")
                     } footer: {
                         Text("label.text.co-explainer", comment: "Carbon monoxide levels measured as an 8-hour maximum.")
+#if os(macOS)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+#endif
                     }
 
                     Section {
@@ -112,6 +143,11 @@ struct LatestDataView: View {
                         Text(verbatim: "Sulfur Dioxide (SO2) - 24 Hour")
                     } footer: {
                         Text("label.text.so2-explainer", comment: "Sulfur dioxide levels measured over 24 hours.")
+#if os(macOS)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+#endif
                     }
 
                     Section {
@@ -124,13 +160,35 @@ struct LatestDataView: View {
                         Text(verbatim: "Nitrogen Dioxide (NO2) - 1 Hour Max")
                     } footer: {
                         Text("label.text.no2-explainer", comment: "Nitrogen dioxide levels measured as a 1-hour maximum.")
+#if os(macOS)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+#endif
                     }
-
                 }
             }
+            .listStyle(.automatic)
             .navigationTitle(Text("label.text.latest-readings", comment: "Latest Readings"))
+            #if os(iOS) || os(visionOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
+            #if !os(visionOS)
             .navigationSubtitle(Text(verbatim: dataModel.psiData?.data.items.first?.timestamp.formatted() ?? ""))
+            #endif
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(role: .close) {
+                        dismiss()
+                    } label: {
+                        #if os(iOS)
+                        Image(systemName: "xmark")
+                        #else
+                        Text("button.title.close", comment: "Close")
+                        #endif
+                    }
+                }
+            }
         }
     }
 }

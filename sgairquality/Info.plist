@@ -4,5 +4,9 @@
 <dict>
 	<key>API_KEY</key>
 	<string>$(API_KEY)</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>net.stuartbreckenridge.sgairquality.refresh</string>
+	</array>
 </dict>
 </plist>
