@@ -38,8 +38,7 @@ jobs:
             -testPlan sgairquality \
             -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=26.2' \
             -enableCodeCoverage YES \
-            -resultBundlePath artifacts/TestResults.xcresult \
-            | xcpretty
+            -resultBundlePath artifacts/TestResults.xcresult 
             
       - name: Convert xcresult
         run: |
