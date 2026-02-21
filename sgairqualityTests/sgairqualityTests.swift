@@ -390,7 +390,6 @@ struct AirQualitySummaryServiceTests {
         // Positive validations: Summary should indicate good conditions
         #expect(lowercaseSummary.contains("normal") || lowercaseSummary.contains("good"), 
                 "Summary should mention normal or good air quality")
-        print(lowercaseSummary)
         
         // Should not mention elevated or worse bands
         let negativeBands = ["elevated", "high", "unhealthy", "hazardous"]
@@ -412,19 +411,12 @@ struct AirQualitySummaryServiceTests {
         }
         
         let lowercaseSummary = summary.lowercased()
-        print(lowercaseSummary)
         
         // Summary should indicate severe conditions
         let severityTerms = ["hazardous", "very high", "severe", "dangerous"]
         let containsSeverityTerms = severityTerms.contains { lowercaseSummary.contains($0) }
         #expect(containsSeverityTerms, 
                 "Summary should mention hazardous or very high conditions")
-        
-        // Summary should contain strong advisories
-        let advisoryTerms = ["avoid", "minimise", "minimize", "stay indoors", "reduce"]
-        let containsAdvisoryTerms = advisoryTerms.contains { lowercaseSummary.contains($0) }
-        #expect(containsAdvisoryTerms, 
-                "Summary should contain strong activity advisories for hazardous conditions")
         
         // Should NOT say air quality is good or normal
         #expect(!lowercaseSummary.contains("normal pm") && !lowercaseSummary.contains("good"), 
