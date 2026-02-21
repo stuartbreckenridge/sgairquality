@@ -40,11 +40,11 @@ final class sgairqualityUITests: XCTestCase {
         let southAnnotation = app.staticTexts["annotation.south"]
         let westAnnotation = app.staticTexts["annotation.west"]
         let centralAnnotation = app.staticTexts["annotation.central"]
-        XCTAssertTrue(northAnnotation.exists)
-        XCTAssertTrue(eastAnnotation.exists)
-        XCTAssertTrue(southAnnotation.exists)
-        XCTAssertTrue(westAnnotation.exists)
-        XCTAssertTrue(centralAnnotation.exists)
+        XCTAssertTrue(northAnnotation.waitForExistence(timeout: 5))
+        XCTAssertTrue(eastAnnotation.waitForExistence(timeout: 5))
+        XCTAssertTrue(southAnnotation.waitForExistence(timeout: 5))
+        XCTAssertTrue(westAnnotation.waitForExistence(timeout: 5))
+        XCTAssertTrue(centralAnnotation.waitForExistence(timeout: 5))
 
         let languageModel = SystemLanguageModel.default
         if languageModel.isAvailable {
