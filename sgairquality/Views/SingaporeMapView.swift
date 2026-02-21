@@ -111,6 +111,26 @@ struct SingaporeMapView: View {
                 LatestDataView()
                     .environment(dataModel)
             }
+            .overlay(alignment: .bottom) {
+                if let hazeSummary = dataModel.hazeSummary {
+                    Label {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(verbatim: hazeSummary)
+                                .italic()
+                            Text("label.text.summarised-by-apple-intelligence", comment: "Summarised by Apple Intelligence")
+                                .font(.caption)
+                                .bold()
+                                .textCase(.uppercase)
+                        }
+                        
+                    } icon: {
+                        Image(systemName: "text.line.3.summary")
+                    }
+                    .padding(8)
+                    .glassEffect(in: RoundedRectangle(cornerRadius: 8.0, style: .continuous))
+                    .padding(4)
+                }
+            }
         }
     }
 }

@@ -159,6 +159,17 @@
         }
       }
     },
+    "label.text.summarised-by-apple-intelligence" : {
+      "comment" : "Summarised by Apple Intelligence",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summarised by Apple Intelligence"
+          }
+        }
+      }
+    },
     "label.text.tap-to-view" : {
       "comment" : "Tap to View",
       "localizations" : {
