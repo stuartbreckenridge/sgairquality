@@ -12,6 +12,13 @@ import Foundation
 /// Tests for the SgAirQuality app, covering API key configuration and live data API responses.
 struct SgAirQualityTests {
 
+    var api: DataAPI!
+    
+    init() {
+        self.api = DataAPI(repository: Database.shared)
+    }
+    
+    
     /// Verifies that an API key has been configured in the app's secrets.
     @Test func apiKeyExists() async throws {
         let key = await Configuration.apiKey
@@ -20,7 +27,7 @@ struct SgAirQualityTests {
 
     /// Fetches the latest PM2.5 readings and verifies a successful response with non-negative values for all regions.
     @Test func getPM25Readings() async throws {
-        let response = try await DataAPI.shared.latestPM25Readings()
+        let response = try await api.latestPM25Readings()
         #expect(response.code == 0)
         #expect(response.data.items.isEmpty == false)
         let readings = try #require(response.data.items.first?.readings)
@@ -33,7 +40,7 @@ struct SgAirQualityTests {
 
     /// Fetches the latest PSI readings and verifies a successful response with non-negative values for all regions.
     @Test func getPSIReadings() async throws {
-        let response = try await DataAPI.shared.latestPSIReadings()
+        let response = try await api.latestPSIReadings()
         #expect(response.code == 0)
         #expect(response.data.items.isEmpty == false)
         let readings = try #require(response.data.items.first?.readings)
@@ -42,6 +49,16 @@ struct SgAirQualityTests {
         #expect(readings.psiTwentyFourHourly.central >= 0)
         #expect(readings.psiTwentyFourHourly.south >= 0)
         #expect(readings.psiTwentyFourHourly.north >= 0)
+    }
+    
+    @Test func getPM25ReadingsFromDatabase() async throws {
+        let readings = try await Database.shared.fetchPM25Records()
+        #expect(readings.count > 0)
+    }
+    
+    @Test func getPSIReadingsFromDatabase() async throws {
+        let readings = try await Database.shared.fetchPSIRecords()
+        #expect(readings.count > 0)
     }
 
     /// Verifies that an invalid API key results in an APIError being thrown.

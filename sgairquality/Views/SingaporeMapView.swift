@@ -90,49 +90,45 @@ struct SingaporeMapView: View {
                     .accessibilityIdentifier("map.refresh.button")
                 }
 
-                ToolbarItem(placement: .bottomBar) {
-                    if let _ = dataModel.psiData {
-                        Button {
-                            mapModel.showLatestDataView.toggle()
-                        } label: {
-                            VStack {
-                                Text("label.text.latest-readings", comment: "Latest Readings")
-                                    .font(.headline)
-                                Text("label.text.tap-to-view", comment: "Tap to View")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
-                        .accessibilityIdentifier("map.lastRefresh.label")
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        mapModel.showLatestDataView.toggle()
+                    } label: {
+                        Image(systemName: "facemask")
                     }
+                    .disabled(dataModel.psiData == nil)
+                    .accessibilityIdentifier("map.lastRefresh.label")
                 }
             }
             .sheet(isPresented: $mapModel.showLatestDataView) {
                 LatestDataView()
                     .environment(dataModel)
             }
-            .overlay(alignment: .bottom) {
-                if let hazeSummary = dataModel.hazeSummary {
-                    Label {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(verbatim: hazeSummary)
-                                .italic()
-                            Text("label.text.summarised-by-apple-intelligence", comment: "Summarised by Apple Intelligence")
-                                .font(.caption)
-                                .bold()
-                                .textCase(.uppercase)
-                        }
-
-                    } icon: {
-                        Image(systemName: "text.line.3.summary")
+        }
+        .overlay(alignment: .bottom) {
+            if let hazeSummary = dataModel.hazeSummary {
+                Label {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(verbatim: hazeSummary)
+                            .italic()
+                        Text("label.text.summarised-by-apple-intelligence", comment: "Summarised by Apple Intelligence")
+                            .font(.caption)
+                            .bold()
+                            .textCase(.uppercase)
+                            .foregroundStyle(.secondary)
                     }
-                    .accessibilityIdentifier("overlay.airquality.summary")
-                    .padding(8)
-                    .glassEffect(in: RoundedRectangle(cornerRadius: 8.0, style: .continuous))
-                    .padding(8)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                } icon: {
+                    Image(systemName: "apple.intelligence")
                 }
+                .accessibilityIdentifier("overlay.airquality.summary")
+                .padding(8)
+                .frame(maxWidth: .infinity)
+                .glassEffect(in: ConcentricRectangle(topLeadingCorner: .fixed(8), topTrailingCorner: .fixed(8)))
+                .padding(4)
             }
         }
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 
