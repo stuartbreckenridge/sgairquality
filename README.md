@@ -16,7 +16,7 @@ The app will:
 - keep historical data for around 60 days (probably in a SQLite database using GRDB)
     - use background tasks to download data frequently (fine for iOS, need to think about macOS)
     - historical data _may_ be presented using Swift Charts
-- notify the user when air quality reaches unsafe readings
+- notify the user when air quality reaches unsafe levels
 - support widgets
 - support localisation
 
