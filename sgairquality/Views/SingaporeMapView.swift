@@ -116,7 +116,7 @@ struct SingaporeMapView: View {
                     Button {
                         mapModel.showLatestDataView.toggle()
                     } label: {
-                        Image(systemName: "facemask")
+                        Image(systemName: "chart.bar.horizontal.page")
                     }
                     .disabled(dataModel.psiData == nil)
                     .accessibilityIdentifier("map.lastRefresh.label")
@@ -146,12 +146,18 @@ struct SingaporeMapView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 } icon: {
                     Image(systemName: "apple.intelligence")
+                        .frame(alignment: .top)
                 }
                 .accessibilityIdentifier("overlay.airquality.summary")
                 .padding(8)
                 .frame(maxWidth: .infinity)
+                #if !os(visionOS)
                 .glassEffect(in: ConcentricRectangle(topLeadingCorner: .fixed(8), topTrailingCorner: .fixed(8)))
                 .padding(4)
+                #else
+                .glassBackgroundEffect()
+                #endif
+                
             }
         }
         .ignoresSafeArea(edges: .bottom)

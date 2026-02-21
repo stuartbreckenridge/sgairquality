@@ -170,10 +170,12 @@ struct LatestDataView: View {
             }
             .listStyle(.automatic)
             .navigationTitle(Text("label.text.latest-readings", comment: "Latest Readings"))
-            #if os(iOS)
+            #if os(iOS) || os(visionOS)
             .navigationBarTitleDisplayMode(.inline)
             #endif
+            #if !os(visionOS)
             .navigationSubtitle(Text(verbatim: dataModel.psiData?.data.items.first?.timestamp.formatted() ?? ""))
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(role: .close) {
