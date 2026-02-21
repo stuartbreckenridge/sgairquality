@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct SgAirQualityApp: App {
+    
+    @State private var database = Database.shared
+    
     var body: some Scene {
         WindowGroup {
             SingaporeMapView()

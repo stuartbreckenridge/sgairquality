@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		172DA3182F48A20000B92E8C /* Agents.md in Resources */ = {isa = PBXBuildFile; fileRef = 172DA3172F48A20000B92E8C /* Agents.md */; };
 		172DA3452F48A9ED00B92E8C /* Contributing.md in Resources */ = {isa = PBXBuildFile; fileRef = 172DA3442F48A9ED00B92E8C /* Contributing.md */; };
+		17DE3E282F4979AD004265AA /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 17DE3E272F4979AD004265AA /* GRDB */; };
 		17FCDF282F4564C000578A82 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 17FCDF272F4564C000578A82 /* README.md */; };
 		17FCDF2A2F456E8C00578A82 /* Air Quality Information.md in Resources */ = {isa = PBXBuildFile; fileRef = 17FCDF292F456E8C00578A82 /* Air Quality Information.md */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17DE3E282F4979AD004265AA /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +174,7 @@
 			);
 			name = sgairquality;
 			packageProductDependencies = (
+				17DE3E272F4979AD004265AA /* GRDB */,
 			);
 			productName = sgairquality;
 			productReference = 17FCDEF12F4555F200578A82 /* sgairquality.app */;
@@ -232,6 +235,9 @@
 			);
 			mainGroup = 17FCDEE82F4555F200578A82;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				17DE3E262F4979AD004265AA /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 17FCDEF22F4555F200578A82 /* Products */;
 			projectDirPath = "";
@@ -668,6 +674,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		17DE3E262F4979AD004265AA /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		17DE3E272F4979AD004265AA /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17DE3E262F4979AD004265AA /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 17FCDEE92F4555F200578A82 /* Project object */;
 }
