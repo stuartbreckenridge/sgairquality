@@ -34,7 +34,7 @@
       }
     },
     {
-      "parallelizable" : true,
+      "parallelizable" : false,
       "target" : {
         "containerPath" : "container:sgairquality.xcodeproj",
         "identifier" : "17FCDEFD2F4555F300578A82",
