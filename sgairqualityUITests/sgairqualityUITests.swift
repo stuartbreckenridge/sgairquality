@@ -57,4 +57,5 @@ final class sgairqualityUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["PSI - 24 Hour"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["PM2.5 - 24 Hour"].waitForExistence(timeout: 5))
     }
+    
 }

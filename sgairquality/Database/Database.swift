@@ -9,12 +9,12 @@ import Foundation
 import GRDB
 import os.log
 
-protocol AirQualityRepository {
+protocol AirQualityRepository: Sendable {
     func save(_ record: PM25Record) throws
     func save(_ record: PSIRecord) throws
 }
 
-final class Database: AirQualityRepository {
+final class Database: AirQualityRepository, @unchecked Sendable {
 
     static let shared = Database()
     static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "sgairquality", category: "Database")
@@ -77,6 +77,40 @@ final class Database: AirQualityRepository {
             Self.logger.debug("Saved PSI Record")
         }
     }
+    
+    /// Fetches PM25 records from the database
+    /// - Parameters:
+    ///   - limit: Maximum number of records to fetch. Defaults to 100.
+    ///   - offset: Number of records to skip. Defaults to 0.
+    /// - Returns: Array of PM25Record ordered by timestamp descending (newest first)
+    /// - Throws: Database errors if the fetch operation fails
+    func fetchPM25Records(limit: Int = 100, offset: Int = 0) throws -> [PM25Record] {
+        try dbWriter.read { db in
+            let records = try PM25Record
+                .order(PM25Record.Columns.timestamp.desc)
+                .limit(limit, offset: offset)
+                .fetchAll(db)
+            Self.logger.debug("Fetched \(records.count) PM25 records")
+            return records
+        }
+    }
+    
+    /// Fetches PSI records from the database
+    /// - Parameters:
+    ///   - limit: Maximum number of records to fetch. Defaults to 100.
+    ///   - offset: Number of records to skip. Defaults to 0.
+    /// - Returns: Array of PSIRecord ordered by timestamp descending (newest first)
+    /// - Throws: Database errors if the fetch operation fails
+    func fetchPSIRecords(limit: Int = 100, offset: Int = 0) throws -> [PSIRecord] {
+        try dbWriter.read { db in
+            let records = try PSIRecord
+                .order(PSIRecord.Columns.timestamp.desc)
+                .limit(limit, offset: offset)
+                .fetchAll(db)
+            Self.logger.debug("Fetched \(records.count) PSI records")
+            return records
+        }
+    }
 
     /// Removes PM25 and PSI records older than 60 days
     /// - Throws: Database errors if the cleanup operation fails
@@ -97,5 +131,7 @@ final class Database: AirQualityRepository {
             Self.logger.info("Deleted \(psiDeletedCount) PSI records older than 60 days")
         }
     }
+    
+    
 
 }
