@@ -170,17 +170,6 @@
         }
       }
     },
-    "label.text.tap-to-view" : {
-      "comment" : "Tap to View",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tap to View"
-          }
-        }
-      }
-    },
     "label.text.west" : {
       "comment" : "West",
       "localizations" : {

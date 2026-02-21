@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os.log
 
 enum APIError: LocalizedError {
     case apiKeyNotConfigured
@@ -42,8 +43,12 @@ final class DataAPI {
     }
 
     static let shared = DataAPI()
+    static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "sgairquality", category: "DataAPI")
+    private let repository: any AirQualityRepository
 
-    private init() {}
+    init(repository: any AirQualityRepository = Database.shared) {
+        self.repository = repository
+    }
 
     func latestPM25Readings() async throws -> AirQualityResponse<PM25Readings> {
         let reading: AirQualityResponse<PM25Readings> = try await fetch(endpoint: .pm25)
@@ -56,7 +61,11 @@ final class DataAPI {
                                 central: firstReading.readings.pm25OneHourly.central,
                                 south: firstReading.readings.pm25OneHourly.south,
                                 north: firstReading.readings.pm25OneHourly.north)
-        try? Database.shared.save(record)
+        do {
+            try repository.save(record)
+        } catch {
+            Self.logger.error("Unable to save PM25 record: \(error.localizedDescription)")
+        }
         return reading
     }
 
@@ -126,7 +135,11 @@ final class DataAPI {
                                co_sub_index_central: firstReading.readings.coSubIndex.central,
                                co_sub_index_south: firstReading.readings.coSubIndex.south,
                                co_sub_index_north: firstReading.readings.coSubIndex.north)
-        try? Database.shared.save(record)
+        do {
+            try repository.save(record)
+        } catch {
+            Self.logger.error("Unable to save PSI record: \(error.localizedDescription)")
+        }
         return reading
     }
 
@@ -140,6 +153,7 @@ final class DataAPI {
             let errorResponse = try JSONDecoder.airQualityDecoder.decode(AirQualityResponseError.self, from: data)
             throw APIError.apiError(errorResponse.errorMsg)
         }
+        Self.logger.debug("Fetched data from \(endpoint.url.lastPathComponent)")
         return try JSONDecoder.airQualityDecoder.decode(AirQualityResponse<T>.self, from: data)
     }
 

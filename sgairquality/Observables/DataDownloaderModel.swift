@@ -171,9 +171,9 @@ class DataDownloaderModel {
 
         let situationSummary: String
         if allPM25Normal && allPSIGoodOrModerate {
-            situationSummary = "ALL regions show Normal PM2.5 and Good/Moderate PSI. This means air quality is GOOD and NO restrictions apply to anyone."
+            situationSummary = "ALL regions show Normal PM2.5 and Good/Moderate PSI. This means air quality is GOOD and NO outdoor activity advisories apply to anyone."
         } else if hasElevatedOrWorsePM25 || !allPSIGoodOrModerate {
-            situationSummary = "Some regions show elevated pollution requiring restrictions."
+            situationSummary = "Some regions show elevated pollution requiring activity advisories."
         } else {
             situationSummary = "Mixed air quality conditions."
         }
@@ -191,12 +191,12 @@ class DataDownloaderModel {
 
             SITUATION: \(situationSummary)
 
-            Recommendations by Band:
-            - "Normal" PM2.5 + "Good" or "Moderate" PSI = Everyone can do normal activities, NO restrictions
+            Advisories by Band:
+            - "Normal" PM2.5 + "Good" or "Moderate" PSI = Everyone can do normal activities, NO advisories
             - "Elevated" PM2.5 = Reduce strenuous activity, vulnerable persons avoid strenuous activity
             - "Unhealthy" PSI = Reduce prolonged/strenuous exertion, vulnerable persons minimise outdoor activity
 
-            STRICT INSTRUCTION: Your summary must match the ACTUAL CLASSIFICATIONS listed above. Do NOT say a region is "Elevated" if it shows "Normal". Do NOT recommend restrictions if ALL bands are Normal/Good/Moderate.
+            STRICT INSTRUCTION: Your summary must match the ACTUAL CLASSIFICATIONS listed above. Do NOT say a region is "Elevated" if it shows "Normal". Do NOT recommend advisories if ALL bands are Normal/Good/Moderate.
 
             Write a single paragraph describing the air quality situation and recommendations.
             """
