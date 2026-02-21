@@ -198,7 +198,7 @@ class DataDownloaderModel {
 
             STRICT INSTRUCTION: Your summary must match the ACTUAL CLASSIFICATIONS listed above. Do NOT say a region is "Elevated" if it shows "Normal". Do NOT recommend advisories if ALL bands are Normal/Good/Moderate.
 
-            Write a single paragraph describing the air quality situation and recommendations.
+            Write a single paragraph describing the air quality situation and recommendations. Do not refer to recommendations as restrictions.
             """
     }
 
