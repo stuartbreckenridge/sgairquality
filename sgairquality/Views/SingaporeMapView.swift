@@ -126,6 +126,7 @@ struct SingaporeMapView: View {
                     } icon: {
                         Image(systemName: "text.line.3.summary")
                     }
+                    .accessibilityIdentifier("overlay.airquality.summary")
                     .padding(8)
                     .glassEffect(in: RoundedRectangle(cornerRadius: 8.0, style: .continuous))
                     .padding(8)

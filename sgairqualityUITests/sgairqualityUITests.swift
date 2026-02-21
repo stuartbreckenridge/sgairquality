@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import FoundationModels
 
 final class sgairqualityUITests: XCTestCase {
 
@@ -44,6 +45,13 @@ final class sgairqualityUITests: XCTestCase {
         XCTAssertTrue(southAnnotation.exists)
         XCTAssertTrue(westAnnotation.exists)
         XCTAssertTrue(centralAnnotation.exists)
+        
+        let languageModel = SystemLanguageModel.default
+        if languageModel.isAvailable {
+            let hazeSummary = app.staticTexts["overlay.airquality.summary"]
+            XCTAssertTrue(hazeSummary.waitForExistence(timeout: 5))
+        }
+        
 
         refreshButton.tap()
         XCTAssertTrue(app.navigationBars["Latest Readings"].waitForExistence(timeout: 5))
