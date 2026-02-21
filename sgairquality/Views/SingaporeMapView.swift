@@ -122,7 +122,7 @@ struct SingaporeMapView: View {
                                 .bold()
                                 .textCase(.uppercase)
                         }
-                        
+
                     } icon: {
                         Image(systemName: "text.line.3.summary")
                     }
