@@ -8,7 +8,7 @@
     - The initial UI tests
     - Code commentary
     - It pulled data out of Air Quality Information to apply to LatestDataView section footers
-
+    - Claude helped out as I lost the plot with Apple Intelligence summaries from what were, to me, clear prompts. Mind you, Claude repeatedly accused Apple Intelligence of hallucinating.
 
 
 ### Where have agents failed?
