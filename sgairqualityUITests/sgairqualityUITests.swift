@@ -41,15 +41,11 @@ final class sgairqualityUITests: XCTestCase {
             "Expected 'Air Quality Guide' navigation bar after tapping explanation button."
         )
 
-        // Key section headers that should always be present
-        XCTAssertTrue(
-            app.staticTexts["How PSI Is Computed"].waitForExistence(timeout: 5),
-            "Expected 'How PSI Is Computed' section header in explanation view."
-        )
-        XCTAssertTrue(
-            app.staticTexts["Pollutant Standards Index (PSI)"].waitForExistence(timeout: 5),
-            "Expected PSI section header in explanation view."
-        )
+        // Section headers
+        XCTAssertTrue(app.staticTexts["How PSI Is Computed"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Pollutant Standards Index (PSI)"].exists)
+
+        
 
         // Dismiss and confirm we return to the map
         let closeButton = app.buttons["explanation.close.button"]

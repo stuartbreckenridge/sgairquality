@@ -55,6 +55,7 @@ struct ExplanationView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .listRowSeparator(.hidden)
+                .accessibilityIdentifier("explanation.computation.description")
             // Sub-index formula
             VStack(alignment: .leading, spacing: 6) {
                 Text("label.text.computation-formula-title", comment: "Sub-Index Formula")
@@ -67,6 +68,7 @@ struct ExplanationView: View {
                     .padding(8)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 6))
+                    .accessibilityIdentifier("explanation.computation.formula")
                 VStack(alignment: .leading, spacing: 2) {
                     ForEach(formulaTerms, id: \.term) { item in
                         HStack(alignment: .top, spacing: 4) {
@@ -95,7 +97,9 @@ struct ExplanationView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .listRowSeparator(.hidden)
+                .accessibilityIdentifier("explanation.psi.description")
             BandTableView(rows: psiBandRows)
+                .accessibilityIdentifier("explanation.psi.band-table")
         } header: {
             Text("label.text.psi-full", comment: "Pollutant Standards Index (PSI)")
         }
@@ -107,11 +111,14 @@ struct ExplanationView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .listRowSeparator(.hidden)
+                .accessibilityIdentifier("explanation.pm25.description")
             BandTableView(rows: pm25BandRows)
+                .accessibilityIdentifier("explanation.pm25.band-table")
             BreakpointTableView(
                 title: Text("label.text.breakpoints-24h", comment: "Sub-Index Breakpoints (24-hour, µg/m³)"),
                 rows: pm25BreakpointRows
             )
+            .accessibilityIdentifier("explanation.pm25.breakpoint-table")
         } header: {
             Text("label.text.pm25-full", comment: "Fine Particulate Matter (PM2.5)")
         }
@@ -123,10 +130,12 @@ struct ExplanationView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .listRowSeparator(.hidden)
+                .accessibilityIdentifier("explanation.pm10.description")
             BreakpointTableView(
                 title: Text("label.text.breakpoints-24h", comment: "Sub-Index Breakpoints (24-hour, µg/m³)"),
                 rows: pm10BreakpointRows
             )
+            .accessibilityIdentifier("explanation.pm10.breakpoint-table")
         } header: {
             Text("label.text.pm10-full", comment: "Particulate Matter (PM10)")
         }
@@ -138,10 +147,12 @@ struct ExplanationView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .listRowSeparator(.hidden)
+                .accessibilityIdentifier("explanation.o3.description")
             BreakpointTableView(
                 title: Text("label.text.breakpoints-8h", comment: "Sub-Index Breakpoints (8-hour, µg/m³)"),
                 rows: o3BreakpointRows
             )
+            .accessibilityIdentifier("explanation.o3.breakpoint-table")
         } header: {
             Text("label.text.o3-full", comment: "Ozone (O3)")
         }
@@ -153,10 +164,12 @@ struct ExplanationView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .listRowSeparator(.hidden)
+                .accessibilityIdentifier("explanation.co.description")
             BreakpointTableView(
                 title: Text("label.text.breakpoints-8h-mg", comment: "Sub-Index Breakpoints (8-hour, mg/m³)"),
                 rows: coBreakpointRows
             )
+            .accessibilityIdentifier("explanation.co.breakpoint-table")
         } header: {
             Text("label.text.co-full", comment: "Carbon Monoxide (CO)")
         }
@@ -168,13 +181,16 @@ struct ExplanationView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .listRowSeparator(.hidden)
+                .accessibilityIdentifier("explanation.no2.description")
             BreakpointTableView(
                 title: Text("label.text.breakpoints-1h", comment: "Sub-Index Breakpoints (1-hour, µg/m³)"),
                 rows: no2BreakpointRows
             )
+            .accessibilityIdentifier("explanation.no2.breakpoint-table")
             Text("label.text.no2-footnote", comment: "NO2 sub-index is only used when the 1-hour concentration exceeds 1,130 µg/m³.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
+                .accessibilityIdentifier("explanation.no2.footnote")
         } header: {
             Text("label.text.no2-full", comment: "Nitrogen Dioxide (NO2)")
         }
@@ -186,10 +202,12 @@ struct ExplanationView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .listRowSeparator(.hidden)
+                .accessibilityIdentifier("explanation.so2.description")
             BreakpointTableView(
                 title: Text("label.text.breakpoints-24h", comment: "Sub-Index Breakpoints (24-hour, µg/m³)"),
                 rows: so2BreakpointRows
             )
+            .accessibilityIdentifier("explanation.so2.breakpoint-table")
         } header: {
             Text("label.text.so2-full", comment: "Sulphur Dioxide (SO2)")
         }
