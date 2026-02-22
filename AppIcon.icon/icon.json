@@ -1,31 +1,26 @@
 {
-  "fill" : "automatic",
+  "fill" : {
+    "linear-gradient" : [
+      "display-p3:0.52549,0.94118,0.39608,1.00000",
+      "display-p3:0.35294,0.63922,0.26667,1.00000"
+    ],
+    "orientation" : {
+      "start" : {
+        "x" : 0.5,
+        "y" : 0
+      },
+      "stop" : {
+        "x" : 0.5,
+        "y" : 0.7
+      }
+    }
+  },
   "groups" : [
     {
-      "blend-mode" : "normal",
-      "blur-material" : 0.5,
       "layers" : [
         {
-          "image-name" : "Slice 1-4.png",
-          "name" : "Slice 1-4"
-        }
-      ],
-      "lighting" : "individual",
-      "shadow" : {
-        "kind" : "layer-color",
-        "opacity" : 0.5
-      },
-      "translucency" : {
-        "enabled" : true,
-        "value" : 0.8
-      }
-    },
-    {
-      "blend-mode" : "normal",
-      "layers" : [
-        {
-          "image-name" : "Slice 1-5.png",
-          "name" : "Slice 1-5"
+          "image-name" : " .png",
+          "name" : " "
         }
       ],
       "shadow" : {
