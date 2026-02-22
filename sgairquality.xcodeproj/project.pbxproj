@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		172DA3182F48A20000B92E8C /* Agents.md in Resources */ = {isa = PBXBuildFile; fileRef = 172DA3172F48A20000B92E8C /* Agents.md */; };
 		172DA3452F48A9ED00B92E8C /* Contributing.md in Resources */ = {isa = PBXBuildFile; fileRef = 172DA3442F48A9ED00B92E8C /* Contributing.md */; };
+		1733FF092F4A990E000CA7B5 /* CLAUDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 1733FF082F4A990E000CA7B5 /* CLAUDE.md */; };
 		17DE3E282F4979AD004265AA /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 17DE3E272F4979AD004265AA /* GRDB */; };
 		17FCDF282F4564C000578A82 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 17FCDF272F4564C000578A82 /* README.md */; };
 		17FCDF2A2F456E8C00578A82 /* Air Quality Information.md in Resources */ = {isa = PBXBuildFile; fileRef = 17FCDF292F456E8C00578A82 /* Air Quality Information.md */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		172DA3172F48A20000B92E8C /* Agents.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Agents.md; sourceTree = "<group>"; };
 		172DA3442F48A9ED00B92E8C /* Contributing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Contributing.md; sourceTree = "<group>"; };
+		1733FF082F4A990E000CA7B5 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		17D01A282F4757DC003F116C /* sgairqualityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17F3B0F12F45A741008F8AA3 /* sgairquality.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = sgairquality.xctestplan; sourceTree = "<group>"; };
 		17FCDEF12F4555F200578A82 /* sgairquality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sgairquality.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 				17FCDF292F456E8C00578A82 /* Air Quality Information.md */,
 				172DA3172F48A20000B92E8C /* Agents.md */,
 				172DA3442F48A9ED00B92E8C /* Contributing.md */,
+				1733FF082F4A990E000CA7B5 /* CLAUDE.md */,
 				17FCDF272F4564C000578A82 /* README.md */,
 				17FCDEF32F4555F200578A82 /* sgairquality */,
 				17FCE30F2F45759300578A82 /* configuration */,
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17FCDF282F4564C000578A82 /* README.md in Resources */,
+				1733FF092F4A990E000CA7B5 /* CLAUDE.md in Resources */,
 				17FCDF2A2F456E8C00578A82 /* Air Quality Information.md in Resources */,
 				172DA3452F48A9ED00B92E8C /* Contributing.md in Resources */,
 				172DA3182F48A20000B92E8C /* Agents.md in Resources */,
