@@ -19,6 +19,7 @@ struct SingaporeMapView: View {
     // MARK: State
     @State private var mapModel = SingaporeMapViewModel()
     @State private var dataModel = DataDownloaderModel()
+    @State private var hapticTrigger: Bool = false
 
     // MARK: Bindings
 
@@ -83,6 +84,7 @@ struct SingaporeMapView: View {
 #if os(iOS)
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
+                        hapticTrigger.toggle()
                         Task {
                             try? await dataModel.downloadLatestData()
                         }
@@ -90,11 +92,13 @@ struct SingaporeMapView: View {
                         Image(systemName: "arrow.clockwise")
                     }
                     .accessibilityIdentifier("map.refresh.button")
+                    .sensoryFeedback(.selection, trigger: hapticTrigger)
                 }
 
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         Button {
+                            hapticTrigger.toggle()
                             mapModel.showExplanationView.toggle()
                         } label: {
                             Label(String(localized: "button.title.explanation", comment: "Explanation"), systemImage: "questionmark")
@@ -102,23 +106,40 @@ struct SingaporeMapView: View {
                         .accessibilityIdentifier("map.showexplanation.button")
 
                         Button {
+                            hapticTrigger.toggle()
                             mapModel.showHistoricalDataView.toggle()
                         } label: {
-                            Label(String(localized: "button.title.historical-data", comment: "Historical Data"), systemImage: "chart.line.uptrend.xyaxis")
+                            Label(String(localized: "button.title.historical-readings", comment: "Historical Readings"), systemImage: "chart.line.uptrend.xyaxis")
                         }
                         .accessibilityIdentifier("map.showhistorical.button")
 
                         Button {
+                            hapticTrigger.toggle()
                             mapModel.showLatestDataView.toggle()
                         } label: {
-                            Label(String(localized: "button.title.latest-data", comment: "Latest Data"), systemImage: "chart.bar.horizontal.page")
+                            Label(String(localized: "button.title.latest-readings", comment: "Latest Readings"), systemImage: "chart.bar.horizontal.page")
                         }
                         .disabled(dataModel.psiData == nil)
                         .accessibilityIdentifier("map.lastRefresh.label")
+                        
+                        Divider()
+                        
+                        #if DEBUG
+                        Button {
+                            hapticTrigger.toggle()
+                            Task {
+                                try? await dataModel.regenerateSummary()
+                            }
+                        } label: {
+                            Label("Regenerate Summary", systemImage: "apple.intelligence")
+                        }
+                        #endif
+                        
                     } label: {
                         Image(systemName: "ellipsis")
                     }
                     .accessibilityIdentifier("map.menu.button")
+                    .sensoryFeedback(.selection, trigger: hapticTrigger)
                 }
 #else
                 ToolbarItem(placement: .navigation) {
@@ -130,6 +151,17 @@ struct SingaporeMapView: View {
                         Image(systemName: "arrow.clockwise")
                     }
                     .accessibilityIdentifier("map.refresh.button")
+#if DEBUG
+                    .contextMenu {
+                        Button {
+                            Task {
+                                try? await dataModel.regenerateSummary()
+                            }
+                        } label: {
+                            Label("Regenerate Summary", systemImage: "apple.intelligence")
+                        }
+                    }
+#endif
                 }
 
                 ToolbarItem(placement: .automatic) {
