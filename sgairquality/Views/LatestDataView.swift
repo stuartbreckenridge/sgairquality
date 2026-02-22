@@ -53,7 +53,7 @@ struct LatestDataView: View {
                         ("label.text.east", regionalSubIndices(from: readings, keyPath: \.east)),
                         ("label.text.south", regionalSubIndices(from: readings, keyPath: \.south)),
                         ("label.text.west", regionalSubIndices(from: readings, keyPath: \.west)),
-                        ("label.text.central", regionalSubIndices(from: readings, keyPath: \.central)),
+                        ("label.text.central", regionalSubIndices(from: readings, keyPath: \.central))
                     ]
 
                     Section {
@@ -243,7 +243,7 @@ struct LatestDataView: View {
             }
         }
     }
-    
+
     // MARK: Private Methods
 
     /// Converts a raw NO₂ 1-hour concentration (µg/m³) into a PSI sub-index value.
@@ -273,10 +273,10 @@ struct LatestDataView: View {
         RegionalSubIndices(
             pm25: readings?.pm25SubIndex[keyPath: kp] ?? 0,
             pm10: readings?.pm10SubIndex[keyPath: kp] ?? 0,
-            o3:   readings?.o3SubIndex[keyPath: kp] ?? 0,
-            co:   readings?.coSubIndex[keyPath: kp] ?? 0,
-            so2:  readings?.so2SubIndex[keyPath: kp] ?? 0,
-            no2:  no2SubIndex(from: readings?.no2OneHourMax[keyPath: kp] ?? 0)
+            o3: readings?.o3SubIndex[keyPath: kp] ?? 0,
+            co: readings?.coSubIndex[keyPath: kp] ?? 0,
+            so2: readings?.so2SubIndex[keyPath: kp] ?? 0,
+            no2: no2SubIndex(from: readings?.no2OneHourMax[keyPath: kp] ?? 0)
         )
     }
 
@@ -287,11 +287,11 @@ struct LatestDataView: View {
     private func subIndices(for region: RegionalSubIndices) -> [(label: String, value: Int)] {
         [
             ("PM2.5", region.pm25),
-            ("PM10",  region.pm10),
-            ("O₃",   region.o3),
-            ("CO",    region.co),
-            ("SO₂",  region.so2),
-            ("NO₂",  region.no2),
+            ("PM10", region.pm10),
+            ("O₃", region.o3),
+            ("CO", region.co),
+            ("SO₂", region.so2),
+            ("NO₂", region.no2)
         ].sorted { $0.value > $1.value }
     }
 }

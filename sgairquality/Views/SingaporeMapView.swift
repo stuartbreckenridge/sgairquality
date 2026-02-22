@@ -121,9 +121,9 @@ struct SingaporeMapView: View {
                         }
                         .disabled(dataModel.psiData == nil)
                         .accessibilityIdentifier("map.lastRefresh.label")
-                        
+
                         Divider()
-                        
+
                         #if DEBUG
                         Button {
                             hapticTrigger.toggle()
@@ -134,7 +134,7 @@ struct SingaporeMapView: View {
                             Label("Regenerate Summary", systemImage: "apple.intelligence")
                         }
                         #endif
-                        
+
                     } label: {
                         Image(systemName: "ellipsis")
                     }

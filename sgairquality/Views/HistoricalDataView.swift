@@ -18,7 +18,7 @@ struct HistoricalDataView: View {
     @State private var pm25Records: [PM25Record] = []
     @State private var psiRecords: [PSIRecord] = []
     @State private var selectedMetric: Metric = .pm25
-    @State private var selectedDate: Date? = nil
+    @State private var selectedDate: Date?
 
     // MARK: Constants
     private let database = Database.shared
@@ -116,7 +116,7 @@ struct HistoricalDataView: View {
             }
             .chartXScale(domain: xDomain)
             .chartXAxis {
-                AxisMarks(position: .top, values: .automatic) { value in
+                AxisMarks(position: .top, values: .automatic) { _ in
                     AxisGridLine()
                     AxisTick()
                     AxisValueLabel(format: selectedRange.xAxisFormat)
@@ -151,7 +151,7 @@ struct HistoricalDataView: View {
             }
             .chartXScale(domain: xDomain)
             .chartXAxis {
-                AxisMarks(position: .top, values: .automatic) { value in
+                AxisMarks(position: .top, values: .automatic) { _ in
                     AxisGridLine()
                     AxisTick()
                     AxisValueLabel(format: selectedRange.xAxisFormat)
