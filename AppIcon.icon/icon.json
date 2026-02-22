@@ -2,20 +2,22 @@
   "fill" : "automatic",
   "groups" : [
     {
-      "blend-mode" : "hard-light",
+      "blend-mode" : "normal",
+      "blur-material" : 0.5,
       "layers" : [
         {
           "image-name" : "Slice 1-4.png",
           "name" : "Slice 1-4"
         }
       ],
+      "lighting" : "individual",
       "shadow" : {
-        "kind" : "neutral",
+        "kind" : "layer-color",
         "opacity" : 0.5
       },
       "translucency" : {
         "enabled" : true,
-        "value" : 0.5
+        "value" : 0.8
       }
     },
     {
