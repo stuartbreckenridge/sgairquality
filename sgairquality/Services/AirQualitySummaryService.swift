@@ -11,24 +11,14 @@ import FoundationModels
 /// Service responsible for generating AI-powered air quality summaries
 struct AirQualitySummaryService {
     
-    // MARK: Properties
-    
-    private let languageModel: SystemLanguageModel
-    
-    // MARK: Initialization
-    
-    init(languageModel: SystemLanguageModel = .default) {
-        self.languageModel = languageModel
-    }
-    
     // MARK: Public Methods
     
     /// Generates a summary of air quality conditions based on the provided classifications
     /// - Parameter classifications: The air quality classifications for all regions
     /// - Returns: A summary string if the language model is available, nil otherwise
     /// - Throws: Any errors from the language model session
-    func generateSummary(for classifications: AirQualityClassification) async throws -> String? {
-        guard case .available = languageModel.availability else {
+    static func generateSummary(for classifications: AirQualityClassification) async throws -> String? {
+        guard case .available = SystemLanguageModel.default.availability else {
             return nil
         }
         
@@ -44,7 +34,7 @@ struct AirQualitySummaryService {
     
     /// Builds the instructions that define the model's role and behavior
     /// - Returns: Instructions string for the language model
-    private func buildInstructions() -> String {
+    private static func buildInstructions() -> String {
         return """
             You are a haze advisory assistant. Provide clear, helpful summaries of current air quality conditions based on PM2.5 and PSI classifications for Singapore's five regions (North, South, East, West, Central).
             
@@ -55,8 +45,9 @@ struct AirQualitySummaryService {
             - When ALL regions show Normal PM2.5 and Good/Moderate PSI: State that air quality is good and outdoor activities are safe for everyone
             - Do NOT refer to advisories as "restrictions"
             - Do NOT use the word "restrictions"
-            - Spefically mention "Very High", "Very Unhealthy", or "Hazardous" ONLY when the classifications are provided in the prompt
+            - Specifically mention "Very High", "Very Unhealthy", or "Hazardous" ONLY when the classifications are provided in the prompt
             - Write a single paragraph describing the air quality situation and recommendations
+            - Do not include any Markdown formatting in the summary
             
             Advisory Guidelines by Band:
             - "Normal" PM2.5 + "Good" or "Moderate" PSI = Everyone can do normal activities, NO advisories needed
@@ -69,7 +60,7 @@ struct AirQualitySummaryService {
     /// Builds the prompt with specific classification data
     /// - Parameter classifications: The air quality classifications for all regions
     /// - Returns: A formatted prompt string
-    private func buildPrompt(for classifications: AirQualityClassification) -> String {
+    private static func buildPrompt(for classifications: AirQualityClassification) -> String {
         let situationSummary = analyzeSituation(classifications)
         
         return """
@@ -88,7 +79,7 @@ struct AirQualitySummaryService {
     /// Analyzes the overall air quality situation across all regions
     /// - Parameter classifications: The air quality classifications for all regions
     /// - Returns: A summary string describing the overall situation
-    private func analyzeSituation(_ classifications: AirQualityClassification) -> String {
+    private static func analyzeSituation(_ classifications: AirQualityClassification) -> String {
         let allPM25Bands = [
             classifications.north.pm25Band,
             classifications.south.pm25Band,
