@@ -90,5 +90,5 @@ final class sgairqualityUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Latest Readings"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["PSI - 24 Hour"].waitForExistence(timeout: 5))
     }
-    
+
 }

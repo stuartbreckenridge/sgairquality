@@ -9,29 +9,29 @@ import SwiftUI
 import MapKit
 
 struct SingaporeMapView: View {
-    
+
     // MARK: Environment
-    
+
     // MARK: App Storage
-    
+
     // MARK: State Objects
-    
+
     // MARK: State
     @State private var mapModel = SingaporeMapViewModel()
     @State private var dataModel = DataDownloaderModel()
-    
+
     // MARK: Bindings
-    
+
     // MARK: Constants
-    
+
     // MARK: Variables
-    
+
     var body: some View {
         NavigationStack {
             Map(position: $mapModel.mapCameraPosition) {
                 if let pm25Readings = dataModel.pm25Data?.data.items.first?.readings.pm25OneHourly,
                    let psiReadings = dataModel.psiData?.data.items.first?.readings.psiTwentyFourHourly {
-                    
+
                     // West
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.35735, longitude: 103.7)) {
                         ReadingsAnnotationView(pm25: pm25Readings.west, psi: psiReadings.west)
@@ -39,7 +39,7 @@ struct SingaporeMapView: View {
                     } label: {
                         Text("label.text.west", comment: "West")
                     }
-                    
+
                     // East
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.35735, longitude: 103.94)) {
                         ReadingsAnnotationView(pm25: pm25Readings.east, psi: psiReadings.east)
@@ -47,7 +47,7 @@ struct SingaporeMapView: View {
                     } label: {
                         Text("label.text.east", comment: "East")
                     }
-                    
+
                     // North
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.41803, longitude: 103.82)) {
                         ReadingsAnnotationView(pm25: pm25Readings.north, psi: psiReadings.north)
@@ -55,16 +55,16 @@ struct SingaporeMapView: View {
                     } label: {
                         Text("label.text.north", comment: "North")
                     }
-                    
+
                     // South
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.29587, longitude: 103.82)) {
                         ReadingsAnnotationView(pm25: pm25Readings.south, psi: psiReadings.south)
                             .accessibilityIdentifier("annotation.south")
-                        
+
                     } label: {
                         Text("label.text.south", comment: "South")
                     }
-                    
+
                     // Central
                     Annotation(coordinate: CLLocationCoordinate2D(latitude: 1.35735, longitude: 103.82)) {
                         ReadingsAnnotationView(pm25: pm25Readings.central, psi: psiReadings.central)
@@ -90,7 +90,7 @@ struct SingaporeMapView: View {
                     }
                     .accessibilityIdentifier("map.refresh.button")
                 }
-                
+
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button {
                         mapModel.showExplanationView.toggle()
@@ -98,7 +98,7 @@ struct SingaporeMapView: View {
                         Image(systemName: "questionmark")
                     }
                     .accessibilityIdentifier("map.showexplanation.button")
-                    
+
                     Button {
                         mapModel.showLatestDataView.toggle()
                     } label: {
@@ -118,7 +118,7 @@ struct SingaporeMapView: View {
                     }
                     .accessibilityIdentifier("map.refresh.button")
                 }
-                
+
                 ToolbarItem(placement: .automatic) {
                     Button {
                         mapModel.showExplanationView.toggle()
@@ -127,7 +127,7 @@ struct SingaporeMapView: View {
                     }
                     .accessibilityIdentifier("map.showexplanation.button")
                 }
-                
+
                 ToolbarItem(placement: .automatic) {
                     Button {
                         mapModel.showLatestDataView.toggle()
@@ -179,7 +179,7 @@ struct SingaporeMapView: View {
 #else
                 .glassBackgroundEffect()
 #endif
-                
+
             }
         }
         .ignoresSafeArea(edges: .bottom)

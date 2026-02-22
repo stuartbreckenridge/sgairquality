@@ -20,11 +20,11 @@ struct LatestDataView: View {
     private func subIndices(for region: RegionalSubIndices) -> [(label: String, value: Int)] {
         [
             ("PM2.5", region.pm25),
-            ("PM10",  region.pm10),
-            ("O₃",   region.o3),
-            ("CO",    region.co),
-            ("SO₂",   region.so2),
-            ("NO₂",   region.no2),
+            ("PM10", region.pm10),
+            ("O₃", region.o3),
+            ("CO", region.co),
+            ("SO₂", region.so2),
+            ("NO₂", region.no2)
         ].sorted { $0.value > $1.value }
     }
 
@@ -65,10 +65,10 @@ struct LatestDataView: View {
                     let readings = psiData.data.items.first?.readings
                     let regions: [(name: LocalizedStringResource, subIndices: RegionalSubIndices)] = [
                         ("label.text.north", RegionalSubIndices(pm25: readings?.pm25SubIndex.north ?? 0, pm10: readings?.pm10SubIndex.north ?? 0, o3: readings?.o3SubIndex.north ?? 0, co: readings?.coSubIndex.north ?? 0, so2: readings?.so2SubIndex.north ?? 0, no2: readings?.no2OneHourMax.north ?? 0)),
-                        ("label.text.east",  RegionalSubIndices(pm25: readings?.pm25SubIndex.east ?? 0,  pm10: readings?.pm10SubIndex.east ?? 0,  o3: readings?.o3SubIndex.east ?? 0,  co: readings?.coSubIndex.east ?? 0,  so2: readings?.so2SubIndex.east ?? 0,  no2: readings?.no2OneHourMax.east ?? 0)),
+                        ("label.text.east", RegionalSubIndices(pm25: readings?.pm25SubIndex.east ?? 0, pm10: readings?.pm10SubIndex.east ?? 0, o3: readings?.o3SubIndex.east ?? 0, co: readings?.coSubIndex.east ?? 0, so2: readings?.so2SubIndex.east ?? 0, no2: readings?.no2OneHourMax.east ?? 0)),
                         ("label.text.south", RegionalSubIndices(pm25: readings?.pm25SubIndex.south ?? 0, pm10: readings?.pm10SubIndex.south ?? 0, o3: readings?.o3SubIndex.south ?? 0, co: readings?.coSubIndex.south ?? 0, so2: readings?.so2SubIndex.south ?? 0, no2: readings?.no2OneHourMax.south ?? 0)),
-                        ("label.text.west",  RegionalSubIndices(pm25: readings?.pm25SubIndex.west ?? 0,  pm10: readings?.pm10SubIndex.west ?? 0,  o3: readings?.o3SubIndex.west ?? 0,  co: readings?.coSubIndex.west ?? 0,  so2: readings?.so2SubIndex.west ?? 0,  no2: readings?.no2OneHourMax.west ?? 0)),
-                        ("label.text.central", RegionalSubIndices(pm25: readings?.pm25SubIndex.central ?? 0, pm10: readings?.pm10SubIndex.central ?? 0, o3: readings?.o3SubIndex.central ?? 0, co: readings?.coSubIndex.central ?? 0, so2: readings?.so2SubIndex.central ?? 0, no2: readings?.no2OneHourMax.central ?? 0)),
+                        ("label.text.west", RegionalSubIndices(pm25: readings?.pm25SubIndex.west ?? 0, pm10: readings?.pm10SubIndex.west ?? 0, o3: readings?.o3SubIndex.west ?? 0, co: readings?.coSubIndex.west ?? 0, so2: readings?.so2SubIndex.west ?? 0, no2: readings?.no2OneHourMax.west ?? 0)),
+                        ("label.text.central", RegionalSubIndices(pm25: readings?.pm25SubIndex.central ?? 0, pm10: readings?.pm10SubIndex.central ?? 0, o3: readings?.o3SubIndex.central ?? 0, co: readings?.coSubIndex.central ?? 0, so2: readings?.so2SubIndex.central ?? 0, no2: readings?.no2OneHourMax.central ?? 0))
                     ]
 
                     Section {

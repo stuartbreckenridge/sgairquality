@@ -199,12 +199,12 @@ struct ExplanationView: View {
 
     private var formulaTerms: [(term: String, definition: LocalizedStringResource)] {
         [
-            ("Iₚ",    LocalizedStringResource("label.text.formula.ip",    defaultValue: "Sub-index for pollutant p",               comment: "Formula term: Ip")),
-            ("Cp",    LocalizedStringResource("label.text.formula.cp",    defaultValue: "Measured concentration of pollutant p",   comment: "Formula term: Cp")),
-            ("BPHI",  LocalizedStringResource("label.text.formula.bphi",  defaultValue: "Breakpoint concentration ≥ Cp",          comment: "Formula term: BPhi")),
-            ("BPLO",  LocalizedStringResource("label.text.formula.bplo",  defaultValue: "Breakpoint concentration ≤ Cp",          comment: "Formula term: BPlo")),
-            ("IHI",   LocalizedStringResource("label.text.formula.ihi",   defaultValue: "Index value corresponding to BPHI",      comment: "Formula term: Ihi")),
-            ("ILO",   LocalizedStringResource("label.text.formula.ilo",   defaultValue: "Index value corresponding to BPLO",      comment: "Formula term: Ilo")),
+            ("Iₚ", LocalizedStringResource("label.text.formula.ip", defaultValue: "Sub-index for pollutant p", comment: "Formula term: Ip")),
+            ("Cp", LocalizedStringResource("label.text.formula.cp", defaultValue: "Measured concentration of pollutant p", comment: "Formula term: Cp")),
+            ("BPHI", LocalizedStringResource("label.text.formula.bphi", defaultValue: "Breakpoint concentration ≥ Cp", comment: "Formula term: BPhi")),
+            ("BPLO", LocalizedStringResource("label.text.formula.bplo", defaultValue: "Breakpoint concentration ≤ Cp", comment: "Formula term: BPlo")),
+            ("IHI", LocalizedStringResource("label.text.formula.ihi", defaultValue: "Index value corresponding to BPHI", comment: "Formula term: Ihi")),
+            ("ILO", LocalizedStringResource("label.text.formula.ilo", defaultValue: "Index value corresponding to BPLO", comment: "Formula term: Ilo"))
         ]
     }
 
@@ -212,20 +212,20 @@ struct ExplanationView: View {
 
     private var psiBandRows: [BandRow] {
         [
-            BandRow(label: LocalizedStringResource("label.text.psi-good",          defaultValue: "Good",          comment: "PSI: Good (0-50)"),         range: "0–50",    color: .green,  advisory: LocalizedStringResource("label.text.advisory.psi-good",          defaultValue: "Normal activities for everyone.",                                                              comment: "PSI Good advisory")),
-            BandRow(label: LocalizedStringResource("label.text.psi-moderate",      defaultValue: "Moderate",      comment: "PSI: Moderate (51-100)"),    range: "51–100",  color: .blue,   advisory: LocalizedStringResource("label.text.advisory.psi-moderate",      defaultValue: "Normal activities for everyone.",                                                              comment: "PSI Moderate advisory")),
-            BandRow(label: LocalizedStringResource("label.text.psi-unhealthy",     defaultValue: "Unhealthy",     comment: "PSI: Unhealthy (101-200)"),  range: "101–200", color: .yellow, advisory: LocalizedStringResource("label.text.advisory.psi-unhealthy",     defaultValue: "Reduce prolonged outdoor exertion. Vulnerable persons should minimise outdoor activity.",   comment: "PSI Unhealthy advisory")),
-            BandRow(label: LocalizedStringResource("label.text.psi-very-unhealthy",defaultValue: "Very Unhealthy",comment: "PSI: Very Unhealthy (201-300)"),range: "201–300",color: .orange,advisory: LocalizedStringResource("label.text.advisory.psi-very-unhealthy",defaultValue: "Avoid prolonged outdoor exertion. Vulnerable persons should avoid outdoor activity.",          comment: "PSI Very Unhealthy advisory")),
-            BandRow(label: LocalizedStringResource("label.text.psi-hazardous",     defaultValue: "Hazardous",     comment: "PSI: Hazardous (301+)"),     range: "≥ 301",   color: .red,    advisory: LocalizedStringResource("label.text.advisory.psi-hazardous",     defaultValue: "Minimise outdoor activity. Vulnerable persons should stay indoors.",                          comment: "PSI Hazardous advisory")),
+            BandRow(label: LocalizedStringResource("label.text.psi-good", defaultValue: "Good", comment: "PSI: Good (0-50)"), range: "0–50", color: .green, advisory: LocalizedStringResource("label.text.advisory.psi-good", defaultValue: "Normal activities for everyone.", comment: "PSI Good advisory")),
+            BandRow(label: LocalizedStringResource("label.text.psi-moderate", defaultValue: "Moderate", comment: "PSI: Moderate (51-100)"), range: "51–100", color: .blue, advisory: LocalizedStringResource("label.text.advisory.psi-moderate", defaultValue: "Normal activities for everyone.", comment: "PSI Moderate advisory")),
+            BandRow(label: LocalizedStringResource("label.text.psi-unhealthy", defaultValue: "Unhealthy", comment: "PSI: Unhealthy (101-200)"), range: "101–200", color: .yellow, advisory: LocalizedStringResource("label.text.advisory.psi-unhealthy", defaultValue: "Reduce prolonged outdoor exertion. Vulnerable persons should minimise outdoor activity.", comment: "PSI Unhealthy advisory")),
+            BandRow(label: LocalizedStringResource("label.text.psi-very-unhealthy", defaultValue: "Very Unhealthy", comment: "PSI: Very Unhealthy (201-300)"), range: "201–300", color: .orange, advisory: LocalizedStringResource("label.text.advisory.psi-very-unhealthy", defaultValue: "Avoid prolonged outdoor exertion. Vulnerable persons should avoid outdoor activity.", comment: "PSI Very Unhealthy advisory")),
+            BandRow(label: LocalizedStringResource("label.text.psi-hazardous", defaultValue: "Hazardous", comment: "PSI: Hazardous (301+)"), range: "≥ 301", color: .red, advisory: LocalizedStringResource("label.text.advisory.psi-hazardous", defaultValue: "Minimise outdoor activity. Vulnerable persons should stay indoors.", comment: "PSI Hazardous advisory"))
         ]
     }
 
     private var pm25BandRows: [BandRow] {
         [
-            BandRow(label: LocalizedStringResource("label.text.pm25-normal",   defaultValue: "Normal",   comment: "PM2.5: Normal (0-55)"),   range: "0–55",   color: .green,  advisory: LocalizedStringResource("label.text.advisory.pm25-normal",   defaultValue: "Normal activities for everyone.",                                                                      comment: "PM2.5 Normal advisory")),
-            BandRow(label: LocalizedStringResource("label.text.pm25-elevated", defaultValue: "Elevated", comment: "PM2.5: Elevated (56-150)"),range: "56–150", color: .yellow, advisory: LocalizedStringResource("label.text.advisory.pm25-elevated", defaultValue: "Reduce strenuous outdoor activities. Vulnerable persons should avoid strenuous outdoor activity.",       comment: "PM2.5 Elevated advisory")),
-            BandRow(label: LocalizedStringResource("label.text.pm25-high",     defaultValue: "High",     comment: "PM2.5: High (151-250)"),  range: "151–250",color: .orange, advisory: LocalizedStringResource("label.text.advisory.pm25-high",     defaultValue: "Avoid prolonged outdoor exertion. Vulnerable persons should avoid outdoor activity.",                  comment: "PM2.5 High advisory")),
-            BandRow(label: LocalizedStringResource("label.text.pm25-very-high",defaultValue: "Very High",comment: "PM2.5: Very High (251+)"),range: "≥ 251",  color: .red,    advisory: LocalizedStringResource("label.text.advisory.pm25-very-high", defaultValue: "Minimise outdoor activity. Vulnerable persons should stay indoors.",                                    comment: "PM2.5 Very High advisory")),
+            BandRow(label: LocalizedStringResource("label.text.pm25-normal", defaultValue: "Normal", comment: "PM2.5: Normal (0-55)"), range: "0–55", color: .green, advisory: LocalizedStringResource("label.text.advisory.pm25-normal", defaultValue: "Normal activities for everyone.", comment: "PM2.5 Normal advisory")),
+            BandRow(label: LocalizedStringResource("label.text.pm25-elevated", defaultValue: "Elevated", comment: "PM2.5: Elevated (56-150)"), range: "56–150", color: .yellow, advisory: LocalizedStringResource("label.text.advisory.pm25-elevated", defaultValue: "Reduce strenuous outdoor activities. Vulnerable persons should avoid strenuous outdoor activity.", comment: "PM2.5 Elevated advisory")),
+            BandRow(label: LocalizedStringResource("label.text.pm25-high", defaultValue: "High", comment: "PM2.5: High (151-250)"), range: "151–250", color: .orange, advisory: LocalizedStringResource("label.text.advisory.pm25-high", defaultValue: "Avoid prolonged outdoor exertion. Vulnerable persons should avoid outdoor activity.", comment: "PM2.5 High advisory")),
+            BandRow(label: LocalizedStringResource("label.text.pm25-very-high", defaultValue: "Very High", comment: "PM2.5: Very High (251+)"), range: "≥ 251", color: .red, advisory: LocalizedStringResource("label.text.advisory.pm25-very-high", defaultValue: "Minimise outdoor activity. Vulnerable persons should stay indoors.", comment: "PM2.5 Very High advisory"))
         ]
     }
 
@@ -233,45 +233,45 @@ struct ExplanationView: View {
 
     private var pm25BreakpointRows: [BreakpointRow] {
         [
-            BreakpointRow(psiRange: "0–50",    concentration: "0–12"),
-            BreakpointRow(psiRange: "51–100",  concentration: "12–55"),
+            BreakpointRow(psiRange: "0–50", concentration: "0–12"),
+            BreakpointRow(psiRange: "51–100", concentration: "12–55"),
             BreakpointRow(psiRange: "101–200", concentration: "55–150"),
             BreakpointRow(psiRange: "201–300", concentration: "150–250"),
             BreakpointRow(psiRange: "301–400", concentration: "250–350"),
-            BreakpointRow(psiRange: "401–500", concentration: "350–500"),
+            BreakpointRow(psiRange: "401–500", concentration: "350–500")
         ]
     }
 
     private var pm10BreakpointRows: [BreakpointRow] {
         [
-            BreakpointRow(psiRange: "0–50",    concentration: "0–50"),
-            BreakpointRow(psiRange: "51–100",  concentration: "50–150"),
+            BreakpointRow(psiRange: "0–50", concentration: "0–50"),
+            BreakpointRow(psiRange: "51–100", concentration: "50–150"),
             BreakpointRow(psiRange: "101–200", concentration: "150–350"),
             BreakpointRow(psiRange: "201–300", concentration: "350–420"),
             BreakpointRow(psiRange: "301–400", concentration: "420–500"),
-            BreakpointRow(psiRange: "401–500", concentration: "500–600"),
+            BreakpointRow(psiRange: "401–500", concentration: "500–600")
         ]
     }
 
     private var o3BreakpointRows: [BreakpointRow] {
         [
-            BreakpointRow(psiRange: "0–50",    concentration: "0–118"),
-            BreakpointRow(psiRange: "51–100",  concentration: "118–157"),
+            BreakpointRow(psiRange: "0–50", concentration: "0–118"),
+            BreakpointRow(psiRange: "51–100", concentration: "118–157"),
             BreakpointRow(psiRange: "101–200", concentration: "157–235"),
             BreakpointRow(psiRange: "201–300", concentration: "235–785 †"),
             BreakpointRow(psiRange: "301–400", concentration: "785–980 †"),
-            BreakpointRow(psiRange: "401–500", concentration: "980–1,180 †"),
+            BreakpointRow(psiRange: "401–500", concentration: "980–1,180 †")
         ]
     }
 
     private var coBreakpointRows: [BreakpointRow] {
         [
-            BreakpointRow(psiRange: "0–50",    concentration: "0–5.0"),
-            BreakpointRow(psiRange: "51–100",  concentration: "5.0–10.0"),
+            BreakpointRow(psiRange: "0–50", concentration: "0–5.0"),
+            BreakpointRow(psiRange: "51–100", concentration: "5.0–10.0"),
             BreakpointRow(psiRange: "101–200", concentration: "10.0–17.0"),
             BreakpointRow(psiRange: "201–300", concentration: "17.0–34.0"),
             BreakpointRow(psiRange: "301–400", concentration: "34.0–46.0"),
-            BreakpointRow(psiRange: "401–500", concentration: "46.0–57.5"),
+            BreakpointRow(psiRange: "401–500", concentration: "46.0–57.5")
         ]
     }
 
@@ -279,18 +279,18 @@ struct ExplanationView: View {
         [
             BreakpointRow(psiRange: "201–300", concentration: "1,130–2,260"),
             BreakpointRow(psiRange: "301–400", concentration: "2,260–3,000"),
-            BreakpointRow(psiRange: "401–500", concentration: "3,000–3,750"),
+            BreakpointRow(psiRange: "401–500", concentration: "3,000–3,750")
         ]
     }
 
     private var so2BreakpointRows: [BreakpointRow] {
         [
-            BreakpointRow(psiRange: "0–50",    concentration: "0–80"),
-            BreakpointRow(psiRange: "51–100",  concentration: "80–365"),
+            BreakpointRow(psiRange: "0–50", concentration: "0–80"),
+            BreakpointRow(psiRange: "51–100", concentration: "80–365"),
             BreakpointRow(psiRange: "101–200", concentration: "365–800"),
             BreakpointRow(psiRange: "201–300", concentration: "800–1,600"),
             BreakpointRow(psiRange: "301–400", concentration: "1,600–2,100"),
-            BreakpointRow(psiRange: "401–500", concentration: "2,100–2,620"),
+            BreakpointRow(psiRange: "401–500", concentration: "2,100–2,620")
         ]
     }
 }

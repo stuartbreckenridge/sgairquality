@@ -77,7 +77,7 @@ final class Database: AirQualityRepository, @unchecked Sendable {
             Self.logger.debug("Saved PSI Record")
         }
     }
-    
+
     /// Fetches PM25 records from the database
     /// - Parameters:
     ///   - limit: Maximum number of records to fetch. Defaults to 100.
@@ -94,7 +94,7 @@ final class Database: AirQualityRepository, @unchecked Sendable {
             return records
         }
     }
-    
+
     /// Fetches PSI records from the database
     /// - Parameters:
     ///   - limit: Maximum number of records to fetch. Defaults to 100.
@@ -131,7 +131,5 @@ final class Database: AirQualityRepository, @unchecked Sendable {
             Self.logger.info("Deleted \(psiDeletedCount) PSI records older than 60 days")
         }
     }
-    
-    
 
 }

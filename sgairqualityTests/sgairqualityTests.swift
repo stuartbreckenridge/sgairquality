@@ -13,12 +13,11 @@ import Foundation
 struct SgAirQualityTests {
 
     var api: DataAPI!
-    
+
     init() {
         self.api = DataAPI(repository: Database.shared)
     }
-    
-    
+
     /// Verifies that an API key has been configured in the app's secrets.
     @Test func apiKeyExists() async throws {
         let key = await Configuration.apiKey
@@ -50,12 +49,12 @@ struct SgAirQualityTests {
         #expect(readings.psiTwentyFourHourly.south >= 0)
         #expect(readings.psiTwentyFourHourly.north >= 0)
     }
-    
+
     @Test func getPM25ReadingsFromDatabase() async throws {
         let readings = try await Database.shared.fetchPM25Records()
         #expect(readings.count > 0)
     }
-    
+
     @Test func getPSIReadingsFromDatabase() async throws {
         let readings = try await Database.shared.fetchPSIRecords()
         #expect(readings.count > 0)
@@ -344,4 +343,3 @@ struct AirQualityClassificationIntegrityTests {
         }
     }
 }
-
