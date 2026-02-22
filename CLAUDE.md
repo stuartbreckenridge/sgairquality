@@ -58,14 +58,14 @@ sgairquality/
 - **AirQualitySummaryService**: Encapsulates LLM logic for generating summaries
   - Uses FoundationModels framework (Apple Intelligence)
   - Separates instructions (model behavior) from prompts (specific data)
-  - Fully testable with dependency injection
+  - Static methods for stateless operation
 - **AirQualityClassification**: Type definitions for air quality bands and regions
   - Uses `@Generable` macro for structured LLM generation
 
 #### 4. Observables (`Observables/`)
 - **DataDownloaderModel**: Main data coordinator
   - Downloads latest readings from API
-  - Generates AI summaries using `AirQualitySummaryService`
+  - Generates AI summaries via `AirQualitySummaryService.generateSummary(for:)`
   - Uses Swift's `@Observable` macro
 - **SingaporeMapViewModel**: Manages map state
 
