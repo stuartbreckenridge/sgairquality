@@ -112,6 +112,36 @@ final class Database: AirQualityRepository, @unchecked Sendable {
         }
     }
 
+    /// Fetches PM25 records from the database within a time range
+    /// - Parameter since: The start date of the range (records with timestamp >= this date are returned)
+    /// - Returns: Array of PM25Record ordered by timestamp ascending (oldest first)
+    /// - Throws: Database errors if the fetch operation fails
+    func fetchPM25Records(since date: Date) throws -> [PM25Record] {
+        try dbWriter.read { db in
+            let records = try PM25Record
+                .filter(PM25Record.Columns.timestamp >= date)
+                .order(PM25Record.Columns.timestamp.asc)
+                .fetchAll(db)
+            Self.logger.debug("Fetched \(records.count) PM25 records since \(date)")
+            return records
+        }
+    }
+
+    /// Fetches PSI records from the database within a time range
+    /// - Parameter since: The start date of the range (records with timestamp >= this date are returned)
+    /// - Returns: Array of PSIRecord ordered by timestamp ascending (oldest first)
+    /// - Throws: Database errors if the fetch operation fails
+    func fetchPSIRecords(since date: Date) throws -> [PSIRecord] {
+        try dbWriter.read { db in
+            let records = try PSIRecord
+                .filter(PSIRecord.Columns.timestamp >= date)
+                .order(PSIRecord.Columns.timestamp.asc)
+                .fetchAll(db)
+            Self.logger.debug("Fetched \(records.count) PSI records since \(date)")
+            return records
+        }
+    }
+
     /// Removes PM25 and PSI records older than 60 days
     /// - Throws: Database errors if the cleanup operation fails
     func cleanupOldRecords() throws {

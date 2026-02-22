@@ -56,6 +56,109 @@ final class DataAPI {
         self.repository = repository
     }
 
+    /// Fetches and persists all PM2.5 readings for the given calendar date.
+    /// - Parameter date: The calendar day to fetch. Defaults to today.
+    func pm25Readings(for date: Date = Date()) async throws -> AirQualityResponse<PM25Readings> {
+        let dateString = DateFormatter.yyyyMMdd.string(from: date)
+        let reading: AirQualityResponse<PM25Readings> = try await fetch(endpoint: .pm25, date: dateString)
+
+        for item in reading.data.items {
+            let record = PM25Record(timestamp: item.timestamp,
+                                    updated_timestamp: item.updatedTimestamp,
+                                    date: item.date,
+                                    west: item.readings.pm25OneHourly.west,
+                                    east: item.readings.pm25OneHourly.east,
+                                    central: item.readings.pm25OneHourly.central,
+                                    south: item.readings.pm25OneHourly.south,
+                                    north: item.readings.pm25OneHourly.north)
+            do {
+                try repository.save(record)
+            } catch {
+                Self.logger.error("Unable to save PM25 record: \(error.localizedDescription)")
+            }
+        }
+        return reading
+    }
+
+    /// Fetches and persists all PSI readings for the given calendar date.
+    /// - Parameter date: The calendar day to fetch. Defaults to today.
+    func psiReadings(for date: Date = Date()) async throws -> AirQualityResponse<PSIReadings> {
+        let dateString = DateFormatter.yyyyMMdd.string(from: date)
+        let reading: AirQualityResponse<PSIReadings> = try await fetch(endpoint: .psi, date: dateString)
+
+        for item in reading.data.items {
+            let record = PSIRecord(timestamp: item.timestamp,
+                                   updated_timestamp: item.updatedTimestamp,
+                                   date: item.date,
+                                   o3_sub_index_west: item.readings.o3SubIndex.west,
+                                   o3_sub_index_east: item.readings.o3SubIndex.east,
+                                   o3_sub_index_central: item.readings.o3SubIndex.central,
+                                   o3_sub_index_south: item.readings.o3SubIndex.south,
+                                   o3_sub_index_north: item.readings.o3SubIndex.north,
+                                   no2_one_hour_max_west: item.readings.no2OneHourMax.west,
+                                   no2_one_hour_max_east: item.readings.no2OneHourMax.east,
+                                   no2_one_hour_max_central: item.readings.no2OneHourMax.central,
+                                   no2_one_hour_max_south: item.readings.no2OneHourMax.south,
+                                   no2_one_hour_max_north: item.readings.no2OneHourMax.north,
+                                   o3_eight_hour_max_west: item.readings.o3EightHourMax.west,
+                                   o3_eight_hour_max_east: item.readings.o3EightHourMax.east,
+                                   o3_eight_hour_max_central: item.readings.o3EightHourMax.central,
+                                   o3_eight_hour_max_south: item.readings.o3EightHourMax.south,
+                                   o3_eight_hour_max_north: item.readings.o3EightHourMax.north,
+                                   psi_twenty_four_hourly_west: item.readings.psiTwentyFourHourly.west,
+                                   psi_twenty_four_hourly_east: item.readings.psiTwentyFourHourly.east,
+                                   psi_twenty_four_hourly_central: item.readings.psiTwentyFourHourly.central,
+                                   psi_twenty_four_hourly_south: item.readings.psiTwentyFourHourly.south,
+                                   psi_twenty_four_hourly_north: item.readings.psiTwentyFourHourly.north,
+                                   pm10_twenty_four_hourly_west: item.readings.pm10TwentyFourHourly.west,
+                                   pm10_twenty_four_hourly_east: item.readings.pm10TwentyFourHourly.east,
+                                   pm10_twenty_four_hourly_central: item.readings.pm10TwentyFourHourly.central,
+                                   pm10_twenty_four_hourly_south: item.readings.pm10TwentyFourHourly.south,
+                                   pm10_twenty_four_hourly_north: item.readings.pm10TwentyFourHourly.north,
+                                   pm10_sub_index_west: item.readings.pm10SubIndex.west,
+                                   pm10_sub_index_east: item.readings.pm10SubIndex.east,
+                                   pm10_sub_index_central: item.readings.pm10SubIndex.central,
+                                   pm10_sub_index_south: item.readings.pm10SubIndex.south,
+                                   pm10_sub_index_north: item.readings.pm10SubIndex.north,
+                                   pm25_twenty_four_hourly_west: item.readings.pm25TwentyFourHourly.west,
+                                   pm25_twenty_four_hourly_east: item.readings.pm25TwentyFourHourly.east,
+                                   pm25_twenty_four_hourly_central: item.readings.pm25TwentyFourHourly.central,
+                                   pm25_twenty_four_hourly_south: item.readings.pm25TwentyFourHourly.south,
+                                   pm25_twenty_four_hourly_north: item.readings.pm25TwentyFourHourly.north,
+                                   so2_sub_index_west: item.readings.so2SubIndex.west,
+                                   so2_sub_index_east: item.readings.so2SubIndex.east,
+                                   so2_sub_index_central: item.readings.so2SubIndex.central,
+                                   so2_sub_index_south: item.readings.so2SubIndex.south,
+                                   so2_sub_index_north: item.readings.so2SubIndex.north,
+                                   pm25_sub_index_west: item.readings.pm25SubIndex.west,
+                                   pm25_sub_index_east: item.readings.pm25SubIndex.east,
+                                   pm25_sub_index_central: item.readings.pm25SubIndex.central,
+                                   pm25_sub_index_south: item.readings.pm25SubIndex.south,
+                                   pm25_sub_index_north: item.readings.pm25SubIndex.north,
+                                   so2_twenty_four_hourly_west: item.readings.so2TwentyFourHourly.west,
+                                   so2_twenty_four_hourly_east: item.readings.so2TwentyFourHourly.east,
+                                   so2_twenty_four_hourly_central: item.readings.so2TwentyFourHourly.central,
+                                   so2_twenty_four_hourly_south: item.readings.so2TwentyFourHourly.south,
+                                   so2_twenty_four_hourly_north: item.readings.so2TwentyFourHourly.north,
+                                   co_eight_hour_max_west: item.readings.coEightHourMax.west,
+                                   co_eight_hour_max_east: item.readings.coEightHourMax.east,
+                                   co_eight_hour_max_central: item.readings.coEightHourMax.central,
+                                   co_eight_hour_max_south: item.readings.coEightHourMax.south,
+                                   co_eight_hour_max_north: item.readings.coEightHourMax.north,
+                                   co_sub_index_west: item.readings.coSubIndex.west,
+                                   co_sub_index_east: item.readings.coSubIndex.east,
+                                   co_sub_index_central: item.readings.coSubIndex.central,
+                                   co_sub_index_south: item.readings.coSubIndex.south,
+                                   co_sub_index_north: item.readings.coSubIndex.north)
+            do {
+                try repository.save(record)
+            } catch {
+                Self.logger.error("Unable to save PSI record: \(error.localizedDescription)")
+            }
+        }
+        return reading
+    }
+
     func latestPM25Readings() async throws -> AirQualityResponse<PM25Readings> {
         let today = DateFormatter.yyyyMMdd.string(from: Date())
         let reading: AirQualityResponse<PM25Readings> = try await fetch(endpoint: .pm25, date: today)

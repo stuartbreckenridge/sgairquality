@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os.log
 
 @Observable
 class DataDownloaderModel {
@@ -77,6 +78,32 @@ class DataDownloaderModel {
         )
 
         hazeSummary = try await AirQualitySummaryService.generateSummary(for: classifications)
+    }
+
+    /// Checks the last three calendar days and fetches any days that have no records in the database.
+    /// Both PM2.5 and PSI are fetched for each missing day. Errors for individual days are logged
+    /// and silently skipped so a partial failure does not block the rest.
+    func backfillHistoricalDataIfNeeded() async {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: .now)
+
+        // Build the set of calendar days that already have PM2.5 data in the DB
+        let since = today.addingTimeInterval(-3 * 24 * 3600)
+        let existing = (try? Database.shared.fetchPM25Records(since: since)) ?? []
+        let coveredDays = Set(existing.map { calendar.startOfDay(for: $0.timestamp) })
+
+        // Collect the three preceding days (today, yesterday, day-before-yesterday)
+        let daysToCheck = (0...2).compactMap { calendar.date(byAdding: .day, value: -$0, to: today) }
+
+        for day in daysToCheck where !coveredDays.contains(day) {
+            do {
+                async let pm25 = api.pm25Readings(for: day)
+                async let psi = api.psiReadings(for: day)
+                _ = try await (pm25, psi)
+            } catch {
+                DataAPI.logger.error("Backfill failed for \(day): \(error.localizedDescription)")
+            }
+        }
     }
 
     func classifyPM25(_ value: Int) -> PM25Band {

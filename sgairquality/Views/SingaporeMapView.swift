@@ -76,6 +76,7 @@ struct SingaporeMapView: View {
             }
             .mapStyle(.standard(emphasis: .muted))
             .task {
+                await dataModel.backfillHistoricalDataIfNeeded()
                 try? await dataModel.downloadLatestData()
             }
             .toolbar {
@@ -91,21 +92,33 @@ struct SingaporeMapView: View {
                     .accessibilityIdentifier("map.refresh.button")
                 }
 
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button {
-                        mapModel.showExplanationView.toggle()
-                    } label: {
-                        Image(systemName: "questionmark")
-                    }
-                    .accessibilityIdentifier("map.showexplanation.button")
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Button {
+                            mapModel.showExplanationView.toggle()
+                        } label: {
+                            Label(String(localized: "button.title.explanation", comment: "Explanation"), systemImage: "questionmark")
+                        }
+                        .accessibilityIdentifier("map.showexplanation.button")
 
-                    Button {
-                        mapModel.showLatestDataView.toggle()
+                        Button {
+                            mapModel.showHistoricalDataView.toggle()
+                        } label: {
+                            Label(String(localized: "button.title.historical-data", comment: "Historical Data"), systemImage: "chart.line.uptrend.xyaxis")
+                        }
+                        .accessibilityIdentifier("map.showhistorical.button")
+
+                        Button {
+                            mapModel.showLatestDataView.toggle()
+                        } label: {
+                            Label(String(localized: "button.title.latest-data", comment: "Latest Data"), systemImage: "chart.bar.horizontal.page")
+                        }
+                        .disabled(dataModel.psiData == nil)
+                        .accessibilityIdentifier("map.lastRefresh.label")
                     } label: {
-                        Image(systemName: "chart.bar.horizontal.page")
+                        Image(systemName: "ellipsis")
                     }
-                    .disabled(dataModel.psiData == nil)
-                    .accessibilityIdentifier("map.lastRefresh.label")
+                    .accessibilityIdentifier("map.menu.button")
                 }
 #else
                 ToolbarItem(placement: .navigation) {
@@ -130,6 +143,15 @@ struct SingaporeMapView: View {
 
                 ToolbarItem(placement: .automatic) {
                     Button {
+                        mapModel.showHistoricalDataView.toggle()
+                    } label: {
+                        Image(systemName: "chart.line.uptrend.xyaxis")
+                    }
+                    .accessibilityIdentifier("map.showhistorical.button")
+                }
+
+                ToolbarItem(placement: .automatic) {
+                    Button {
                         mapModel.showLatestDataView.toggle()
                     } label: {
                         Image(systemName: "chart.bar.horizontal.page")
@@ -148,6 +170,12 @@ struct SingaporeMapView: View {
             }
             .sheet(isPresented: $mapModel.showExplanationView) {
                 ExplanationView()
+#if os(macOS)
+                    .frame(width: 500, height: 600)
+#endif
+            }
+            .sheet(isPresented: $mapModel.showHistoricalDataView) {
+                HistoricalDataView()
 #if os(macOS)
                     .frame(width: 500, height: 600)
 #endif
