@@ -91,7 +91,14 @@ struct SingaporeMapView: View {
                     .accessibilityIdentifier("map.refresh.button")
                 }
                 
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button {
+                        mapModel.showExplanationView.toggle()
+                    } label: {
+                        Image(systemName: "questionmark")
+                    }
+                    .accessibilityIdentifier("map.showexplanation.button")
+                    
                     Button {
                         mapModel.showLatestDataView.toggle()
                     } label: {
@@ -114,6 +121,15 @@ struct SingaporeMapView: View {
                 
                 ToolbarItem(placement: .automatic) {
                     Button {
+                        mapModel.showExplanationView.toggle()
+                    } label: {
+                        Image(systemName: "questionmark")
+                    }
+                    .accessibilityIdentifier("map.showexplanation.button")
+                }
+                
+                ToolbarItem(placement: .automatic) {
+                    Button {
                         mapModel.showLatestDataView.toggle()
                     } label: {
                         Image(systemName: "chart.bar.horizontal.page")
@@ -126,9 +142,15 @@ struct SingaporeMapView: View {
             .sheet(isPresented: $mapModel.showLatestDataView) {
                 LatestDataView()
                     .environment(dataModel)
-                #if os(macOS)
-                    .frame(width: 400, height: 600)
-                #endif
+#if os(macOS)
+                    .frame(width: 500, height: 600)
+#endif
+            }
+            .sheet(isPresented: $mapModel.showExplanationView) {
+                ExplanationView()
+#if os(macOS)
+                    .frame(width: 500, height: 600)
+#endif
             }
         }
         .overlay(alignment: .bottom) {
@@ -151,12 +173,12 @@ struct SingaporeMapView: View {
                 .accessibilityIdentifier("overlay.airquality.summary")
                 .padding(8)
                 .frame(maxWidth: .infinity)
-                #if !os(visionOS)
+#if !os(visionOS)
                 .glassEffect(in: ConcentricRectangle(topLeadingCorner: .fixed(8), topTrailingCorner: .fixed(8)))
                 .padding(4)
-                #else
+#else
                 .glassBackgroundEffect()
-                #endif
+#endif
                 
             }
         }

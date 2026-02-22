@@ -29,6 +29,44 @@ final class sgairqualityUITests: XCTestCase {
     }
 
     @MainActor
+    func testCanPresentAndDismissExplanationView() throws {
+        let explanationButton = app.buttons["map.showexplanation.button"]
+        XCTAssertTrue(explanationButton.waitForExistence(timeout: 5), "Expected explanation button on map screen.")
+
+        explanationButton.tap()
+
+        // Navigation title
+        XCTAssertTrue(
+            app.navigationBars["Air Quality Guide"].waitForExistence(timeout: 5),
+            "Expected 'Air Quality Guide' navigation bar after tapping explanation button."
+        )
+
+        // Key section headers that should always be present
+        XCTAssertTrue(
+            app.staticTexts["How PSI Is Computed"].waitForExistence(timeout: 5),
+            "Expected 'How PSI Is Computed' section header in explanation view."
+        )
+        XCTAssertTrue(
+            app.staticTexts["Pollutant Standards Index (PSI)"].exists,
+            "Expected PSI section header in explanation view."
+        )
+        XCTAssertTrue(
+            app.staticTexts["Fine Particulate Matter (PM2.5)"].exists,
+            "Expected PM2.5 section header in explanation view."
+        )
+
+        // Dismiss and confirm we return to the map
+        let closeButton = app.buttons["explanation.close.button"]
+        XCTAssertTrue(closeButton.waitForExistence(timeout: 5), "Expected close button in explanation view.")
+        closeButton.tap()
+
+        XCTAssertTrue(
+            app.buttons["map.showexplanation.button"].waitForExistence(timeout: 5),
+            "Expected to return to map after dismissing explanation view."
+        )
+    }
+
+    @MainActor
     func testCanPresentLatestReadingsWhenDataLoads() throws {
         let refreshButton = app.buttons["map.lastRefresh.label"]
         guard refreshButton.waitForExistence(timeout: 12) else {

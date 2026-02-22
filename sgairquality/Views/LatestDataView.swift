@@ -13,6 +13,21 @@ struct LatestDataView: View {
     @Environment(DataDownloaderModel.self) var dataModel
     @Environment(\.dismiss) private var dismiss
 
+    // MARK: Private Methods
+
+    /// Returns the sub-index values for a given region as (label, value) pairs,
+    /// sorted descending so the determining pollutant appears first.
+    private func subIndices(for region: RegionalSubIndices) -> [(label: String, value: Int)] {
+        [
+            ("PM2.5", region.pm25),
+            ("PM10",  region.pm10),
+            ("O₃",   region.o3),
+            ("CO",    region.co),
+            ("SO₂",   region.so2),
+            ("NO₂",   region.no2),
+        ].sorted { $0.value > $1.value }
+    }
+
     // MARK: App Storage
 
     // MARK: State Objects
@@ -39,6 +54,58 @@ struct LatestDataView: View {
                         Text(verbatim: "PSI - 24 Hour")
                     } footer: {
                         Text("label.text.psi-explainer", comment: "Pollutant Standards Index composed of PM10, PM2.5, O3, CO, NO2, and SO2. Use the 24-hour PSI rating for next day activities.")
+                        #if os(macOS)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                        #endif
+                    }
+
+                    // PSI Sub-Index Breakdown
+                    let readings = psiData.data.items.first?.readings
+                    let regions: [(name: LocalizedStringResource, subIndices: RegionalSubIndices)] = [
+                        ("label.text.north", RegionalSubIndices(pm25: readings?.pm25SubIndex.north ?? 0, pm10: readings?.pm10SubIndex.north ?? 0, o3: readings?.o3SubIndex.north ?? 0, co: readings?.coSubIndex.north ?? 0, so2: readings?.so2SubIndex.north ?? 0, no2: readings?.no2OneHourMax.north ?? 0)),
+                        ("label.text.east",  RegionalSubIndices(pm25: readings?.pm25SubIndex.east ?? 0,  pm10: readings?.pm10SubIndex.east ?? 0,  o3: readings?.o3SubIndex.east ?? 0,  co: readings?.coSubIndex.east ?? 0,  so2: readings?.so2SubIndex.east ?? 0,  no2: readings?.no2OneHourMax.east ?? 0)),
+                        ("label.text.south", RegionalSubIndices(pm25: readings?.pm25SubIndex.south ?? 0, pm10: readings?.pm10SubIndex.south ?? 0, o3: readings?.o3SubIndex.south ?? 0, co: readings?.coSubIndex.south ?? 0, so2: readings?.so2SubIndex.south ?? 0, no2: readings?.no2OneHourMax.south ?? 0)),
+                        ("label.text.west",  RegionalSubIndices(pm25: readings?.pm25SubIndex.west ?? 0,  pm10: readings?.pm10SubIndex.west ?? 0,  o3: readings?.o3SubIndex.west ?? 0,  co: readings?.coSubIndex.west ?? 0,  so2: readings?.so2SubIndex.west ?? 0,  no2: readings?.no2OneHourMax.west ?? 0)),
+                        ("label.text.central", RegionalSubIndices(pm25: readings?.pm25SubIndex.central ?? 0, pm10: readings?.pm10SubIndex.central ?? 0, o3: readings?.o3SubIndex.central ?? 0, co: readings?.coSubIndex.central ?? 0, so2: readings?.so2SubIndex.central ?? 0, no2: readings?.no2OneHourMax.central ?? 0)),
+                    ]
+
+                    Section {
+                        ForEach(regions, id: \.name.key) { region in
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(region.name)
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                let sorted = subIndices(for: region.subIndices)
+                                let maxValue = sorted.first?.value ?? 0
+                                ForEach(sorted, id: \.label) { item in
+                                    HStack {
+                                        Text(verbatim: item.label)
+                                            .font(.caption)
+                                            .frame(width: 44, alignment: .leading)
+                                        // Sub-index bar
+                                        GeometryReader { geo in
+                                            let fraction = maxValue > 0 ? CGFloat(item.value) / CGFloat(maxValue) : 0
+                                            RoundedRectangle(cornerRadius: 3)
+                                                .fill(item.value == maxValue ? Color.accentColor : Color.secondary.opacity(0.25))
+                                                .frame(width: max(geo.size.width * fraction, 2))
+                                        }
+                                        .frame(height: 10)
+                                        Text(verbatim: "\(item.value)")
+                                            .font(.caption)
+                                            .monospacedDigit()
+                                            .foregroundStyle(item.value == maxValue ? .primary : .secondary)
+                                            .frame(width: 36, alignment: .trailing)
+                                    }
+                                }
+                            }
+                            .padding(.vertical, 4)
+                        }
+                    } header: {
+                        Text("label.text.psi-subindex-breakdown", comment: "PSI Sub-Index Breakdown")
+                    } footer: {
+                        Text("label.text.psi-subindex-footer", comment: "The PSI for each region equals the highest sub-index value. The highlighted bar shows the determining pollutant.")
                         #if os(macOS)
                             .multilineTextAlignment(.leading)
                             .lineLimit(nil)
@@ -191,6 +258,17 @@ struct LatestDataView: View {
             }
         }
     }
+}
+
+// MARK: - Supporting Types
+
+private struct RegionalSubIndices {
+    let pm25: Int
+    let pm10: Int
+    let o3: Int
+    let co: Int
+    let so2: Int
+    let no2: Int
 }
 
 #Preview {

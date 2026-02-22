@@ -27,6 +27,182 @@
         }
       }
     },
+    "label.text.advisory" : {
+      "comment" : "Advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advisory"
+          }
+        }
+      }
+    },
+    "label.text.advisory.pm25-elevated" : {
+      "comment" : "PM2.5 Elevated advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduce strenuous outdoor activities. Vulnerable persons should avoid strenuous outdoor activity."
+          }
+        }
+      }
+    },
+    "label.text.advisory.pm25-high" : {
+      "comment" : "PM2.5 High advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avoid prolonged outdoor exertion. Vulnerable persons should avoid outdoor activity."
+          }
+        }
+      }
+    },
+    "label.text.advisory.pm25-normal" : {
+      "comment" : "PM2.5 Normal advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normal activities for everyone."
+          }
+        }
+      }
+    },
+    "label.text.advisory.pm25-very-high" : {
+      "comment" : "PM2.5 Very High advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimise outdoor activity. Vulnerable persons should stay indoors."
+          }
+        }
+      }
+    },
+    "label.text.advisory.psi-good" : {
+      "comment" : "PSI Good advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normal activities for everyone."
+          }
+        }
+      }
+    },
+    "label.text.advisory.psi-hazardous" : {
+      "comment" : "PSI Hazardous advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimise outdoor activity. Vulnerable persons should stay indoors."
+          }
+        }
+      }
+    },
+    "label.text.advisory.psi-moderate" : {
+      "comment" : "PSI Moderate advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normal activities for everyone."
+          }
+        }
+      }
+    },
+    "label.text.advisory.psi-unhealthy" : {
+      "comment" : "PSI Unhealthy advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduce prolonged outdoor exertion. Vulnerable persons should minimise outdoor activity."
+          }
+        }
+      }
+    },
+    "label.text.advisory.psi-very-unhealthy" : {
+      "comment" : "PSI Very Unhealthy advisory",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avoid prolonged outdoor exertion. Vulnerable persons should avoid outdoor activity."
+          }
+        }
+      }
+    },
+    "label.text.air-quality-guide" : {
+      "comment" : "Air Quality Guide",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Air Quality Guide"
+          }
+        }
+      }
+    },
+    "label.text.band" : {
+      "comment" : "Band",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Band"
+          }
+        }
+      }
+    },
+    "label.text.breakpoints-1h" : {
+      "comment" : "Sub-Index Breakpoints (1-hour, µg/m³)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sub-Index Breakpoints (1-hour, µg/m³)"
+          }
+        }
+      }
+    },
+    "label.text.breakpoints-8h" : {
+      "comment" : "Sub-Index Breakpoints (8-hour, µg/m³)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sub-Index Breakpoints (8-hour, µg/m³)"
+          }
+        }
+      }
+    },
+    "label.text.breakpoints-8h-mg" : {
+      "comment" : "Sub-Index Breakpoints (8-hour, mg/m³)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sub-Index Breakpoints (8-hour, mg/m³)"
+          }
+        }
+      }
+    },
+    "label.text.breakpoints-24h" : {
+      "comment" : "Sub-Index Breakpoints (24-hour, µg/m³)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sub-Index Breakpoints (24-hour, µg/m³)"
+          }
+        }
+      }
+    },
     "label.text.central" : {
       "comment" : "Central",
       "localizations" : {
@@ -34,6 +210,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Central"
+          }
+        }
+      }
+    },
+    "label.text.co-description" : {
+      "comment" : "Carbon monoxide is a colourless, odourless gas produced by incomplete combustion. High levels reduce the blood's ability to carry oxygen. Measured as an 8-hour maximum.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carbon monoxide is a colourless, odourless gas produced by incomplete combustion. High levels reduce the blood's ability to carry oxygen. Measured as an 8-hour maximum."
           }
         }
       }
@@ -49,6 +236,72 @@
         }
       }
     },
+    "label.text.co-full" : {
+      "comment" : "Carbon Monoxide (CO)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carbon Monoxide (CO)"
+          }
+        }
+      }
+    },
+    "label.text.computation-description" : {
+      "comment" : "For each of the six pollutants, a sub-index is calculated by linearly interpolating the measured concentration against a set of breakpoints. The overall PSI is the highest sub-index value across all pollutants.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For each of the six pollutants, a sub-index is calculated by linearly interpolating the measured concentration against a set of breakpoints. The overall PSI is the highest sub-index value across all pollutants."
+          }
+        }
+      }
+    },
+    "label.text.computation-footer" : {
+      "comment" : "Source: National Environment Agency, Singapore (March 2014).",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source: National Environment Agency, Singapore (March 2014)."
+          }
+        }
+      }
+    },
+    "label.text.computation-formula-title" : {
+      "comment" : "Sub-Index Formula",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sub-Index Formula"
+          }
+        }
+      }
+    },
+    "label.text.computation-title" : {
+      "comment" : "How PSI Is Computed",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How PSI Is Computed"
+          }
+        }
+      }
+    },
+    "label.text.concentration" : {
+      "comment" : "Concentration",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Concentration"
+          }
+        }
+      }
+    },
     "label.text.east" : {
       "comment" : "East",
       "localizations" : {
@@ -56,6 +309,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "East"
+          }
+        }
+      }
+    },
+    "label.text.formula.bphi" : {
+      "comment" : "Formula term: BPhi",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breakpoint concentration ≥ Cp"
+          }
+        }
+      }
+    },
+    "label.text.formula.bplo" : {
+      "comment" : "Formula term: BPlo",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breakpoint concentration ≤ Cp"
+          }
+        }
+      }
+    },
+    "label.text.formula.cp" : {
+      "comment" : "Formula term: Cp",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Measured concentration of pollutant p"
+          }
+        }
+      }
+    },
+    "label.text.formula.ihi" : {
+      "comment" : "Formula term: Ihi",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Index value corresponding to BPHI"
+          }
+        }
+      }
+    },
+    "label.text.formula.ilo" : {
+      "comment" : "Formula term: Ilo",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Index value corresponding to BPLO"
+          }
+        }
+      }
+    },
+    "label.text.formula.ip" : {
+      "comment" : "Formula term: Ip",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sub-index for pollutant p"
           }
         }
       }
@@ -71,6 +390,17 @@
         }
       }
     },
+    "label.text.no2-description" : {
+      "comment" : "Nitrogen dioxide is produced from vehicle emissions and industrial processes. It can irritate the airways and aggravate respiratory conditions such as asthma. Measured as a 1-hour maximum.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nitrogen dioxide is produced from vehicle emissions and industrial processes. It can irritate the airways and aggravate respiratory conditions such as asthma. Measured as a 1-hour maximum."
+          }
+        }
+      }
+    },
     "label.text.no2-explainer" : {
       "comment" : "Nitrogen dioxide levels measured as a 1-hour maximum.",
       "localizations" : {
@@ -78,6 +408,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nitrogen dioxide levels measured as a 1-hour maximum."
+          }
+        }
+      }
+    },
+    "label.text.no2-footnote" : {
+      "comment" : "NO2 sub-index is only used when the 1-hour concentration exceeds 1,130 µg/m³.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NO₂ sub-index is only used when the 1-hour concentration exceeds 1,130 µg/m³."
+          }
+        }
+      }
+    },
+    "label.text.no2-full" : {
+      "comment" : "Nitrogen Dioxide (NO2)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nitrogen Dioxide (NO₂)"
           }
         }
       }
@@ -93,6 +445,17 @@
         }
       }
     },
+    "label.text.o3-description" : {
+      "comment" : "Ground-level ozone forms when pollutants from vehicles and industry react in sunlight. It can cause respiratory irritation, especially during physical activity outdoors. Measured as an 8-hour maximum.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ground-level ozone forms when pollutants from vehicles and industry react in sunlight. It can cause respiratory irritation, especially during physical activity outdoors. Measured as an 8-hour maximum."
+          }
+        }
+      }
+    },
     "label.text.o3-explainer" : {
       "comment" : "Ozone levels measured as an 8-hour maximum.",
       "localizations" : {
@@ -104,6 +467,28 @@
         }
       }
     },
+    "label.text.o3-full" : {
+      "comment" : "Ozone (O3)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ozone (O₃)"
+          }
+        }
+      }
+    },
+    "label.text.pm10-description" : {
+      "comment" : "PM10 refers to inhalable particulate matter 10 micrometres and smaller. These particles include dust, pollen, and mould spores and can irritate the eyes, nose, and throat.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PM10 refers to inhalable particulate matter 10 micrometres and smaller. These particles include dust, pollen, and mould spores and can irritate the eyes, nose, and throat."
+          }
+        }
+      }
+    },
     "label.text.pm10-explainer" : {
       "comment" : "Inhalable particulate matter that is generally 10 micrometers and smaller.",
       "localizations" : {
@@ -111,6 +496,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inhalable particulate matter that is generally 10 micrometers and smaller."
+          }
+        }
+      }
+    },
+    "label.text.pm10-full" : {
+      "comment" : "Particulate Matter (PM10)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Particulate Matter (PM10)"
+          }
+        }
+      }
+    },
+    "label.text.pm25-description" : {
+      "comment" : "PM2.5 refers to inhalable fine particulate matter 2.5 micrometres and smaller. These particles can penetrate deep into the lungs. Use the 1-hour PM2.5 reading to decide on immediate outdoor activities.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PM2.5 refers to inhalable fine particulate matter 2.5 micrometres and smaller. These particles can penetrate deep into the lungs. Use the 1-hour PM2.5 reading to decide on immediate outdoor activities."
           }
         }
       }
@@ -134,6 +541,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller."
+          }
+        }
+      }
+    },
+    "label.text.pm25-full" : {
+      "comment" : "Fine Particulate Matter (PM2.5)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine Particulate Matter (PM2.5)"
           }
         }
       }
@@ -185,6 +603,17 @@
         }
       }
     },
+    "label.text.psi-description" : {
+      "comment" : "PSI is a composite index calculated from PM10, PM2.5, O3, CO, NO2, and SO2. A sub-index is calculated for each pollutant per region and the highest value is used as the overall PSI for that region. Use the 24-hour PSI to plan next-day outdoor activities.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PSI is a composite index calculated from PM10, PM2.5, O₃, CO, NO₂, and SO₂. A sub-index is calculated for each pollutant per region and the highest value is used as the overall PSI for that region. Use the 24-hour PSI to plan next-day outdoor activities."
+          }
+        }
+      }
+    },
     "label.text.psi-explainer" : {
       "comment" : "Pollutant Standards Index composed of PM10, PM2.5, O3, CO, NO2, and SO2. Use the 24-hour PSI rating for next day activities.",
       "localizations" : {
@@ -192,6 +621,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pollutant Standards Index composed of PM10, PM2.5, O3, CO, NO2, and SO2. Use the 24-hour PSI rating for next day activities."
+          }
+        }
+      }
+    },
+    "label.text.psi-full" : {
+      "comment" : "Pollutant Standards Index (PSI)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pollutant Standards Index (PSI)"
           }
         }
       }
@@ -220,6 +660,17 @@
         }
       }
     },
+    "label.text.psi-index" : {
+      "comment" : "PSI",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PSI"
+          }
+        }
+      }
+    },
     "label.text.psi-moderate" : {
       "comment" : "PSI: Moderate (51-100)",
       "extractionState" : "extracted_with_value",
@@ -228,6 +679,28 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Moderate"
+          }
+        }
+      }
+    },
+    "label.text.psi-subindex-breakdown" : {
+      "comment" : "PSI Sub-Index Breakdown",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PSI Sub-Index Breakdown"
+          }
+        }
+      }
+    },
+    "label.text.psi-subindex-footer" : {
+      "comment" : "The PSI for each region equals the highest sub-index value. The highlighted bar shows the determining pollutant.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The PSI for each region equals the highest sub-index value. The highlighted bar shows the determining pollutant."
           }
         }
       }
@@ -256,6 +729,28 @@
         }
       }
     },
+    "label.text.range" : {
+      "comment" : "Range",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Range"
+          }
+        }
+      }
+    },
+    "label.text.so2-description" : {
+      "comment" : "Sulphur dioxide is released from burning fossil fuels and volcanic activity. It can cause respiratory irritation and contributes to haze and acid rain. Measured as a 24-hour average.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sulphur dioxide is released from burning fossil fuels and volcanic activity. It can cause respiratory irritation and contributes to haze and acid rain. Measured as a 24-hour average."
+          }
+        }
+      }
+    },
     "label.text.so2-explainer" : {
       "comment" : "Sulfur dioxide levels measured over 24 hours.",
       "localizations" : {
@@ -263,6 +758,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sulfur dioxide levels measured over 24 hours."
+          }
+        }
+      }
+    },
+    "label.text.so2-full" : {
+      "comment" : "Sulphur Dioxide (SO2)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sulphur Dioxide (SO₂)"
           }
         }
       }
