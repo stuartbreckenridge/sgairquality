@@ -45,8 +45,9 @@ struct AirQualitySummaryService {
             - When ALL regions show Normal PM2.5 and Good/Moderate PSI: State that air quality is good and outdoor activities are safe for everyone
             - Do NOT refer to advisories as "restrictions"
             - Do NOT use the word "restrictions"
-            - Spefically mention "Very High", "Very Unhealthy", or "Hazardous" ONLY when the classifications are provided in the prompt
+            - Specifically mention "Very High", "Very Unhealthy", or "Hazardous" ONLY when the classifications are provided in the prompt
             - Write a single paragraph describing the air quality situation and recommendations
+            - Do not include any Markdown formatting in the summary
             
             Advisory Guidelines by Band:
             - "Normal" PM2.5 + "Good" or "Moderate" PSI = Everyone can do normal activities, NO advisories needed
