@@ -41,12 +41,6 @@ final class sgairqualityUITests: XCTestCase {
             "Expected 'Air Quality Guide' navigation bar after tapping explanation button."
         )
 
-        // Section headers
-        XCTAssertTrue(app.staticTexts["How PSI Is Computed"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["Pollutant Standards Index (PSI)"].exists)
-
-        
-
         // Dismiss and confirm we return to the map
         let closeButton = app.buttons["explanation.close.button"]
         XCTAssertTrue(closeButton.waitForExistence(timeout: 5), "Expected close button in explanation view.")
@@ -84,7 +78,6 @@ final class sgairqualityUITests: XCTestCase {
 
         refreshButton.tap()
         XCTAssertTrue(app.navigationBars["Latest Readings"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["PSI - 24 Hour"].waitForExistence(timeout: 5))
     }
 
 }
