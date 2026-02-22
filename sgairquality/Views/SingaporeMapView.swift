@@ -95,7 +95,7 @@ struct SingaporeMapView: View {
                     Button {
                         mapModel.showLatestDataView.toggle()
                     } label: {
-                        Image(systemName: "facemask")
+                        Image(systemName: "chart.bar.horizontal.page")
                     }
                     .disabled(dataModel.psiData == nil)
                     .accessibilityIdentifier("map.lastRefresh.label")
