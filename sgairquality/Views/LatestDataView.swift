@@ -46,6 +46,58 @@ struct LatestDataView: View {
                         #endif
                     }
 
+                    // PSI Sub-Index Breakdown
+                    let readings = psiData.data.items.first?.readings
+                    let regions: [(name: LocalizedStringResource, subIndices: RegionalSubIndices)] = [
+                        ("label.text.north", regionalSubIndices(from: readings, keyPath: \.north)),
+                        ("label.text.east", regionalSubIndices(from: readings, keyPath: \.east)),
+                        ("label.text.south", regionalSubIndices(from: readings, keyPath: \.south)),
+                        ("label.text.west", regionalSubIndices(from: readings, keyPath: \.west)),
+                        ("label.text.central", regionalSubIndices(from: readings, keyPath: \.central)),
+                    ]
+
+                    Section {
+                        ForEach(regions, id: \.name.key) { region in
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(region.name)
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                let sorted = subIndices(for: region.subIndices)
+                                let maxValue = sorted.first?.value ?? 0
+                                ForEach(sorted, id: \.label) { item in
+                                    HStack {
+                                        Text(verbatim: item.label)
+                                            .font(.caption)
+                                            .frame(width: 44, alignment: .leading)
+                                        // Sub-index bar
+                                        GeometryReader { geo in
+                                            let fraction = maxValue > 0 ? CGFloat(item.value) / CGFloat(maxValue) : 0
+                                            RoundedRectangle(cornerRadius: 3)
+                                                .fill(item.value == maxValue ? Color.accentColor : Color.secondary.opacity(0.25))
+                                                .frame(width: max(geo.size.width * fraction, 2))
+                                        }
+                                        .frame(height: 10)
+                                        Text(verbatim: "\(item.value)")
+                                            .font(.caption)
+                                            .monospacedDigit()
+                                            .foregroundStyle(item.value == maxValue ? .primary : .secondary)
+                                            .frame(width: 36, alignment: .trailing)
+                                    }
+                                }
+                            }
+                            .padding(.vertical, 4)
+                        }
+                    } header: {
+                        Text("label.text.psi-subindex-breakdown", comment: "PSI Sub-Index Breakdown")
+                    } footer: {
+                        Text("label.text.psi-subindex-footer", comment: "The PSI for each region equals the highest sub-index value. The highlighted bar shows the determining pollutant.")
+                        #if os(macOS)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                        #endif
+                    }
+
                     if let pm25Data = dataModel.pm25Data {
                         Section {
                             RegionalDataRow(title: "label.text.north", value: pm25Data.data.items.first?.readings.pm25OneHourly.north ?? 0, dataType: .pm25)
@@ -191,6 +243,68 @@ struct LatestDataView: View {
             }
         }
     }
+    
+    // MARK: Private Methods
+
+    /// Converts a raw NO₂ 1-hour concentration (µg/m³) into a PSI sub-index value.
+    /// Per the NEA definition, the sub-index is not reported below 1,130 µg/m³ (where NO₂ does
+    /// not contribute to the PSI). At and above 1,130 µg/m³ the same linear
+    /// interpolation formula is applied using the published breakpoints:
+    ///   (1130, 200) → (2260, 300) → (3000, 400) → (3750, 500)
+    private func no2SubIndex(from concentration: Int) -> Int {
+        let breakpoints: [(conc: Double, index: Double)] = [
+            (1130, 200), (2260, 300), (3000, 400), (3750, 500)
+        ]
+        guard concentration >= 1130 else { return 0 }
+        let c = Double(concentration)
+        for i in 0..<breakpoints.count - 1 {
+            let lo = breakpoints[i], hi = breakpoints[i + 1]
+            if c <= hi.conc {
+                let subIndex = (hi.index - lo.index) / (hi.conc - lo.conc) * (c - lo.conc) + lo.index
+                return Int(subIndex.rounded())
+            }
+        }
+        return 500
+    }
+
+    /// Builds a `RegionalSubIndices` from a `PSIReadings` snapshot for a single region,
+    /// identified by a key path into `RegionalReadings`.
+    private func regionalSubIndices(from readings: PSIReadings?, keyPath kp: KeyPath<RegionalReadings, Int>) -> RegionalSubIndices {
+        RegionalSubIndices(
+            pm25: readings?.pm25SubIndex[keyPath: kp] ?? 0,
+            pm10: readings?.pm10SubIndex[keyPath: kp] ?? 0,
+            o3:   readings?.o3SubIndex[keyPath: kp] ?? 0,
+            co:   readings?.coSubIndex[keyPath: kp] ?? 0,
+            so2:  readings?.so2SubIndex[keyPath: kp] ?? 0,
+            no2:  no2SubIndex(from: readings?.no2OneHourMax[keyPath: kp] ?? 0)
+        )
+    }
+
+    /// Returns the sub-index values for a given region as (label, value) pairs,
+    /// sorted descending so the determining pollutant appears first.
+    /// NO₂ sub-index is 0 when the 1-hour concentration is below 1,130 µg/m³,
+    /// matching the NEA definition where it only contributes to the PSI above that threshold.
+    private func subIndices(for region: RegionalSubIndices) -> [(label: String, value: Int)] {
+        [
+            ("PM2.5", region.pm25),
+            ("PM10",  region.pm10),
+            ("O₃",   region.o3),
+            ("CO",    region.co),
+            ("SO₂",  region.so2),
+            ("NO₂",  region.no2),
+        ].sorted { $0.value > $1.value }
+    }
+}
+
+// MARK: - Supporting Types
+
+private struct RegionalSubIndices {
+    let pm25: Int
+    let pm10: Int
+    let o3: Int
+    let co: Int
+    let so2: Int
+    let no2: Int
 }
 
 #Preview {

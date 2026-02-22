@@ -280,6 +280,7 @@ xcodebuild test -scheme sgairquality -only-testing:sgairqualityTests/AirQualityS
 - `README.md`: User-facing documentation
 - `Contributing.md`: Contribution guidelines
 - `Agents.md`: AI agent information
+- `PSI Computation`: is included for developer reference only, it is not bundled with the app
 
 ### External APIs
 - Singapore Government API documentation
@@ -300,9 +301,9 @@ xcodebuild test -scheme sgairquality -only-testing:sgairqualityTests/AirQualityS
 ## Version Information
 
 - **Swift**: 6.0+
-- **iOS**: 18.0+
-- **macOS**: 15.0+
-- **Xcode**: 16.0+
+- **iOS**: 26.0+
+- **macOS**: 26.0+
+- **Xcode**: 26.3+
 - **Frameworks**: SwiftUI, FoundationModels, GRDB
 
 ## Contact & Support

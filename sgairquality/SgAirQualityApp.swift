@@ -11,31 +11,30 @@ import os.log
 
 @main
 struct SgAirQualityApp: App {
-    
+
     // MARK: Environment
     @Environment(\.scenePhase) private var phase
-    
+
     // MARK: App Storage
-    
+
     // MARK: State Objects
-    
+
     // MARK: State
-    
+
     // MARK: Bindings
-    
+
     // MARK: Constants
     private let database = Database.shared
     static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "sgairquality", category: "App")
-    
-    // MARK: Variables
 
+    // MARK: Variables
 
     var body: some Scene {
         WindowGroup {
             SingaporeMapView()
         }
 #if os(iOS)
-        .onChange(of: phase) { oldPhase, newPhase in
+        .onChange(of: phase) { _, newPhase in
             switch newPhase {
             case .background:
                 do {
@@ -46,21 +45,21 @@ struct SgAirQualityApp: App {
             default: break
             }
         }
-        
-        .backgroundTask(.appRefresh("net.stuartbreckenridge.sgairquality.refresh")) { taskContext in
+
+        .backgroundTask(.appRefresh("net.stuartbreckenridge.sgairquality.refresh")) { _ in
             do {
                 let api = await DataAPI(repository: database)
-                let _ = try await api.latestPM25Readings()
-                let _ = try await api.latestPSIReadings()
+                _ = try await api.latestPM25Readings()
+                _ = try await api.latestPSIReadings()
                 try await scheduleAppRefresh()
             } catch {
                 await Self.logger.debug("Unable to process background refresh: \(error.localizedDescription)")
             }
         }
 #endif
-        
+
     }
-    
+
     #if os(iOS)
     private func scheduleAppRefresh() throws {
         let request = BGAppRefreshTaskRequest(identifier: "net.stuartbreckenridge.sgairquality.refresh")

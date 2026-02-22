@@ -38,6 +38,7 @@
 		172DA3442F48A9ED00B92E8C /* Contributing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Contributing.md; sourceTree = "<group>"; };
 		1733FF082F4A990E000CA7B5 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		1733FF0A2F4AA0D4000CA7B5 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		1750926A2F4AE88200021B99 /* PSI Computation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "PSI Computation.pdf"; sourceTree = "<group>"; };
 		17D01A282F4757DC003F116C /* sgairqualityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17F3B0F12F45A741008F8AA3 /* sgairquality.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = sgairquality.xctestplan; sourceTree = "<group>"; };
 		17FCDEF12F4555F200578A82 /* sgairquality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sgairquality.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +118,7 @@
 				172DA3442F48A9ED00B92E8C /* Contributing.md */,
 				1733FF082F4A990E000CA7B5 /* CLAUDE.md */,
 				17FCDF272F4564C000578A82 /* README.md */,
+				1750926A2F4AE88200021B99 /* PSI Computation.pdf */,
 				1733FF0A2F4AA0D4000CA7B5 /* AppIcon.icon */,
 				17FCDEF32F4555F200578A82 /* sgairquality */,
 				17FCE30F2F45759300578A82 /* configuration */,
@@ -519,6 +521,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sgairquality/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "SG Air Quality";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -577,6 +580,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sgairquality/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "SG Air Quality";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

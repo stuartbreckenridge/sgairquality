@@ -23,12 +23,12 @@ class DataDownloaderModel {
         psiData = try await api.latestPSIReadings()
         pm25Data = try await api.latestPM25Readings()
         latestDownloadTime = .now
-        
+
         guard let pm25 = pm25Data?.data.items.first?.readings.pm25OneHourly,
               let psi = psiData?.data.items.first?.readings.psiTwentyFourHourly else {
             return
         }
-        
+
         let classifications = AirQualityClassification(
             north: RegionalReading(
                 region: "North",
@@ -66,7 +66,7 @@ class DataDownloaderModel {
                 psiBand: classifyPSI(psi.central)
             )
         )
-        
+
         hazeSummary = try await AirQualitySummaryService.generateSummary(for: classifications)
     }
 
