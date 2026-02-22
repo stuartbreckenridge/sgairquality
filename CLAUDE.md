@@ -4,14 +4,15 @@ This document provides context and guidance for AI assistants (like Claude) work
 
 ## Project Overview
 
-**Singapore Air Quality** is a native macOS/iOS app built with SwiftUI that displays real-time air quality data for Singapore's five regions (North, South, East, West, Central). The app fetches PM2.5 and PSI readings from Singapore's government API and uses Apple's on-device language model (FoundationModels) to generate AI-powered summaries of air quality conditions.
+**Singapore Air Quality** is a native macOS/iOS/visionOS app built with SwiftUI that displays real-time air quality data for Singapore's five regions (North, South, East, West, Central). The app fetches PM2.5 and PSI readings from Singapore's government API and uses Apple's on-device language model (FoundationModels) to generate AI-powered summaries of air quality conditions.
 
 ### Key Features
 - Real-time air quality data visualization on an interactive map
 - PM2.5 and PSI readings for five Singapore regions
 - AI-generated summaries using Apple Intelligence (FoundationModels framework)
 - Local data persistence using GRDB
-- Support for both macOS and iOS platforms
+- Historical data charts with interactive scrubbing (last 12 hours, 24 hours, or 3 days)
+- Support for macOS, iOS, and visionOS platforms
 
 ## Architecture
 
@@ -65,14 +66,19 @@ sgairquality/
 #### 4. Observables (`Observables/`)
 - **DataDownloaderModel**: Main data coordinator
   - Downloads latest readings from API
+  - Backfills historical data for up to 3 days via `backfillHistoricalDataIfNeeded()`
   - Generates AI summaries via `AirQualitySummaryService.generateSummary(for:)`
+  - Contains `classifyPM25(_:)` and `classifyPSI(_:)` classification logic
   - Uses Swift's `@Observable` macro
-- **SingaporeMapViewModel**: Manages map state
+- **SingaporeMapViewModel**: Manages map state and sheet presentation flags
 
 #### 5. Views (`Views/`)
 - **SingaporeMapView**: Main map view with annotations
-  - Platform-conditional toolbar items (iOS vs macOS)
-- **LatestDataView**: Detailed readings view
+  - Platform-conditional toolbar items (iOS vs macOS/visionOS)
+  - Displays AI-generated haze summary overlay using Liquid Glass effect
+- **HistoricalDataView**: Interactive PM2.5/PSI charts with time range selection and scrubbing tooltip
+- **LatestDataView**: Detailed latest readings view
+- **ExplanationView**: Air quality guide and PSI computation explainer
 - **ReadingsAnnotationView**: Map annotation UI
 - **RegionalDataRow**: Regional data display component
 
@@ -113,7 +119,7 @@ let response = try await session.respond(to: prompt)
 **Important Notes**:
 - Instructions define the model's role and guidelines
 - Prompts contain specific data for each request
-- Always check `languageModel.availability` before use
+- Always check `SystemLanguageModel.default.availability` before use
 - Handle cases where language model is unavailable
 
 ### 3. Testing Strategy
@@ -124,10 +130,10 @@ let response = try await session.respond(to: prompt)
 - API response decoding tests
 - Real-world scenario tests
 
-**Key Test Suites**:
-- `AirQualityClassificationTests`: Classification logic
-- `AirQualitySummaryServiceTests`: LLM output quality
-- `SgAirQualityTests`: API integration
+**Key Test Suites** (all in `sgairqualityTests.swift`):
+- `SgAirQualityTests`: API integration and database reads
+- `AirQualityClassificationTests`: PM2.5/PSI classification logic and boundary tests
+- `AirQualityClassificationIntegrityTests`: End-to-end classification data integrity
 
 **LLM Test Approach**:
 - Test for appropriate content (not exact text)
@@ -169,8 +175,10 @@ Each file uses this comment structure:
 // MARK: Constants
 // MARK: Variables
 // MARK: Public Methods
-// MARK: Private Methods
+// MARK: Private Methods 
 ```
+
+**Important**: In SwiftUI `View`s, Public and Private methods are included _after_ the view body.
 
 ### Comments
 - Add descriptive comments for complex logic
@@ -195,7 +203,7 @@ Each file uses this comment structure:
 ### Working with the LLM
 1. **Instructions**: Define in `buildInstructions()` - model's role/behavior
 2. **Prompts**: Build in `buildPrompt(for:)` - specific classification data
-3. **Test**: Add tests in `AirQualitySummaryServiceTests`
+3. **Test**: Add tests in `AirQualityClassificationIntegrityTests` or a new suite in `sgairqualityTests.swift`
 4. **Validate**: Check for content appropriateness, not exact matches
 
 ### Database Changes
@@ -224,8 +232,8 @@ The app uses Singapore government APIs:
 # All tests
 xcodebuild test -scheme sgairquality
 
-# Specific test
-xcodebuild test -scheme sgairquality -only-testing:sgairqualityTests/AirQualitySummaryServiceTests
+# Specific test suite
+xcodebuild test -scheme sgairquality -only-testing:sgairqualityTests/AirQualityClassificationTests
 ```
 
 ### Writing LLM Tests
@@ -292,7 +300,7 @@ xcodebuild test -scheme sgairquality -only-testing:sgairqualityTests/AirQualityS
 1. **Read Before Writing**: Always read files before modifying
 2. **Maintain Structure**: Follow existing MARK comment patterns
 3. **Test Changes**: Run relevant tests after modifications
-4. **Platform Awareness**: Consider iOS/macOS differences
+4. **Platform Awareness**: Consider iOS/macOS/visionOS differences
 5. **LLM Considerations**: Separate instructions from prompts
 6. **Documentation**: Update this file when adding major features
 7. **Accessibility**: Add identifiers to UI elements for testing
@@ -303,8 +311,9 @@ xcodebuild test -scheme sgairquality -only-testing:sgairqualityTests/AirQualityS
 - **Swift**: 6.0+
 - **iOS**: 26.0+
 - **macOS**: 26.0+
+- **visionOS**: 26.0+
 - **Xcode**: 26.3+
-- **Frameworks**: SwiftUI, FoundationModels, GRDB
+- **Frameworks**: SwiftUI, FoundationModels, GRDB, Charts, MapKit
 
 ## Contact & Support
 
