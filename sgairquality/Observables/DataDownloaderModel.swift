@@ -18,13 +18,6 @@ class DataDownloaderModel {
 
     // MARK: Constants
     private let api = DataAPI.shared
-    private let summaryService: AirQualitySummaryService
-    
-    // MARK: Initialization
-    
-    init(summaryService: AirQualitySummaryService = AirQualitySummaryService()) {
-        self.summaryService = summaryService
-    }
 
     func downloadLatestData() async throws {
         psiData = try await api.latestPSIReadings()
@@ -74,7 +67,7 @@ class DataDownloaderModel {
             )
         )
         
-        hazeSummary = try await summaryService.generateSummary(for: classifications)
+        hazeSummary = try await AirQualitySummaryService.generateSummary(for: classifications)
     }
 
     func classifyPM25(_ value: Int) -> PM25Band {
