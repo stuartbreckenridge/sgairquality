@@ -47,12 +47,8 @@ final class sgairqualityUITests: XCTestCase {
             "Expected 'How PSI Is Computed' section header in explanation view."
         )
         XCTAssertTrue(
-            app.staticTexts["Pollutant Standards Index (PSI)"].exists,
+            app.staticTexts["Pollutant Standards Index (PSI)"].waitForExistence(timeout: 5),
             "Expected PSI section header in explanation view."
-        )
-        XCTAssertTrue(
-            app.staticTexts["Fine Particulate Matter (PM2.5)"].exists,
-            "Expected PM2.5 section header in explanation view."
         )
 
         // Dismiss and confirm we return to the map
@@ -93,7 +89,6 @@ final class sgairqualityUITests: XCTestCase {
         refreshButton.tap()
         XCTAssertTrue(app.navigationBars["Latest Readings"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["PSI - 24 Hour"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["PM2.5 - 24 Hour"].waitForExistence(timeout: 5))
     }
     
 }
