@@ -30,11 +30,11 @@ struct LatestDataView: View {
             List {
                 if let psiData = dataModel.psiData {
                     Section {
-                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.psiTwentyFourHourly.west ?? 0, dataType: .psi)
-                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.psiTwentyFourHourly.east ?? 0, dataType: .psi)
-                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.psiTwentyFourHourly.central ?? 0, dataType: .psi)
-                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.psiTwentyFourHourly.south ?? 0, dataType: .psi)
                         RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.psiTwentyFourHourly.north ?? 0, dataType: .psi)
+                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.psiTwentyFourHourly.east ?? 0, dataType: .psi)
+                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.psiTwentyFourHourly.south ?? 0, dataType: .psi)
+                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.psiTwentyFourHourly.west ?? 0, dataType: .psi)
+                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.psiTwentyFourHourly.central ?? 0, dataType: .psi)
                     } header: {
                         Text(verbatim: "PSI - 24 Hour")
                     } footer: {
@@ -48,11 +48,11 @@ struct LatestDataView: View {
 
                     if let pm25Data = dataModel.pm25Data {
                         Section {
-                            RegionalDataRow(title: "label.text.west", value: pm25Data.data.items.first?.readings.pm25OneHourly.west ?? 0, dataType: .pm25)
-                            RegionalDataRow(title: "label.text.east", value: pm25Data.data.items.first?.readings.pm25OneHourly.east ?? 0, dataType: .pm25)
-                            RegionalDataRow(title: "label.text.central", value: pm25Data.data.items.first?.readings.pm25OneHourly.central ?? 0, dataType: .pm25)
-                            RegionalDataRow(title: "label.text.south", value: pm25Data.data.items.first?.readings.pm25OneHourly.south ?? 0, dataType: .pm25)
                             RegionalDataRow(title: "label.text.north", value: pm25Data.data.items.first?.readings.pm25OneHourly.north ?? 0, dataType: .pm25)
+                            RegionalDataRow(title: "label.text.east", value: pm25Data.data.items.first?.readings.pm25OneHourly.east ?? 0, dataType: .pm25)
+                            RegionalDataRow(title: "label.text.south", value: pm25Data.data.items.first?.readings.pm25OneHourly.south ?? 0, dataType: .pm25)
+                            RegionalDataRow(title: "label.text.west", value: pm25Data.data.items.first?.readings.pm25OneHourly.west ?? 0, dataType: .pm25)
+                            RegionalDataRow(title: "label.text.central", value: pm25Data.data.items.first?.readings.pm25OneHourly.central ?? 0, dataType: .pm25)
                         } header: {
                             Text(verbatim: "PM2.5 - 1 Hour")
                         } footer: {
@@ -66,11 +66,11 @@ struct LatestDataView: View {
                     }
 
                     Section {
-                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.west ?? 0, dataType: .pm25)
-                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.east ?? 0, dataType: .pm25)
-                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.central ?? 0, dataType: .pm25)
-                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.south ?? 0, dataType: .pm25)
                         RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.north ?? 0, dataType: .pm25)
+                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.east ?? 0, dataType: .pm25)
+                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.south ?? 0, dataType: .pm25)
+                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.west ?? 0, dataType: .pm25)
+                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.pm25TwentyFourHourly.central ?? 0, dataType: .pm25)
                     } header: {
                         Text(verbatim: "PM2.5 - 24 Hour")
                     } footer: {
@@ -83,11 +83,11 @@ struct LatestDataView: View {
                     }
 
                     Section {
-                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.west ?? 0)
-                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.east ?? 0)
-                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.central ?? 0)
-                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.south ?? 0)
                         RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.north ?? 0)
+                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.east ?? 0)
+                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.south ?? 0)
+                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.west ?? 0)
+                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.pm10TwentyFourHourly.central ?? 0)
                     } header: {
                         Text(verbatim: "PM10 - 24 Hour")
                     } footer: {
@@ -100,11 +100,11 @@ struct LatestDataView: View {
                     }
 
                     Section {
-                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.o3EightHourMax.west ?? 0)
-                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.o3EightHourMax.east ?? 0)
-                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.o3EightHourMax.central ?? 0)
-                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.o3EightHourMax.south ?? 0)
                         RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.o3EightHourMax.north ?? 0)
+                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.o3EightHourMax.east ?? 0)
+                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.o3EightHourMax.south ?? 0)
+                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.o3EightHourMax.west ?? 0)
+                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.o3EightHourMax.central ?? 0)
                     } header: {
                         Text(verbatim: "Ozone (O3) - 8 Hour Max")
                     } footer: {
@@ -117,11 +117,11 @@ struct LatestDataView: View {
                     }
 
                     Section {
-                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.coEightHourMax.west ?? 0)
-                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.coEightHourMax.east ?? 0)
-                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.coEightHourMax.central ?? 0)
-                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.coEightHourMax.south ?? 0)
                         RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.coEightHourMax.north ?? 0)
+                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.coEightHourMax.east ?? 0)
+                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.coEightHourMax.south ?? 0)
+                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.coEightHourMax.west ?? 0)
+                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.coEightHourMax.central ?? 0)
                     } header: {
                         Text(verbatim: "Carbon Monoxide (CO) - 8 Hour Max")
                     } footer: {
@@ -134,11 +134,11 @@ struct LatestDataView: View {
                     }
 
                     Section {
-                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.so2TwentyFourHourly.west ?? 0)
-                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.so2TwentyFourHourly.east ?? 0)
-                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.so2TwentyFourHourly.central ?? 0)
-                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.so2TwentyFourHourly.south ?? 0)
                         RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.so2TwentyFourHourly.north ?? 0)
+                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.so2TwentyFourHourly.east ?? 0)
+                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.so2TwentyFourHourly.south ?? 0)
+                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.so2TwentyFourHourly.west ?? 0)
+                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.so2TwentyFourHourly.central ?? 0)
                     } header: {
                         Text(verbatim: "Sulfur Dioxide (SO2) - 24 Hour")
                     } footer: {
@@ -151,11 +151,11 @@ struct LatestDataView: View {
                     }
 
                     Section {
-                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.no2OneHourMax.west ?? 0)
-                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.no2OneHourMax.east ?? 0)
-                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.no2OneHourMax.central ?? 0)
-                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.no2OneHourMax.south ?? 0)
                         RegionalDataRow(title: "label.text.north", value: psiData.data.items.first?.readings.no2OneHourMax.north ?? 0)
+                        RegionalDataRow(title: "label.text.east", value: psiData.data.items.first?.readings.no2OneHourMax.east ?? 0)
+                        RegionalDataRow(title: "label.text.south", value: psiData.data.items.first?.readings.no2OneHourMax.south ?? 0)
+                        RegionalDataRow(title: "label.text.west", value: psiData.data.items.first?.readings.no2OneHourMax.west ?? 0)
+                        RegionalDataRow(title: "label.text.central", value: psiData.data.items.first?.readings.no2OneHourMax.central ?? 0)
                     } header: {
                         Text(verbatim: "Nitrogen Dioxide (NO2) - 1 Hour Max")
                     } footer: {
