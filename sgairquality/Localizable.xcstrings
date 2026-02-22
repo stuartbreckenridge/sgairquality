@@ -115,6 +115,18 @@
         }
       }
     },
+    "label.text.pm25-elevated" : {
+      "comment" : "PM2.5: Elevated (56-150)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Elevated"
+          }
+        }
+      }
+    },
     "label.text.pm25-explainer" : {
       "comment" : "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller.",
       "localizations" : {
@@ -122,6 +134,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inhalable fine particulate matter that is generally 2.5 micrometers and smaller."
+          }
+        }
+      }
+    },
+    "label.text.pm25-high" : {
+      "comment" : "PM2.5: High (151-250)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "High"
+          }
+        }
+      }
+    },
+    "label.text.pm25-normal" : {
+      "comment" : "PM2.5: Normal (0-55)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Normal"
+          }
+        }
+      }
+    },
+    "label.text.pm25-very-high" : {
+      "comment" : "PM2.5: Very High (251+)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Very High"
           }
         }
       }
@@ -144,6 +192,66 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pollutant Standards Index composed of PM10, PM2.5, O3, CO, NO2, and SO2. Use the 24-hour PSI rating for next day activities."
+          }
+        }
+      }
+    },
+    "label.text.psi-good" : {
+      "comment" : "PSI: Good (0-50)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Good"
+          }
+        }
+      }
+    },
+    "label.text.psi-hazardous" : {
+      "comment" : "PSI: Hazardous (301+)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hazardous"
+          }
+        }
+      }
+    },
+    "label.text.psi-moderate" : {
+      "comment" : "PSI: Moderate (51-100)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Moderate"
+          }
+        }
+      }
+    },
+    "label.text.psi-unhealthy" : {
+      "comment" : "PSI: Unhealthy (101-200)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unhealthy"
+          }
+        }
+      }
+    },
+    "label.text.psi-very-unhealthy" : {
+      "comment" : "PSI: Very Unhealthy (201-300)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Very Unhealthy"
           }
         }
       }
