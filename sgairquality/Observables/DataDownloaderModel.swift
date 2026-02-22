@@ -15,11 +15,20 @@ class DataDownloaderModel {
     var pm25Data: AirQualityResponse<PM25Readings>?
     var latestDownloadTime: Date?
     var hazeSummary: String?
+    var showUpToDateAlert: Bool = false
 
     // MARK: Constants
     private let api = DataAPI.shared
 
     func downloadLatestData() async throws {
+        // Skip the API call if the most recent reading's timestamp is already for the current hour
+        let calendar = Calendar.current
+        let existingTimestamp = pm25Data?.data.items.first?.timestamp ?? psiData?.data.items.first?.timestamp
+        if let timestamp = existingTimestamp, calendar.isDate(timestamp, equalTo: .now, toGranularity: .hour) {
+            showUpToDateAlert = true
+            return
+        }
+
         psiData = try await api.latestPSIReadings()
         pm25Data = try await api.latestPM25Readings()
         latestDownloadTime = .now
