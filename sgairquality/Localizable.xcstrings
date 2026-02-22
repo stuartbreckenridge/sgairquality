@@ -795,6 +795,39 @@
         }
       }
     },
+    "alert.message.data-up-to-date" : {
+      "comment" : "The readings are already current for this hour.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The readings are already current for this hour. No new data is available yet."
+          }
+        }
+      }
+    },
+    "alert.title.data-up-to-date" : {
+      "comment" : "Readings Up to Date",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Readings Up to Date"
+          }
+        }
+      }
+    },
+    "button.title.ok" : {
+      "comment" : "OK",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
     "label.text.west" : {
       "comment" : "West",
       "localizations" : {

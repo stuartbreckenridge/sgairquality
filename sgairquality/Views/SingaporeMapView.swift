@@ -152,6 +152,11 @@ struct SingaporeMapView: View {
                     .frame(width: 500, height: 600)
 #endif
             }
+            .alert("alert.title.data-up-to-date", isPresented: $dataModel.showUpToDateAlert) {
+                Button("button.title.ok", role: .cancel) {}
+            } message: {
+                Text("alert.message.data-up-to-date", comment: "The readings are already current for this hour.")
+            }
         }
         .overlay(alignment: .bottom) {
             if let hazeSummary = dataModel.hazeSummary {
