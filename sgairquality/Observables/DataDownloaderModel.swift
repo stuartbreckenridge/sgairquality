@@ -17,6 +17,7 @@ class DataDownloaderModel {
     var latestDownloadTime: Date?
     var hazeSummary: String?
     var showUpToDateAlert: Bool = false
+    var isGeneratingSummary: Bool = false
 
     // MARK: Constants
     private let api = DataAPI.shared
@@ -26,16 +27,21 @@ class DataDownloaderModel {
         let calendar = Calendar.current
         let existingTimestamp = pm25Data?.data.items.first?.timestamp ?? psiData?.data.items.first?.timestamp
         if let timestamp = existingTimestamp, calendar.isDate(timestamp, equalTo: .now, toGranularity: .hour) {
+            if let pm25Data, let psiData {
+                await AirQualityNotificationService.shared.evaluateLatestReadings(pm25Data: pm25Data, psiData: psiData)
+            }
             showUpToDateAlert = true
             return
         }
 
-        psiData = try await api.latestPSIReadings()
-        pm25Data = try await api.latestPM25Readings()
+        let latestPSIData = try await api.latestPSIReadings()
+        let latestPM25Data = try await api.latestPM25Readings()
+        psiData = latestPSIData
+        pm25Data = latestPM25Data
         latestDownloadTime = .now
 
-        guard let pm25 = pm25Data?.data.items.first?.readings.pm25OneHourly,
-              let psi = psiData?.data.items.first?.readings.psiTwentyFourHourly else {
+        guard let pm25 = latestPM25Data.data.items.first?.readings.pm25OneHourly,
+              let psi = latestPSIData.data.items.first?.readings.psiTwentyFourHourly else {
             return
         }
 
@@ -77,7 +83,11 @@ class DataDownloaderModel {
             )
         )
 
+        await AirQualityNotificationService.shared.evaluateLatestReadings(pm25Data: latestPM25Data, psiData: latestPSIData)
+
+        isGeneratingSummary = true
         hazeSummary = try await AirQualitySummaryService.generateSummary(for: classifications)
+        isGeneratingSummary = false
     }
 
     /// Checks the last three calendar days and fetches any days that have no records in the database.
@@ -151,7 +161,9 @@ class DataDownloaderModel {
             )
         )
 
+        isGeneratingSummary = true
         hazeSummary = try await AirQualitySummaryService.generateSummary(for: classifications)
+        isGeneratingSummary = false
     }
 
     func classifyPM25(_ value: Int) -> PM25Band {

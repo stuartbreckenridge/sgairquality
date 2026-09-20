@@ -23,11 +23,34 @@ struct AirQualitySummaryService {
         }
 
         let instructions = buildInstructions()
+        let generationOptions = GenerationOptions(temperature: 1.0)
         let session = LanguageModelSession(instructions: instructions)
         let prompt = buildPrompt(for: classifications)
-        let response = try await session.respond(to: prompt)
-
-        return response.content.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // Retry up to 3 times if response contains "#" or exceeds 50 words
+        let maxAttempts = 3
+        for attempt in 1...maxAttempts {
+            let response = try await session.respond(to: prompt, options: generationOptions)
+            let trimmedContent = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            // Count words in the response
+            let wordCount = trimmedContent.components(separatedBy: .whitespacesAndNewlines)
+                .filter { !$0.isEmpty }
+                .count
+            
+            // Regenerate if response contains "#" (regardless of word count) or exceeds word limit
+            // Only accept if it has no "#" AND is within word limit
+            if !trimmedContent.contains("#") && wordCount <= 50 {
+                return trimmedContent
+            }
+            
+            // If this is the last attempt, return the response anyway
+            if attempt == maxAttempts {
+                return trimmedContent
+            }
+        }
+        
+        return nil
     }
 
     // MARK: Private Methods
@@ -36,18 +59,21 @@ struct AirQualitySummaryService {
     /// - Returns: Instructions string for the language model
     private static func buildInstructions() -> String {
         return """
-            You are a haze advisory assistant. Provide clear, helpful summaries of current air quality conditions based on PM2.5 and PSI classifications for Singapore's five regions (North, South, East, West, Central).
+            You are a haze advisory assistant. Provide a clear, succinct, single paragraph summary of current air quality conditions based on PM2.5 and PSI classifications for Singapore's five regions (North, South, East, West, Central).
 
             Guidelines:
-            - Provide summaries in approximately 45-60 words
+            - The summary MUST NOT exceed one paragraph
+            - The summary MUST NOT exceed 50 words
             - Base your summary ONLY on the classifications provided in the prompt
             - Do NOT invent or assume different classification values
-            - When ALL regions show Normal PM2.5 and Good/Moderate PSI: State that air quality is good and outdoor activities are safe for everyone
+            - When ALL regions show Normal PM2.5 and Good or Moderate PSI: State that air quality is good and outdoor activities are safe for everyone
             - Do NOT refer to advisories as "restrictions"
             - Do NOT use the word "restrictions"
             - Specifically mention "Very High", "Very Unhealthy", or "Hazardous" ONLY when the classifications are provided in the prompt
-            - Write a single paragraph describing the air quality situation and recommendations
-            - Do not include any Markdown formatting in the summary
+            - You may include Markdown formatting for bold text only
+            - You MUST NOT offer additional help or offer to answer questions
+            - DO NOT REPEAT YOURSELF
+            
 
             Advisory Guidelines by Band:
             - "Normal" PM2.5 + "Good" or "Moderate" PSI = Everyone can do normal activities, NO advisories needed
@@ -98,10 +124,16 @@ struct AirQualitySummaryService {
 
         let allPM25Normal = allPM25Bands.allSatisfy { $0 == .normal }
         let hasElevatedOrWorsePM25 = allPM25Bands.contains(where: { $0 != .normal })
+        let allPSIGood = allPSIBands.allSatisfy { $0 == .good }
+        let allPSIModerate = allPSIBands.allSatisfy { $0 == .moderate }
         let allPSIGoodOrModerate = allPSIBands.allSatisfy { $0 == .good || $0 == .moderate }
 
-        if allPM25Normal && allPSIGoodOrModerate {
-            return "ALL regions show Normal PM2.5 and Good/Moderate PSI. This means air quality is GOOD and NO outdoor activity advisories apply to anyone."
+        if allPM25Normal && allPSIGood {
+            return "ALL regions show Normal PM2.5 and Good PSI. This means air quality is GOOD and NO outdoor activity advisories apply to anyone."
+        } else if allPM25Normal && allPSIModerate {
+            return "ALL regions show Normal PM2.5 and Moderate PSI. This means air quality is acceptable and NO outdoor activity advisories apply to anyone."
+        } else if allPM25Normal && allPSIGoodOrModerate {
+            return "ALL regions show Normal PM2.5 and Good-to-Moderate PSI. This means air quality is GOOD and NO outdoor activity advisories apply to anyone."
         } else if hasElevatedOrWorsePM25 || !allPSIGoodOrModerate {
             return "Some regions show elevated pollution requiring activity advisories."
         } else {

@@ -8,5 +8,9 @@
 	<array>
 		<string>net.stuartbreckenridge.sgairquality.refresh</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 </dict>
 </plist>

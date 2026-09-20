@@ -49,8 +49,9 @@ struct SgAirQualityApp: App {
         .backgroundTask(.appRefresh("net.stuartbreckenridge.sgairquality.refresh")) { _ in
             do {
                 let api = await DataAPI(repository: database)
-                _ = try await api.latestPM25Readings()
-                _ = try await api.latestPSIReadings()
+                let pm25Data = try await api.latestPM25Readings()
+                let psiData = try await api.latestPSIReadings()
+                await AirQualityNotificationService.shared.evaluateLatestReadings(pm25Data: pm25Data, psiData: psiData)
                 try await scheduleAppRefresh()
             } catch {
                 await Self.logger.debug("Unable to process background refresh: \(error.localizedDescription)")

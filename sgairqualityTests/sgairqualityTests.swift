@@ -72,7 +72,7 @@ struct SgAirQualityTests {
         """
 
         let errorData = errorJSON.data(using: .utf8)!
-        let decodedError = try JSONDecoder.airQualityDecoder.decode(AirQualityResponseError.self, from: errorData)
+        let decodedError = try await JSONDecoder.airQualityDecoder.decode(AirQualityResponseError.self, from: errorData)
 
         #expect(decodedError.code == 401)
         #expect(decodedError.name == "Unauthorized")

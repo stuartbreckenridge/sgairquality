@@ -7,12 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		172DA3182F48A20000B92E8C /* Agents.md in Resources */ = {isa = PBXBuildFile; fileRef = 172DA3172F48A20000B92E8C /* Agents.md */; };
-		172DA3452F48A9ED00B92E8C /* Contributing.md in Resources */ = {isa = PBXBuildFile; fileRef = 172DA3442F48A9ED00B92E8C /* Contributing.md */; };
-		1733FF092F4A990E000CA7B5 /* CLAUDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 1733FF082F4A990E000CA7B5 /* CLAUDE.md */; };
 		1733FF0B2F4AA0D4000CA7B5 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1733FF0A2F4AA0D4000CA7B5 /* AppIcon.icon */; };
 		17DE3E282F4979AD004265AA /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 17DE3E272F4979AD004265AA /* GRDB */; };
-		17FCDF282F4564C000578A82 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 17FCDF272F4564C000578A82 /* README.md */; };
 		17FCDF2A2F456E8C00578A82 /* Air Quality Information.md in Resources */ = {isa = PBXBuildFile; fileRef = 17FCDF292F456E8C00578A82 /* Air Quality Information.md */; };
 /* End PBXBuildFile section */
 
@@ -34,20 +30,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		172DA3172F48A20000B92E8C /* Agents.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Agents.md; sourceTree = "<group>"; };
-		172DA3442F48A9ED00B92E8C /* Contributing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Contributing.md; sourceTree = "<group>"; };
-		1733FF082F4A990E000CA7B5 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		1733FF0A2F4AA0D4000CA7B5 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		1750926A2F4AE88200021B99 /* PSI Computation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "PSI Computation.pdf"; sourceTree = "<group>"; };
 		17D01A282F4757DC003F116C /* sgairqualityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17F3B0F12F45A741008F8AA3 /* sgairquality.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = sgairquality.xctestplan; sourceTree = "<group>"; };
 		17FCDEF12F4555F200578A82 /* sgairquality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sgairquality.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17FCDEFE2F4555F300578A82 /* sgairqualityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sgairqualityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		17FCDF272F4564C000578A82 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		17FCDF292F456E8C00578A82 /* Air Quality Information.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Air Quality Information.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		17E416E830582D9A00F1D99B /* Exceptions for "configuration" folder in "sgairquality" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Secrets.xcconfig,
+			);
+			target = 17FCDEF02F4555F200578A82 /* sgairquality */;
+		};
 		17FCE3192F457A2600578A82 /* Exceptions for "sgairquality" folder in "sgairquality" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -78,6 +77,9 @@
 		};
 		17FCE30F2F45759300578A82 /* configuration */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				17E416E830582D9A00F1D99B /* Exceptions for "configuration" folder in "sgairquality" target */,
+			);
 			path = configuration;
 			sourceTree = "<group>";
 		};
@@ -114,10 +116,6 @@
 			children = (
 				17F3B0F12F45A741008F8AA3 /* sgairquality.xctestplan */,
 				17FCDF292F456E8C00578A82 /* Air Quality Information.md */,
-				172DA3172F48A20000B92E8C /* Agents.md */,
-				172DA3442F48A9ED00B92E8C /* Contributing.md */,
-				1733FF082F4A990E000CA7B5 /* CLAUDE.md */,
-				17FCDF272F4564C000578A82 /* README.md */,
 				1750926A2F4AE88200021B99 /* PSI Computation.pdf */,
 				1733FF0A2F4AA0D4000CA7B5 /* AppIcon.icon */,
 				17FCDEF32F4555F200578A82 /* sgairquality */,
@@ -219,7 +217,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2630;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					17D01A272F4757DC003F116C = {
 						CreatedOnToolsVersion = 26.3;
@@ -270,11 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17FCDF282F4564C000578A82 /* README.md in Resources */,
-				1733FF092F4A990E000CA7B5 /* CLAUDE.md in Resources */,
 				17FCDF2A2F456E8C00578A82 /* Air Quality Information.md in Resources */,
-				172DA3452F48A9ED00B92E8C /* Contributing.md in Resources */,
-				172DA3182F48A20000B92E8C /* Agents.md in Resources */,
 				1733FF0B2F4AA0D4000CA7B5 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +325,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FQLBNX3GP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
@@ -356,6 +351,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FQLBNX3GP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
@@ -410,6 +406,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = FQLBNX3GP7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -433,6 +430,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -473,6 +471,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FQLBNX3GP7;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -489,6 +488,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
@@ -503,6 +503,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FQLBNX3GP7;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -542,13 +543,14 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 26.2;
 			};
 			name = Debug;
@@ -562,6 +564,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FQLBNX3GP7;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -601,13 +604,14 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 26.2;
 			};
 			name = Release;
@@ -620,6 +624,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FQLBNX3GP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
@@ -648,6 +653,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FQLBNX3GP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;

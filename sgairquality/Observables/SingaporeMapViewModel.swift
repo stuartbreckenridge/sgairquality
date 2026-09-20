@@ -17,5 +17,6 @@ class SingaporeMapViewModel {
     var showLatestDataView: Bool = false
     var showHistoricalDataView: Bool = false
     var showExplanationView: Bool = false
+    var showNotificationSettingsView: Bool = false
 
 }

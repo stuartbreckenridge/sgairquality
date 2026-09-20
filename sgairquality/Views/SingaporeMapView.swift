@@ -124,6 +124,14 @@ struct SingaporeMapView: View {
 
                         Divider()
 
+                        Button {
+                            hapticTrigger.toggle()
+                            mapModel.showNotificationSettingsView.toggle()
+                        } label: {
+                            Label("Air Quality Alerts", systemImage: "bell")
+                        }
+                        .accessibilityIdentifier("map.notifications.button")
+
                         #if DEBUG
                         Button {
                             hapticTrigger.toggle()
@@ -191,6 +199,15 @@ struct SingaporeMapView: View {
                     .disabled(dataModel.psiData == nil)
                     .accessibilityIdentifier("map.lastRefresh.label")
                 }
+
+                ToolbarItem(placement: .automatic) {
+                    Button {
+                        mapModel.showNotificationSettingsView.toggle()
+                    } label: {
+                        Image(systemName: "bell")
+                    }
+                    .accessibilityIdentifier("map.notifications.button")
+                }
 #endif
             }
             .sheet(isPresented: $mapModel.showLatestDataView) {
@@ -212,6 +229,12 @@ struct SingaporeMapView: View {
                     .frame(width: 500, height: 600)
 #endif
             }
+            .sheet(isPresented: $mapModel.showNotificationSettingsView) {
+                NotificationSettingsView()
+#if os(macOS)
+                    .frame(width: 500, height: 600)
+#endif
+            }
             .alert("alert.title.data-up-to-date", isPresented: $dataModel.showUpToDateAlert) {
                 Button("button.title.ok", role: .cancel) {}
             } message: {
@@ -219,11 +242,26 @@ struct SingaporeMapView: View {
             }
         }
         .overlay(alignment: .bottom) {
-            if let hazeSummary = dataModel.hazeSummary {
+            if dataModel.isGeneratingSummary {
+                HStack(spacing: 12) {
+                    Image(systemName: "apple.intelligence")
+                    ProgressView()
+                    Text("label.text.generating-summary", comment: "Generating air quality summary...")
+                        .font(.subheadline)
+                }
+                .frame(maxWidth: .infinity)
+                .accessibilityIdentifier("overlay.airquality.progress")
+                .padding(8)
+#if !os(visionOS)
+                .glassEffect(in: ConcentricRectangle(topLeadingCorner: .fixed(8), topTrailingCorner: .fixed(8)))
+                .padding(4)
+#else
+                .glassBackgroundEffect()
+#endif
+            } else if let hazeSummary = dataModel.hazeSummary {
                 Label {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(verbatim: hazeSummary)
-                            .italic()
+                        Text(LocalizedStringResource(stringLiteral: hazeSummary))
                         Text("label.text.summarised-by-apple-intelligence", comment: "Summarised by Apple Intelligence")
                             .font(.caption)
                             .bold()
