@@ -343,3 +343,56 @@ struct AirQualityClassificationIntegrityTests {
         }
     }
 }
+
+/// Tests for deterministic air quality summary wording.
+struct AirQualitySummaryServiceTests {
+
+    @Test func normalPM25WithMixedGoodAndModeratePSIIsAcceptable() {
+        let classifications = AirQualityClassification(
+            north: RegionalReading(region: "North", pm25Value: 14, pm25Band: .normal, psiValue: 53, psiBand: .moderate),
+            south: RegionalReading(region: "South", pm25Value: 12, pm25Band: .normal, psiValue: 51, psiBand: .moderate),
+            east: RegionalReading(region: "East", pm25Value: 19, pm25Band: .normal, psiValue: 53, psiBand: .moderate),
+            west: RegionalReading(region: "West", pm25Value: 9, pm25Band: .normal, psiValue: 49, psiBand: .good),
+            central: RegionalReading(region: "Central", pm25Value: 9, pm25Band: .normal, psiValue: 53, psiBand: .moderate)
+        )
+
+        let summary = AirQualitySummaryService.deterministicSummary(for: classifications)
+
+        #expect(summary.contains("acceptable"))
+        #expect(summary.contains("normal outdoor activities"))
+        #expect(!summary.localizedCaseInsensitiveContains("Air quality is elevated"))
+    }
+
+    @Test func unhealthyPSIUsesUnhealthyAdvisory() {
+        let classifications = AirQualityClassification(
+            north: RegionalReading(region: "North", pm25Value: 78, pm25Band: .elevated, psiValue: 120, psiBand: .unhealthy),
+            south: RegionalReading(region: "South", pm25Value: 42, pm25Band: .normal, psiValue: 80, psiBand: .moderate),
+            east: RegionalReading(region: "East", pm25Value: 105, pm25Band: .elevated, psiValue: 145, psiBand: .unhealthy),
+            west: RegionalReading(region: "West", pm25Value: 88, pm25Band: .elevated, psiValue: 130, psiBand: .unhealthy),
+            central: RegionalReading(region: "Central", pm25Value: 49, pm25Band: .normal, psiValue: 90, psiBand: .moderate)
+        )
+
+        let summary = AirQualitySummaryService.deterministicSummary(for: classifications)
+
+        #expect(summary.contains("Unhealthy"))
+        #expect(summary.contains("North, East and West"))
+        #expect(summary.contains("Reduce prolonged or strenuous outdoor activity"))
+        #expect(summary.contains("vulnerable persons"))
+    }
+
+    @Test func veryUnhealthyPSIUsesAvoidOutdoorActivitiesAdvisory() {
+        let classifications = AirQualityClassification(
+            north: RegionalReading(region: "North", pm25Value: 260, pm25Band: .veryHigh, psiValue: 240, psiBand: .veryUnhealthy),
+            south: RegionalReading(region: "South", pm25Value: 260, pm25Band: .veryHigh, psiValue: 240, psiBand: .veryUnhealthy),
+            east: RegionalReading(region: "East", pm25Value: 260, pm25Band: .veryHigh, psiValue: 240, psiBand: .veryUnhealthy),
+            west: RegionalReading(region: "West", pm25Value: 260, pm25Band: .veryHigh, psiValue: 240, psiBand: .veryUnhealthy),
+            central: RegionalReading(region: "Central", pm25Value: 260, pm25Band: .veryHigh, psiValue: 240, psiBand: .veryUnhealthy)
+        )
+
+        let summary = AirQualitySummaryService.deterministicSummary(for: classifications)
+
+        #expect(summary.contains("Very Unhealthy"))
+        #expect(summary.contains("all regions"))
+        #expect(summary.contains("Avoid outdoor activities"))
+    }
+}
