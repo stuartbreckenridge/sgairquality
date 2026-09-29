@@ -54,6 +54,24 @@ struct ReadingsAnnotationView: View {
         }
     }
 
+    private var pm25TextColor: Color {
+        switch pm25 {
+        case 56...150:
+            return .black
+        default:
+            return .white
+        }
+    }
+
+    private var psiTextColor: Color {
+        switch psi {
+        case 101...200:
+            return .black
+        default:
+            return .white
+        }
+    }
+
     var body: some View {
         HStack(spacing: 0) {
             VStack(alignment: .center) {
@@ -61,7 +79,7 @@ struct ReadingsAnnotationView: View {
                     .bold()
                 Text(verbatim: String(pm25))
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(pm25TextColor)
             .padding(.vertical, 4)
             .padding(.horizontal, 8)
             .frame(maxWidth: .infinity)
@@ -75,7 +93,7 @@ struct ReadingsAnnotationView: View {
                     .bold()
                 Text(verbatim: String(psi))
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(psiTextColor)
             .padding(.vertical, 4)
             .padding(.horizontal, 8)
             .frame(maxWidth: .infinity)
